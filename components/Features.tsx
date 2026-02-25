@@ -7,7 +7,7 @@ import { useRef } from 'react';
 const timelineSteps = [
   { time: 'Today, 2pm', title: 'Upload your payment list', aside: "You're not a tax expert. We are." },
   { time: 'Today, 2:15pm', title: 'We handle KYC, compliance, currency conversion', aside: null },
-  { time: 'Tomorrow, 10am', title: 'Money lands in 242 countries, local currency', aside: 'No SWIFT limbo. No bank interrogations.' },
+  { time: 'Tomorrow, 10am', title: 'Money lands in 242 locations, local currency', aside: 'No SWIFT limbo. No bank interrogations.' },
   { time: 'Tomorrow, 11am', title: 'Audit trail auto-generated. One B2B invoice for your books.', aside: null },
   { time: null, title: 'You: Back to building your product.', aside: null, highlight: true },
 ];

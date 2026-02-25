@@ -14,12 +14,12 @@ const metrics = [
     value: '$40M+',
   },
   {
-    label: 'Countries with guaranteed delivery',
-    value: '242',
+    label: 'Contractor fee',
+    value: 'Zero',
   },
   {
     label: 'From signup to first payment',
-    value: '48hrs',
+    value: '< 24hrs',
   },
 ];
 
@@ -39,12 +39,12 @@ export default function MetricsV2() {
           {metrics.map((metric, index) => (
             <div
               key={index}
-              className="bg-background-secondary rounded-xl p-6 md:p-8"
+              className="bg-background-secondary rounded-xl p-6 md:p-8 flex flex-col"
             >
               <p className="text-sm font-semibold text-primary mb-8 md:mb-12">
                 {metric.label}
               </p>
-              <p className="text-2xl md:text-3xl font-display font-extrabold text-primary tracking-tight">
+              <p className="text-2xl md:text-3xl font-display font-extrabold text-primary tracking-tight mt-auto">
                 {metric.value}
               </p>
             </div>

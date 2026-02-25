@@ -1,25 +1,61 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
+const avatars = [
+  { src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face', alt: 'Customer' },
+  { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face', alt: 'Customer' },
+  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face', alt: 'Customer' },
+];
+
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 
-const painCards = [
+interface PainCard {
+  id: string;
+  title: string;
+  body: string;
+  reactions: { fire: number; bang: number; skull: number };
+}
+
+type ReactionType = 'fire' | 'bang' | 'skull';
+const reactionEmoji: Record<ReactionType, string> = { fire: '\uD83D\uDD25', bang: '\uD83D\uDCA5', skull: '\uD83D\uDC80' };
+
+const initialPainCards: PainCard[] = [
   {
+    id: 'talent-far',
     title: 'The talent you need doesn\u2019t live nearby',
     body: 'Your job post gets 200 applications. Three are qualified. Two want 30% more than your budget. The best engineer for the job is in Lisbon, Lagos, or Lahore \u2014 but you\u2019ve never hired internationally before.',
+    reactions: { fire: 267, bang: 94, skull: 58 },
   },
   {
+    id: 'love-to-hire',
     title: '\u201CWe\u2019d love to hire you, but\u2026\u201D',
     body: 'You found the perfect contractor in another country. Now what? Contracts, tax compliance, currency conversion, payment rails \u2014 suddenly you need a legal team, an accountant, and three new tools just to pay one person.',
+    reactions: { fire: 341, bang: 143, skull: 44 },
   },
   {
+    id: 'spreadsheet',
     title: 'The spreadsheet phase',
     body: 'Five contractors, four countries, three currencies, two invoicing formats, one very tired ops person. Every month. It doesn\u2019t scale, and it definitely doesn\u2019t spark joy.',
+    reactions: { fire: 412, bang: 189, skull: 31 },
   },
+  {
+    id: 'tax-cert',
+    title: '\u201CWe need your tax residency certificate\u201D',
+    body: 'Your contractor just got an invoice approved. But your finance team won\u2019t process it without a tax residency certificate \u2014 and getting one costs your contractor $500 and three weeks of bureaucracy. So the payment sits. And sits. And your best people start looking elsewhere.',
+    reactions: { fire: 289, bang: 112, skull: 63 },
+  },
+];
+
+const stickyStyles = [
+  { rotate: -1.5, shadow: '2px 3px 8px rgba(0,0,0,0.08)' },
+  { rotate: 0.8, shadow: '3px 2px 6px rgba(0,0,0,0.06)' },
+  { rotate: -0.5, shadow: '1px 4px 10px rgba(0,0,0,0.07)' },
+  { rotate: 1.2, shadow: '4px 2px 8px rgba(0,0,0,0.09)' },
 ];
 
 const steps = [
@@ -29,7 +65,7 @@ const steps = [
   },
   {
     title: 'We set it up',
-    body: 'Stape signs the contract, runs KYC, and handles local compliance. Your contractor is onboarded and ready to go \u2014 typically within 48 hours.',
+    body: 'Stape signs the contract, runs KYC, and handles local compliance. Your contractor is onboarded and ready to go \u2014 typically under 24 hours.',
   },
   {
     title: 'Pay with one click',
@@ -38,11 +74,11 @@ const steps = [
 ];
 
 const benefits = [
-  { stat: '242 countries', desc: 'Pay contractors virtually anywhere. No entity setup required.' },
+  { stat: '242 locations', desc: 'Pay contractors virtually anywhere. No entity setup required.' },
   { stat: 'One invoice', desc: '50 contractors, 12 countries, 1 invoice to your company. Your finance team will thank you.' },
   { stat: 'Compliant by default', desc: 'Contracts, KYC, tax documentation \u2014 handled. No reclassification risk.' },
   { stat: 'Fixed FX rates', desc: 'Lock in exchange rates at payout time. No surprises on either side.' },
-  { stat: '48-hour onboarding', desc: 'From \u201Cyou\u2019re hired\u201D to \u201Cyou\u2019re paid\u201D in two days. Not two months.' },
+  { stat: 'Under 24-hour onboarding', desc: 'From \u201Cyou\u2019re hired\u201D to \u201Cyou\u2019re paid\u201D in two days. Not two months.' },
   { stat: 'Flexible withdrawals', desc: 'Your contractors choose how they get paid \u2014 bank transfer, card, local rails, or USDT.' },
 ];
 
@@ -51,7 +87,7 @@ const comparisonData = [
     feature: 'Setup time',
     diy: 'Weeks of legal research',
     eor: 'Days to weeks',
-    stape: '48 hours',
+    stape: 'Under 24 hours',
   },
   {
     feature: 'Contracts',
@@ -81,7 +117,7 @@ const comparisonData = [
     feature: 'Flexibility',
     diy: 'Maximum (and maximum risk)',
     eor: 'Limited to their entities',
-    stape: '242 countries, contractor chooses withdrawal method',
+    stape: '242 locations, contractor chooses withdrawal method',
   },
 ];
 
@@ -91,12 +127,34 @@ function Hero() {
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white">
       <div className="max-w-[1000px] mx-auto px-6 md:px-12 text-center">
+        {/* Social proof */}
+        <motion.div
+          className="flex items-center justify-center gap-3 mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="flex -space-x-2">
+            {avatars.map((avatar, i) => (
+              <Image
+                key={i}
+                src={avatar.src}
+                alt={avatar.alt}
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-full border-2 border-white object-cover"
+              />
+            ))}
+          </div>
+          <span className="text-sm text-foreground-muted">Trusted by 100+ teams getting their headspace back</span>
+        </motion.div>
+
         {/* Eyebrow */}
         <motion.div
           className="flex items-center justify-center gap-2 mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.05 }}
         >
           <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-accent/20 rounded-full text-sm text-primary font-medium">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -152,9 +210,9 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           {[
-            '242 countries supported',
+            '242 locations supported',
             '\u20AC50 flat fee per contractor',
-            '48hrs to first payment',
+            'Under 24hrs to first payment',
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm text-foreground-muted">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -172,6 +230,23 @@ function Hero() {
 function PainPoints() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const [userReactions, setUserReactions] = useState<Record<string, Set<ReactionType>>>({});
+  const [painCards, setPainCards] = useState<PainCard[]>(initialPainCards);
+
+  const handleReaction = useCallback((id: string, reaction: ReactionType) => {
+    setUserReactions((prev) => {
+      const current = prev[id] || new Set<ReactionType>();
+      const updated = new Set(current);
+      if (updated.has(reaction)) {
+        updated.delete(reaction);
+        setPainCards((s) => s.map((c) => c.id === id ? { ...c, reactions: { ...c.reactions, [reaction]: c.reactions[reaction] - 1 } } : c));
+      } else {
+        updated.add(reaction);
+        setPainCards((s) => s.map((c) => c.id === id ? { ...c, reactions: { ...c.reactions, [reaction]: c.reactions[reaction] + 1 } } : c));
+      }
+      return { ...prev, [id]: updated };
+    });
+  }, []);
 
   return (
     <section ref={ref} className="py-24 md:py-32 bg-background-secondary">
@@ -191,23 +266,48 @@ function PainPoints() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          {painCards.map((card, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.4, delay: 0.15 + i * 0.1 }}
-              className="bg-white rounded-2xl p-8 border border-border flex flex-col"
-            >
-              <h3 className="text-lg font-display font-bold text-primary mb-3">{card.title}</h3>
-              <p className="text-sm text-foreground-secondary leading-relaxed">{card.body}</p>
-            </motion.div>
-          ))}
+          {painCards.map((card, i) => {
+            const style = stickyStyles[i % stickyStyles.length];
+            const userSet = userReactions[card.id] || new Set<ReactionType>();
+            const hasAnyReaction = userSet.size > 0;
+            return (
+              <motion.div
+                key={card.id}
+                initial={{ opacity: 0, y: 20, rotate: 0 }}
+                animate={isInView ? { opacity: 1, y: 0, rotate: style.rotate } : { opacity: 0, y: 20, rotate: 0 }}
+                whileHover={{ rotate: 0, scale: 1.03, y: -4 }}
+                transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
+                style={{ boxShadow: style.shadow }}
+                className={`relative flex flex-col rounded-sm p-5 min-h-[210px] transition-colors duration-300 cursor-default ${
+                  hasAnyReaction ? 'bg-[#FFF3A0]' : 'bg-[#FFF9DB]'
+                }`}
+              >
+                <h3 className="text-[13px] font-bold text-primary mb-2">{card.title}</h3>
+                <p className="text-[13px] text-primary leading-relaxed mb-5 font-medium">{card.body}</p>
+                <div className="mt-auto flex items-center gap-2 flex-wrap">
+                  {(['fire', 'bang', 'skull'] as ReactionType[]).map((reaction) => (
+                    <button
+                      key={reaction}
+                      onClick={() => handleReaction(card.id, reaction)}
+                      className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                        userSet.has(reaction)
+                          ? 'bg-primary text-white shadow-sm scale-105'
+                          : 'bg-white/80 text-primary/70 hover:bg-white hover:text-primary hover:shadow-sm'
+                      }`}
+                    >
+                      <span className="text-sm">{reactionEmoji[reaction]}</span>
+                      <span>{card.reactions[reaction]}</span>
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>
@@ -524,7 +624,7 @@ function BottomCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          Average time from first call to first payment: 48 hours.
+          Average time from first call to first payment: under 24 hours.
         </motion.p>
       </div>
     </section>

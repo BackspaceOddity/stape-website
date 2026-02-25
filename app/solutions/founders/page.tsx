@@ -23,12 +23,12 @@ interface Situation {
 const initialSituations: Situation[] = [
   {
     id: 'provider-cutoff',
-    text: 'Your payment provider just cut off your entire region. Your devs haven\u2019t been paid in 3 weeks. You\u2019re Googling \u201Chow to send money to Serbia\u201D at midnight.',
+    text: 'Your payment provider just cut off your entire region. Your devs haven\u2019t been paid in 3 weeks. You\u2019re Googling \u201Chow to send dollars to Serbia\u201D at midnight.',
     reactions: { fire: 412, bang: 189, skull: 31 },
   },
   {
     id: 'visa-threat',
-    text: 'Your best engineer says: \u201CEither give me a contract from a real company for my visa, or I\u2019m leaving.\u201D You have 10 days.',
+    text: 'Your best engineer needs a local contract for their visa. Yesterday. You don\u2019t even have an entity in their country.',
     reactions: { fire: 304, bang: 128, skull: 42 },
   },
   {
@@ -38,7 +38,7 @@ const initialSituations: Situation[] = [
   },
   {
     id: 'investor-ask',
-    text: 'Your investor asks: \u201CCan you show me there are zero direct payments to Russia from our US entity?\u201D You can\u2019t.',
+    text: 'Your investor asks: \u201CCan you show me a clean audit trail for every cross-border payment?\u201D You can\u2019t.',
     reactions: { fire: 289, bang: 112, skull: 63 },
   },
 ];
@@ -53,15 +53,15 @@ const beforeAfterData = [
   },
   {
     before: 'Your provider stopped supporting your team\u2019s passports \u2014 scrambling for Plan B',
-    after: 'We pay in 242 countries. Sanctions, corridor changes \u2014 that\u2019s our problem, not yours.',
+    after: 'We pay in 242 locations. Sanctions, corridor changes \u2014 that\u2019s our problem, not yours.',
   },
   {
-    before: 'Investors see direct links to \u201Ctoxic\u201D jurisdictions in your payment chain',
-    after: 'Two-contract isolation: US\u2192US and AE\u2192contractor. Your cap table stays clean.',
+    before: 'Investors see direct links to high-risk jurisdictions in your payment chain',
+    after: 'Stape is your Contractor of Record. One agreement with us, compliant contracts with every hire. Your cap table stays clean.',
   },
   {
-    before: 'Key developers can\u2019t get visa docs \u2014 threatening to leave',
-    after: 'Each contractor gets a named contract and invoices from a foreign legal entity. Banks accept it.',
+    before: 'Key developers can\u2019t get nomad docs \u2014 threatening to leave',
+    after: 'Each contractor gets a named contract and proper invoices. Banks accept it.',
   },
   {
     before: 'Percentage fees eating 10\u201312% of payroll as salaries grow past $3\u20135k',
@@ -78,7 +78,7 @@ const timelineSteps = [
   {
     time: 'Step 2',
     title: 'We set up the legal rails',
-    aside: 'Stape creates a Contractor-of-Record structure. Your company signs one B2B agreement with our US/AE entity. We handle individual contracts with each team member.',
+    aside: 'Stape creates a Contractor-of-Record structure. Your company signs one B2B agreement with our entity. We handle individual contracts with each team member.',
   },
   {
     time: 'Step 3',
@@ -94,13 +94,6 @@ const timelineSteps = [
 
 const comparisonData = [
   {
-    feature: 'RU/BY corridors',
-    eor: 'Stopped supporting',
-    freelance: 'Limited, unreliable',
-    crypto: 'Works until bank blocks you',
-    stape: 'Active, with fallback routes',
-  },
-  {
     feature: 'Visa & income docs',
     eor: 'Only for supported countries',
     freelance: 'Basic',
@@ -115,8 +108,15 @@ const comparisonData = [
     stape: 'Two-contract scheme, no direct link',
   },
   {
+    feature: 'Underserved regions',
+    eor: 'Stopped supporting',
+    freelance: 'Limited, unreliable',
+    crypto: 'Works until bank blocks you',
+    stape: 'Active, with fallback routes',
+  },
+  {
     feature: 'Pricing model',
-    eor: '% of salary + hidden FX',
+    eor: '% of salary + hidden FX + withdraw fee',
     freelance: '% of salary + \u201Ctasks\u201D overhead',
     crypto: '1\u20132% + your time',
     stape: '\u20AC50 flat + transparent FX',
@@ -176,10 +176,6 @@ const faqs = [
     question: 'How is this different from global EOR platforms?',
     answer: 'Most global payroll platforms don\u2019t serve contractors with RU/BY passports and increasingly require excessive KYC. We specialize in complex corridors they won\u2019t touch. Our flat fee structure also means you don\u2019t get punished as salaries grow.',
   },
-  {
-    question: 'What about Russian tax implications (115-FZ, employment misclassification)?',
-    answer: 'Payments come from a non-resident entity with proper documentation \u2014 a legal basis recognized by Russian banks. We\u2019ve processed thousands of such payments without 115-FZ blocks. The contractor-of-record model also protects you from employment misclassification claims.',
-  },
 ];
 
 /* ─── Sticky note styles (from TriggerBar) ────────────────────────────────── */
@@ -216,7 +212,7 @@ function HeroFounders() {
               />
             ))}
           </div>
-          <span className="text-sm text-foreground-muted font-medium">For Founders &amp; CEOs</span>
+          <span className="text-sm text-foreground-muted">Trusted by 100+ teams getting their headspace back</span>
         </motion.div>
 
         {/* Main headline */}
@@ -272,7 +268,7 @@ function HeroFounders() {
           {[
             '100+ teams switched',
             '\u20AC50 flat fee per payout',
-            '48hrs to first payment',
+            'Under 24hrs to first payment',
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm text-foreground-muted">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -621,8 +617,8 @@ function FoundersSocialProof() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
-            <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">#1</p>
-            <p className="text-xs text-foreground-muted">Rated contractor payroll platform</p>
+            <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">Zero</p>
+            <p className="text-xs text-foreground-muted">Missed payouts since launch</p>
           </div>
           <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
             <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">$40M+</p>
@@ -712,7 +708,7 @@ function CostComparison() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">&bull;</span>
-                <span>242 countries supported</span>
+                <span>242 locations supported</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">&bull;</span>
@@ -874,7 +870,7 @@ function FinalCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          Average time from first call to first payment: 48 hours. 47 teams switched this month.
+          Average time from first call to first payment: under 24 hours. 47 teams switched this month.
         </motion.p>
       </div>
     </section>

@@ -24,7 +24,7 @@ const roles = [
   {
     id: 'hr-managers',
     label: 'For HR Managers',
-    content: "You stop chasing documents. You stop explaining delays. You stop being the bottleneck. You get compliant payments in 242 countries without becoming a tax expert.",
+    content: "You stop chasing documents. You stop explaining delays. You stop being the bottleneck. You get compliant payments in 242 locations without becoming a tax expert.",
   },
 ];
 

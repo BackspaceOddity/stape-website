@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     question: "How long does this actually take to set up?",
-    answer: "First payment: 48 hours. Full roster: depends on how fast you upload your list. Most teams are paying everyone within 2 cycles. Not because we pressured them, but because they stopped thinking about payroll.",
+    answer: "First payment: under 24 hours. Full roster: depends on how fast you upload your list. Most teams are paying everyone within 2 cycles. Not because we pressured them, but because they stopped thinking about payroll.",
   },
 ];
 

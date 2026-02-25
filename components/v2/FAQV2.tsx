@@ -29,7 +29,7 @@ const faqs = [
   {
     question: 'How long does setup actually take?',
     answer:
-      "First payment: 48 hours. Full team: depends on how fast you upload your list. Most teams pay everyone within 2 cycles \u2014 not because we pushed them, but because they stopped thinking about payroll.",
+      "First payment: under 24 hours. Full team: depends on how fast you upload your list. Most teams pay everyone within 2 cycles \u2014 not because we pushed them, but because they stopped thinking about payroll.",
   },
 ];
 

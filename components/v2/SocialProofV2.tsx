@@ -92,8 +92,8 @@ export default function SocialProofV2() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
-            <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">#1</p>
-            <p className="text-xs text-foreground-muted">Rated contractor payroll platform</p>
+            <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">Zero</p>
+            <p className="text-xs text-foreground-muted">Missed payouts since launch</p>
           </div>
           <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
             <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">$40M+</p>

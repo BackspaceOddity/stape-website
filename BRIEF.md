@@ -99,12 +99,12 @@
 
 ### Section 4: How It Works (Timeline)
 
-**Header:** "From 'oh shit, payroll is today' to paid in 48 hours"
+**Header:** "From 'oh shit, payroll is today' to paid in under 24 hours"
 
 **Horizontal timeline (4 steps):**
 - **Today, 2pm:** Upload your payment list / *(You're not a tax expert. We are.)*
 - **Today, 2:15pm:** We handle KYC, compliance, currency conversion
-- **Tomorrow, 10am:** Money lands in 242 countries, local currency / *(No SWIFT limbo. No bank interrogations.)*
+- **Tomorrow, 10am:** Money lands in 242 locations, local currency / *(No SWIFT limbo. No bank interrogations.)*
 - **Tomorrow, 11am:** Audit trail auto-generated. One B2B invoice for your books.
 - **Final box:** "You: Back to building your product."
 
@@ -148,7 +148,7 @@
 - "You stop being a payment processor. You stop answering 'where's my money?' DMs. You stop Googling tax codes. You click 'Pay Everyone' and move on."
 
 **For HR Managers:**
-- "You stop chasing documents. You stop explaining delays. You stop being the bottleneck. You get compliant payments in 242 countries without becoming a tax expert."
+- "You stop chasing documents. You stop explaining delays. You stop being the bottleneck. You get compliant payments in 242 locations without becoming a tax expert."
 
 **CTA per tab:** "See How This Works For Me"
 
@@ -173,7 +173,7 @@
    - Answer: "We generate compliance documents automatically. Tax forms, payment receipts, proof of income — all generated per transaction. Your contractor gets what they need, when they need it."
 
 5. **"How long does this actually take to set up?"**
-   - Answer: "First payment: 48 hours. Full roster: depends on how fast you upload your list. Most teams are paying everyone within 2 cycles. Not because we pressured them, but because they stopped thinking about payroll."
+   - Answer: "First payment: under 24 hours. Full roster: depends on how fast you upload your list. Most teams are paying everyone within 2 cycles. Not because we pressured them, but because they stopped thinking about payroll."
 
 ---
 

@@ -1,37 +1,59 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
+const avatars = [
+  { src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face', alt: 'Customer' },
+  { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face', alt: 'Customer' },
+  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face', alt: 'Customer' },
+];
+
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 
-const painCards = [
+interface Web3PainCard {
+  id: string;
+  title: string;
+  text: string;
+  reactions: { fire: number; bang: number; skull: number };
+}
+
+type Web3ReactionType = 'fire' | 'bang' | 'skull';
+const web3ReactionEmoji: Record<Web3ReactionType, string> = { fire: '\uD83D\uDD25', bang: '\uD83D\uDCA5', skull: '\uD83D\uDC80' };
+
+const initialPainCards: Web3PainCard[] = [
   {
-    emoji: '\uD83D\uDCB3',
+    id: 'card-frozen',
     title: '"My developer\'s card just got frozen. Again."',
-    text: 'Your team converts USDT through P2P to pay rent. Their bank flags it under anti-money-laundering rules. Now they\'re locked out of their account and you\'re scrambling to find another way to send $4,000 to Tbilisi.',
+    text: 'Your team converts USDT through P2P to pay rent. Their Revolut flags the incoming transfer as crypto without a clear source. Now they\'re locked out of their account and you\'re scrambling to find another way to send $4,000 to Tbilisi.',
+    reactions: { fire: 412, bang: 189, skull: 31 },
   },
   {
-    emoji: '\uD83D\uDD0D',
+    id: 'investor-trail',
     title: '"Our investors can see exactly where the money goes. That\'s the problem."',
-    text: 'Your previous payment provider showed a direct trail from your entity to contractors in restricted countries. Your investors flagged it. Now you need a structure that\'s compliant without being transparent in the wrong places.',
+    text: 'Your previous payment provider showed a direct trail from your entity to contractors in high-risk jurisdictions. Your investors flagged it. Now you need a structure that\'s compliant without being transparent in the wrong places.',
+    reactions: { fire: 289, bang: 112, skull: 63 },
   },
   {
-    emoji: '\uD83E\uDDEE',
+    id: 'payment-router',
     title: '"I spend two days a month being a human payment router."',
     text: 'You\'re a founder. You should be shipping product. Instead you\'re coordinating cold wallet transfers to 50 people across 8 countries, tracking who needs fiat vs. USDT, and praying nobody\'s bank bounces the funds.',
+    reactions: { fire: 341, bang: 143, skull: 44 },
   },
   {
-    emoji: '\uD83C\uDFE6',
+    id: 'no-crypto',
     title: '"The big platforms don\'t take crypto. And they blocked half my team anyway."',
     text: 'You tried the established payroll providers. They don\'t accept USDT as a funding source, and they\'ve stopped servicing contractors with certain passports. You need someone who actually works with how your company operates.',
+    reactions: { fire: 304, bang: 128, skull: 42 },
   },
   {
-    emoji: '\uD83D\uDCC4',
+    id: 'no-trail',
     title: '"We have no paper trail for any of this."',
-    text: 'Your auditors want documentation. Your investors want clean books. Your contractors want contracts for their visa renewals. All you have is a spreadsheet of wallet addresses and Telegram confirmations.',
+    text: 'Your auditors want documentation. Your investors want clean books. Your contractors want proper contracts. If you\'re still running on wallet addresses and Telegram confirmations \u2014 it\'s time to set up a real process from day one.',
+    reactions: { fire: 267, bang: 94, skull: 58 },
   },
 ];
 
@@ -46,10 +68,10 @@ const withoutStape = [
 ];
 
 const withStape = [
-  'Fund your Stape balance in USDT (one transaction)',
+  'Fund your Stape balance in stablecoins (one transaction)',
   'Approve the monthly payout batch in the dashboard',
   'Each contractor chooses their own split: card, bank transfer, or USDT',
-  'Stape generates service agreements, invoices, and compliance docs',
+  'Stape handles service agreements, invoices, and compliance docs throughout the entire contractor lifecycle',
   'Your investors get a clean audit trail. Your team gets paid without drama.',
 ];
 
@@ -57,12 +79,12 @@ const howItWorksSteps = [
   {
     step: 'Step 1',
     title: 'Fund your balance in crypto',
-    description: 'Send USDT (TRC-20) from your verified corporate wallet. We run a standard KYT check (wallet cleanliness verification), convert to USD at a 2% fee, and your Stape balance is ready. One transaction covers your entire team.',
+    description: 'Send stablecoins from your verified corporate wallet. We run a standard KYT check (wallet cleanliness verification), convert to USD, and your Stape balance is ready. One transaction covers your entire team.',
   },
   {
     step: 'Step 2',
     title: 'We become your Contractor of Record',
-    description: 'Stape signs service agreements with each contractor through local entities (US, UAE, or matching jurisdiction). Contracts cover scope, IP assignment, and confidentiality \u2014 tailored to their role: Solidity Developer, Security Auditor, Protocol Researcher. No "tasks." No monthly acts. Just a proper contract.',
+    description: 'Stape signs service agreements with each contractor through local entities (US, UAE, or matching jurisdiction). Contracts cover scope, IP assignment, and confidentiality \u2014 tailored to their role: Solidity Developer, Security Auditor, Protocol Researcher. Just a proper contract.',
   },
   {
     step: 'Step 3',
@@ -74,7 +96,7 @@ const howItWorksSteps = [
 const comparisonFeatures = [
   {
     feature: 'Accepts USDT funding',
-    stape: '\u2705 Yes (2% conversion)',
+    stape: '\u2705 Yes (fixed FX rate)',
     traditional: '\u274C No',
     percentage: '\u274C No',
     diy: '\u2705 Yes (but manual)',
@@ -87,7 +109,7 @@ const comparisonFeatures = [
     diy: '$0 fees \u2014 but 2 days of your time',
   },
   {
-    feature: 'Works with RU/BY contractors',
+    feature: 'Works with ex-CIS',
     stape: '\u2705 Yes',
     traditional: '\u274C Most have restricted',
     percentage: 'Partially',
@@ -110,12 +132,12 @@ const comparisonFeatures = [
   {
     feature: 'Requires "tasks" each month',
     stape: '\u274C No',
-    traditional: '\u274C No',
+    traditional: '\u2705 Yes',
     percentage: '\u2705 Yes',
     diy: '\u274C No',
   },
   {
-    feature: 'Audit trail for investors',
+    feature: 'Verifiable payment reports',
     stape: '\u2705 Full',
     traditional: '\u2705 Full',
     percentage: '\u2705 Partial',
@@ -166,7 +188,7 @@ const faqs = [
     answer: 'We require KYB (Know Your Business) verification for your company and run KYT checks on incoming crypto transactions. If your funds come from a clean, verified corporate wallet, the process is straightforward. We cannot accept payments from personal wallets.',
   },
   {
-    question: 'Can contractors in Russia and Belarus get paid?',
+    question: 'Can contractors in Georgia and Kazakhstan get paid?',
     answer: 'Yes. This is one of the core reasons Web3 companies come to us. We maintain legal payout channels while structuring payments through our CoR entities so there\'s no direct transfer trail from your company to restricted jurisdictions.',
   },
   {
@@ -191,12 +213,34 @@ function HeroWeb3() {
       }} />
 
       <div className="relative max-w-[1000px] mx-auto px-6 md:px-12 text-center">
+        {/* Social proof */}
+        <motion.div
+          className="flex items-center justify-center gap-3 mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="flex -space-x-2">
+            {avatars.map((avatar, i) => (
+              <Image
+                key={i}
+                src={avatar.src}
+                alt={avatar.alt}
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-full border-2 border-primary object-cover"
+              />
+            ))}
+          </div>
+          <span className="text-sm text-white/60">Trusted by 100+ teams getting their headspace back</span>
+        </motion.div>
+
         {/* Eyebrow */}
         <motion.div
           className="flex items-center justify-center gap-3 mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.05 }}
         >
           <span className="text-sm text-white/60 font-medium">For Web3 & Crypto Companies</span>
         </motion.div>
@@ -219,7 +263,7 @@ function HeroWeb3() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          You raised in crypto. Your contractors live in fiat. Bridging that gap with P2P transfers and cold wallets worked at 5 people&nbsp;&mdash; not at 50. Stape becomes your Contractor of Record: we accept your USDT, handle contracts and compliance, and pay your team in whatever currency they actually need. You get one invoice and a clean audit trail.
+          You raised in crypto. Your contractors live in fiat. P2P and cold wallets worked at 5 people&nbsp;&mdash; not at 50. Stape accepts your USDT, handles contracts, and pays your team in local currency.
         </motion.p>
 
         {/* Flow diagram */}
@@ -230,7 +274,7 @@ function HeroWeb3() {
           transition={{ duration: 0.8, delay: 0.25 }}
         >
           <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg px-4 py-2.5 text-sm font-mono text-white">
-            USDT
+            USDT / USDC
           </div>
           <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -276,9 +320,9 @@ function HeroWeb3() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           {[
-            'USDT (TRC-20) accepted',
+            'Stablecoins accepted',
             '$50 flat per payout',
-            '40+ countries',
+            '0% for contractors',
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm text-white/50">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -296,6 +340,23 @@ function HeroWeb3() {
 function PainRecognition() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const [userReactions, setUserReactions] = useState<Record<string, Set<Web3ReactionType>>>({});
+  const [painCards, setPainCards] = useState<Web3PainCard[]>(initialPainCards);
+
+  const handleReaction = useCallback((id: string, reaction: Web3ReactionType) => {
+    setUserReactions((prev) => {
+      const current = prev[id] || new Set<Web3ReactionType>();
+      const updated = new Set(current);
+      if (updated.has(reaction)) {
+        updated.delete(reaction);
+        setPainCards((s) => s.map((c) => c.id === id ? { ...c, reactions: { ...c.reactions, [reaction]: c.reactions[reaction] - 1 } } : c));
+      } else {
+        updated.add(reaction);
+        setPainCards((s) => s.map((c) => c.id === id ? { ...c, reactions: { ...c.reactions, [reaction]: c.reactions[reaction] + 1 } } : c));
+      }
+      return { ...prev, [id]: updated };
+    });
+  }, []);
 
   const stickyStyles = [
     { rotate: -1.5, shadow: '2px 3px 8px rgba(0,0,0,0.08)' },
@@ -327,23 +388,42 @@ function PainRecognition() {
         >
           {painCards.map((card, i) => {
             const style = stickyStyles[i % stickyStyles.length];
+            const userSet = userReactions[card.id] || new Set<Web3ReactionType>();
+            const hasAnyReaction = userSet.size > 0;
             return (
               <motion.div
-                key={i}
+                key={card.id}
                 initial={{ opacity: 0, y: 20, rotate: 0 }}
                 animate={isInView ? { opacity: 1, y: 0, rotate: style.rotate } : { opacity: 0, y: 20, rotate: 0 }}
                 whileHover={{ rotate: 0, scale: 1.03, y: -4 }}
                 transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
                 style={{ boxShadow: style.shadow }}
-                className="relative flex flex-col rounded-sm p-5 min-h-[210px] bg-[#FFF9DB] cursor-default"
+                className={`relative flex flex-col rounded-sm p-5 min-h-[210px] transition-colors duration-300 cursor-default ${
+                  hasAnyReaction ? 'bg-[#FFF3A0]' : 'bg-[#FFF9DB]'
+                }`}
               >
-                <div className="text-2xl mb-3">{card.emoji}</div>
                 <p className="text-[13px] font-bold text-primary leading-snug mb-2">
                   {card.title}
                 </p>
-                <p className="text-[12px] text-primary/70 leading-relaxed">
+                <p className="text-[12px] text-primary/70 leading-relaxed mb-5">
                   {card.text}
                 </p>
+                <div className="mt-auto flex items-center gap-2 flex-wrap">
+                  {(['fire', 'bang', 'skull'] as Web3ReactionType[]).map((reaction) => (
+                    <button
+                      key={reaction}
+                      onClick={() => handleReaction(card.id, reaction)}
+                      className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                        userSet.has(reaction)
+                          ? 'bg-primary text-white shadow-sm scale-105'
+                          : 'bg-white/80 text-primary/70 hover:bg-white hover:text-primary hover:shadow-sm'
+                      }`}
+                    >
+                      <span className="text-sm">{web3ReactionEmoji[reaction]}</span>
+                      <span>{card.reactions[reaction]}</span>
+                    </button>
+                  ))}
+                </div>
               </motion.div>
             );
           })}
@@ -537,7 +617,7 @@ function PricingComparison() {
             $50 per payout.
           </p>
           <p className="text-primary/80 text-sm mt-1">
-            Whether your security auditor earns $2,000 or $8,000. We don&apos;t charge more because your team is good at what they do.
+            Whether your Software Developer earns $2,000 or $8,000. We don&apos;t charge more because your team is good at what they do.
           </p>
         </motion.div>
       </div>
@@ -558,7 +638,7 @@ function CryptoFiatBridge() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          You have USDT. Your team needs dollars, lari, dinars, and pesos.
+          You have USDT. Your team needs euros, zloty, and dollars.
         </motion.h2>
 
         <motion.div
@@ -568,7 +648,7 @@ function CryptoFiatBridge() {
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <p className="text-sm text-foreground-secondary leading-relaxed">
-            The Web3 payroll problem isn&apos;t paying people&nbsp;&mdash; it&apos;s bridging two financial systems that don&apos;t talk to each other. Your company holds USDT. Your smart contract auditor in Belgrade needs Serbian dinars for rent. Your protocol researcher in Tbilisi needs Georgian lari for a mortgage application&nbsp;&mdash; with a real employment contract attached. Your marketing lead in Buenos Aires wants half in pesos, half in USDT.
+            The Web3 payroll problem isn&apos;t paying people&nbsp;&mdash; it&apos;s bridging two financial systems that don&apos;t talk to each other. Your company holds USDT. Your smart contract auditor in Barcelona needs euros for rent. Your protocol researcher in Lisbon needs euros for a mortgage application&nbsp;&mdash; with a real employment contract attached. Your marketing lead in Warsaw wants half in zloty, half in USDT.
           </p>
 
           {/* Flow visual */}
@@ -580,7 +660,7 @@ function CryptoFiatBridge() {
                 <h3 className="text-sm font-bold text-primary uppercase tracking-wide">Company side</h3>
               </div>
               <p className="text-sm text-foreground-secondary leading-relaxed">
-                You send USDT (TRC-20) from a verified corporate wallet. We verify the transaction (KYT check for wallet cleanliness), convert at 2%, and credit your Stape balance in USD.
+                You send USDT (TRC-20) from a verified corporate wallet. We verify the transaction (KYT check for wallet cleanliness), convert at fixed rate, and credit your Stape balance in USD.
               </p>
             </div>
 
@@ -600,7 +680,7 @@ function CryptoFiatBridge() {
           <div className="bg-primary rounded-2xl p-6 md:p-8">
             <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-3">The result</h3>
             <p className="text-sm text-white/80 leading-relaxed">
-              Your books show a clean B2B service agreement with a US/UAE entity. Your contractor&apos;s bank sees a legitimate international salary payment. Your investors see documented expenses for development services. Everyone&apos;s happy&nbsp;&mdash; especially your compliance officer.
+              Your books show a clean B2B service agreement with a US/UAE entity. Your contractor&apos;s bank sees a legitimate international salary payment. Your investors see documented expenses for development services. Everyone&apos;s happy&nbsp;&mdash; and every audit is covered.
             </p>
           </div>
         </motion.div>

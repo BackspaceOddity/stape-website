@@ -17,7 +17,7 @@ const timelineSteps = [
   },
   {
     time: 'Tomorrow, 10am',
-    title: 'Money lands in 242 countries, local currency',
+    title: 'Money lands in 242 locations, local currency',
     aside: '(No SWIFT limbo. No bank interrogations.)',
   },
   {
@@ -41,7 +41,7 @@ export default function TimelineV2() {
           className="mb-12 text-center"
         >
           <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
-            From payroll overwhelm to &ldquo;wait, that was it?&rdquo; in 48 hours
+            From payroll overwhelm to &ldquo;wait, that was it?&rdquo; in under 24 hours
           </h2>
         </motion.div>
 

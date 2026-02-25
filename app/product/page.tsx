@@ -9,6 +9,12 @@ import Footer from '@/components/Footer';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
+const avatars = [
+  { src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face', alt: 'Customer' },
+  { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face', alt: 'Customer' },
+  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face', alt: 'Customer' },
+];
+
 function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
@@ -37,15 +43,36 @@ export default function ProductPage() {
       {/* ── Hero ── */}
       <section ref={heroRef} className="relative pt-32 pb-16 md:pt-44 md:pb-20 bg-white overflow-hidden">
         <div className="max-w-[900px] mx-auto px-6 md:px-12 text-center">
+          {/* Social proof */}
+          <motion.div
+            className="flex items-center justify-center gap-3 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="flex -space-x-2">
+              {avatars.map((avatar, i) => (
+                <Image
+                  key={i}
+                  src={avatar.src}
+                  alt={avatar.alt}
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 rounded-full border-2 border-white object-cover"
+                />
+              ))}
+            </div>
+            <span className="text-sm text-foreground-muted">Trusted by 100+ teams getting their headspace back</span>
+          </motion.div>
+
           <motion.h1
             className="font-display font-extrabold text-[36px] md:text-[52px] lg:text-[64px] text-primary leading-[1.08] mb-5 tracking-[-0.025em]"
             initial={{ opacity: 0, y: 30 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            One platform for contracts,
-            <br />
-            <span className="text-foreground-muted">compliance, and payouts.</span>
+            Stop juggling tools.{' '}
+            <span className="text-foreground-muted">Start paying people.</span>
           </motion.h1>
 
           <motion.p
@@ -54,7 +81,7 @@ export default function ProductPage() {
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            Stape is your Contractor of Record. We sign the contracts, handle KYC, manage compliance, and pay your team in 242 countries. You get one invoice.
+            Stape is your Contractor of Record. We sign the contracts, handle KYC, manage compliance, and pay your team in 242 locations. You get one invoice.
           </motion.p>
 
           <motion.div
@@ -90,7 +117,7 @@ export default function ProductPage() {
           <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-16 md:py-24">
             <AnimatedSection>
               <h2 className="text-[24px] md:text-[36px] font-display font-extrabold text-primary tracking-[-0.02em] leading-[1.1] mb-3">
-                Get your company set up in under 5 minutes.
+                Get your company set up in under 24 hours.
               </h2>
               <p className="text-base md:text-lg text-foreground-secondary leading-relaxed max-w-2xl mb-8 md:mb-12">
                 Create your company profile, sign a single service agreement with Stape, and you&apos;re ready to pay contractors worldwide. No legal legwork on your end.
@@ -197,9 +224,9 @@ export default function ProductPage() {
           <AnimatedSection>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { value: '< 5 min', label: 'Company setup' },
+                { value: '< 24hrs', label: 'Company setup' },
                 { value: '1 invoice', label: 'For your books' },
-                { value: '242', label: 'Countries covered' },
+                { value: '242', label: 'Locations covered' },
                 { value: '€50', label: 'Flat fee per payout' },
               ].map((stat) => (
                 <div

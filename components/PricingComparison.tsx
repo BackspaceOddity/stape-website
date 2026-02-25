@@ -77,7 +77,7 @@ export default function PricingComparison() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">•</span>
-                <span>242 countries supported</span>
+                <span>242 locations supported</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">•</span>
