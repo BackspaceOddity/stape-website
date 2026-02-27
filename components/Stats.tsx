@@ -6,7 +6,7 @@ import { useRef } from 'react';
 
 const metrics = [
   { value: '$40M+ paid', label: "In markets where 'just use Wise' doesn't work" },
-  { value: 'Zero payment failures', label: 'In 12 months across sanctioned markets' },
+  { value: 'Zero payment failures', label: 'In 12 months across 50+ markets' },
   { value: '6 hours → 6 minutes', label: 'Average time savings per payroll cycle' },
 ];
 

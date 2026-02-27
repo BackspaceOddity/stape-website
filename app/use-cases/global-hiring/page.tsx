@@ -525,7 +525,7 @@ function Comparison() {
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-4 px-3 text-sm font-semibold text-primary w-[20%]"></th>
-                  <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">DIY</th>
+                  <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">DIY (Manual payouts)</th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">Traditional EOR</th>
                   <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl">Stape</th>
                 </tr>

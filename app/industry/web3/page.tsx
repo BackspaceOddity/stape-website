@@ -98,14 +98,14 @@ const comparisonFeatures = [
     feature: 'Accepts USDT funding',
     stape: '\u2705 Yes (fixed FX rate)',
     traditional: '\u274C No',
-    percentage: '\u274C No',
+    percentage: '\u2705 Yes',
     diy: '\u2705 Yes (but manual)',
   },
   {
-    feature: 'Monthly cost (30 people)',
-    stape: '$1,500 flat + $2,400 conversion = $3,900',
+    feature: 'Monthly cost (50 people)',
+    stape: '$50 × 50 = $2,500',
     traditional: 'N/A \u2014 no crypto accepted',
-    percentage: '~$6,000 (5% of $120K)',
+    percentage: '~$10,000 (5% of $200K)',
     diy: '$0 fees \u2014 but 2 days of your time',
   },
   {
@@ -253,7 +253,7 @@ function HeroWeb3() {
           transition={{ duration: 0.8, delay: 0.1 }}
         >
           Your treasury is in USDT.{' '}
-          <span className="text-accent">Your team needs rent money.</span>
+          <span className="text-accent">Your team needs real money to pay rent.</span>
         </motion.h1>
 
         {/* Subhead */}
@@ -561,7 +561,7 @@ function PricingComparison() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          The math, for a team of 30
+          The math, for a team of 50
         </motion.h2>
         <motion.p
           className="text-foreground-muted text-center mb-12 text-sm"
@@ -569,7 +569,7 @@ function PricingComparison() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
           transition={{ duration: 0.5, delay: 0.05 }}
         >
-          30 contractors, average payout $4,000/month, funded in USDT
+          50 contractors, average payout $4,000/month, funded in USDT
         </motion.p>
 
         <motion.div
@@ -585,7 +585,7 @@ function PricingComparison() {
                   <th className="text-left py-4 px-3 text-sm font-semibold text-primary w-[20%]"></th>
                   <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl">Stape</th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">Traditional EOR</th>
-                  <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">%-fee services</th>
+                  <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">%-fee payroll services</th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">DIY (P2P + wallet)</th>
                 </tr>
               </thead>

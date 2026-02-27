@@ -87,7 +87,7 @@
 
 **Three metric cards (horizontal layout):**
 - **Card 1:** "$40M+ paid" / "In markets where 'just use Wise' doesn't work"
-- **Card 2:** "Zero payment failures" / "In 12 months across sanctioned markets"
+- **Card 2:** "Zero payment failures" / "In 12 months across 50+ markets"
 - **Card 3:** "6 hours → 6 minutes" / "Average time savings per payroll cycle"
 
 **Mini testimonial below:**
@@ -160,7 +160,7 @@
 
 **5 questions as expandable accordions:**
 
-1. **"What if Stape gets sanctioned or shut down?"**
+1. **"What if Stape gets shut down?"**
    - Answer: "We're built on multiple payment rails across multiple jurisdictions. If one path closes, others stay open. Your contractors get paid. Always."
 
 2. **"How is this different from just using Deel?"**

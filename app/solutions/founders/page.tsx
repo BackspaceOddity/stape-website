@@ -53,7 +53,7 @@ const beforeAfterData = [
   },
   {
     before: 'Your provider stopped supporting your team\u2019s passports \u2014 scrambling for Plan B',
-    after: 'We pay in 242 locations. Sanctions, corridor changes \u2014 that\u2019s our problem, not yours.',
+    after: 'We pay in 242 locations. Regulatory changes, corridor shifts \u2014 that\u2019s our problem, not yours.',
   },
   {
     before: 'Investors see direct links to high-risk jurisdictions in your payment chain',
@@ -144,7 +144,7 @@ const testimonials = [
     detail: '50+ contractors',
   },
   {
-    quote: 'It\u2019s extremely important for us not to show any payments from our US entity to Russia. Stape\u2019s structure solved that completely.',
+    quote: 'It\u2019s extremely important for us to keep our US entity\u2019s payment trail clean. Stape\u2019s structure solved that completely.',
     author: 'CEO, US-incorporated startup',
     detail: '',
   },
