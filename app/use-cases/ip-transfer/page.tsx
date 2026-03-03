@@ -28,27 +28,51 @@ const reactionEmoji: Record<ReactionType, string> = { fire: '\uD83D\uDD25', bang
 const initialPainCards: PainCard[] = [
   {
     id: 'cascade-nobody',
-    title: 'The "cascade" nobody explained',
-    body: 'Your developer works through an umbrella company in the UAE. They wrote your core product logic. But the contract between them and the umbrella says nothing about IP assignment. The umbrella\u2019s contract with you references "services rendered." Your investor\u2019s lawyers ask: "Who actually owns this code?" You don\u2019t have a good answer.',
+    title: 'The \u201Ccascade\u201D nobody explained',
+    body: 'Your developer works through an umbrella in the UAE. They wrote your core logic. But there\u2019s no direct contract \u2014 and no clear paper trail showing how IP passed from the individual to the intermediary to you.',
     reactions: { fire: 312, bang: 127, skull: 71 },
   },
   {
     id: 'invoice-problem',
-    title: '\u201CSoftware development services\u201D \u2014 your invoice, your problem',
-    body: 'Your finance team gets an invoice that says "Software development \u2014 March 2025." That\u2019s it. No task breakdown, no Jira references, no mention of IP transfer. Your auditors won\u2019t accept it as proof of intangible asset acquisition. Your accountant can\u2019t put it on the balance sheet. The work happened. The paper trail didn\u2019t.',
+    title: 'Invoice says \u201CSoftware development\u201D \u2014 that\u2019s it',
+    body: 'No task breakdown, no Jira references, no mention of IP transfer. Your accountant can\u2019t put it on the balance sheet as an intangible asset. The work happened. The proof didn\u2019t.',
     reactions: { fire: 289, bang: 156, skull: 48 },
   },
   {
     id: 'github-ip',
-    title: 'Your IP lives on someone else\u2019s GitHub',
-    body: 'The contractor who built your payment module still has it in a public repo. The NDA you thought was signed? It was between your company and the intermediary \u2014 not the actual developer. There\u2019s nothing stopping them from reusing your architecture, your algorithms, or your trade secrets. And you\u2019d only find out when a competitor ships something suspiciously familiar.',
+    title: 'Your code lives on someone else\u2019s GitHub',
+    body: 'The contractor pushed your module to a public repo. The NDA was signed with the intermediary, not with them. There\u2019s nothing legally binding the person who saw your source code.',
     reactions: { fire: 267, bang: 143, skull: 89 },
   },
   {
     id: 'invest-ip-chain',
-    title: '\u201CWe\u2019d like to invest, but show us the IP chain\u201D',
-    body: 'You\u2019re raising a Series A. The fund\u2019s legal team runs due diligence. They trace your product back to 14 contractors across 6 countries \u2014 and find zero IP assignment agreements. The term sheet isn\u2019t dead, but it\u2019s suddenly conditional. On paperwork that should have existed from day one.',
+    title: '\u201CShow us the IP chain\u201D',
+    body: 'You\u2019re raising a Series A. The fund\u2019s lawyers trace your product back to 14 contractors across 6 countries \u2014 and find zero IP assignment agreements. The term sheet is suddenly conditional.',
     reactions: { fire: 341, bang: 112, skull: 63 },
+  },
+  {
+    id: 'solar-staff-redoc',
+    title: 'Solar Staff: re-document IP rights every single task',
+    body: 'Every assignment means manually rewriting IP transfer clauses. Expensive, slow, and your team forgets to do it half the time anyway.',
+    reactions: { fire: 198, bang: 174, skull: 52 },
+  },
+  {
+    id: 'no-russian-footprint',
+    title: '\u201CNo Russian footprint, please\u201D',
+    body: 'Companies with CIS-based R&D want a clean rights chain routed through the UAE or US \u2014 no traces that could spook Western partners or investors.',
+    reactions: { fire: 256, bang: 98, skull: 77 },
+  },
+  {
+    id: 'gamedev-art',
+    title: 'GameDev: the investor asks who owns the art',
+    body: 'Code, design, music \u2014 all built by contractors. The institutional investor demands documentation for every asset. It doesn\u2019t exist.',
+    reactions: { fire: 224, bang: 165, skull: 81 },
+  },
+  {
+    id: 'nda-wrong-person',
+    title: 'The NDA was signed. Just not with the right person.',
+    body: 'Your confidentiality agreement is with the umbrella company. The developer who saw your entire codebase isn\u2019t legally bound by anything.',
+    reactions: { fire: 303, bang: 139, skull: 94 },
   },
 ];
 
@@ -57,6 +81,10 @@ const stickyStyles = [
   { rotate: 0.8, shadow: '3px 2px 6px rgba(0,0,0,0.06)' },
   { rotate: -0.5, shadow: '1px 4px 10px rgba(0,0,0,0.07)' },
   { rotate: 1.2, shadow: '4px 2px 8px rgba(0,0,0,0.09)' },
+  { rotate: 0.6, shadow: '2px 2px 7px rgba(0,0,0,0.07)' },
+  { rotate: -1.0, shadow: '3px 3px 9px rgba(0,0,0,0.08)' },
+  { rotate: 1.0, shadow: '1px 3px 8px rgba(0,0,0,0.06)' },
+  { rotate: -0.8, shadow: '4px 1px 7px rgba(0,0,0,0.08)' },
 ];
 
 const steps = [
