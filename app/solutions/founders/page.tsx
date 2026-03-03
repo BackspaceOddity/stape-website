@@ -58,7 +58,7 @@ const beforeAfterData = [
   },
   {
     before: 'Investors see direct links to high-risk jurisdictions in your payment chain',
-    after: 'Stape is your Contractor of Record. One agreement with us, compliant contracts with every hire. Your cap table stays clean.',
+    after: 'One agreement with Stape. Compliant contracts with every hire. Your cap table stays clean.',
   },
   {
     before: 'Key developers can\u2019t get nomad docs \u2014 threatening to leave',
@@ -79,7 +79,7 @@ const timelineSteps = [
   {
     time: 'Step 2',
     title: 'We set up the legal rails',
-    aside: 'Stape creates a Contractor-of-Record structure. Your company signs one B2B agreement with our entity. We handle individual contracts with each team member.',
+    aside: 'Your company signs one B2B agreement with Stape. We handle individual contracts with each team member — compliance, documentation, and local requirements included.',
   },
   {
     time: 'Step 3',
@@ -89,7 +89,7 @@ const timelineSteps = [
   {
     time: 'Step 4',
     title: 'You press \u201CPay all\u201D',
-    aside: 'Upload your registry (Excel or API). Money hits contractor accounts. Invoices and compliance docs generate automatically. You\u2019re done.',
+    aside: 'Upload your registry. Money hits contractor accounts. Invoices and compliance docs generate automatically. You\u2019re done.',
   },
 ];
 
@@ -106,7 +106,7 @@ const comparisonData = [
     eor: 'Your entity is on record',
     freelance: 'Your entity is on record',
     crypto: 'Fully exposed',
-    stape: 'Two-contract scheme, no direct link',
+    stape: 'Two-contract structure',
   },
   {
     feature: 'Underserved regions',
@@ -120,7 +120,7 @@ const comparisonData = [
     eor: '% of salary + hidden FX + withdraw fee',
     freelance: '% of salary + \u201Ctasks\u201D overhead',
     crypto: '1\u20132% + your time',
-    stape: '\u20AC50 flat + transparent FX',
+    stape: '\u20AC50 flat + fixed FX',
   },
   {
     feature: 'Admin time per payout',
@@ -166,7 +166,7 @@ const testimonials = [
 const faqs = [
   {
     question: 'How do I explain this structure to my investors / auditors?',
-    answer: 'Your company has a standard B2B services agreement with a US LLC (Stape). You receive invoices from a US entity. There\u2019s no direct contractual or payment link between your company and individual contractors in sanctioned regions. We provide full documentation that satisfies audit requirements.',
+    answer: 'Your company has a standard B2B services agreement with Stape. You receive invoices from our entity. There\u2019s no direct contractual or payment link between your company and individual contractors in sanctioned regions. We provide full documentation that satisfies audit requirements.',
   },
   {
     question: 'What happens if a payment corridor gets blocked?',
@@ -179,10 +179,6 @@ const faqs = [
   {
     question: 'My team members need documents for Digital Nomad visas \u2014 do you provide those?',
     answer: 'Yes. Each contractor gets a named contract and monthly invoices from a foreign legal entity. These are accepted by banks and immigration authorities in Spain, Portugal, Serbia, and other popular relocation destinations.',
-  },
-  {
-    question: 'How is this different from global EOR platforms?',
-    answer: 'Most global payroll platforms don\u2019t serve contractors with RU/BY passports and increasingly require excessive KYC. We specialize in complex corridors they won\u2019t touch. Our flat fee structure also means you don\u2019t get punished as salaries grow.',
   },
 ];
 
@@ -240,7 +236,7 @@ function HeroFounders() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Your team is in 6 countries. Your provider just froze payouts. Your lead developer needs income proof for a visa&nbsp;&mdash; yesterday. Stape takes the entire payout mess off your plate so you can get back to building.
+          Your team is in 6 countries. Your provider just froze payouts. Your lead developer needs income proof for a visa&nbsp;&mdash; yesterday.
         </motion.p>
 
         {/* CTA row: email input + button */}
@@ -274,9 +270,9 @@ function HeroFounders() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           {[
-            '100+ teams switched',
-            '\u20AC50 flat fee per payout',
-            'Under 24hrs to first payment',
+            '100+ Teams Switched',
+            '€50 Flat Fee Per Payout',
+            'Under 24hrs to First Payment',
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm text-foreground-muted">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -708,7 +704,7 @@ function CostComparison() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <span className="opacity-60">&bull;</span>
-                <span>Transparent forex (mid-market rate + 0.5%)</span>
+                <span>Fixed FX rates, predictable every payout</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">&bull;</span>
@@ -720,7 +716,7 @@ function CostComparison() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">&bull;</span>
-                <span>Same-day or next-day delivery</span>
+                <span>Delivery on the promised day</span>
               </li>
             </ul>
             <div className="mt-6 pt-6 border-t border-primary/20">
@@ -871,15 +867,6 @@ function FinalCTA() {
             Talk to a Human First
           </a>
         </motion.div>
-        <motion.p
-          className="text-xs text-foreground-muted italic mt-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          Average time from first call to first payment: under 24 hours. 47 teams switched this month.
-        </motion.p>
       </div>
     </section>
   );

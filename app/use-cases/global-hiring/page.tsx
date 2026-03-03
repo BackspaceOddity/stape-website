@@ -217,9 +217,9 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           {[
-            '242 locations supported',
-            '\u20AC50 flat fee per contractor',
-            'Under 24hrs to first payment',
+            '242 Locations Supported',
+            '€50 Flat Fee Per Contractor',
+            'Under 24hrs to First Payment',
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm text-foreground-muted">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -372,7 +372,7 @@ function HowItWorks() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
           transition={{ duration: 0.5, delay: 0.05 }}
         >
-          Stape is your Contractor of Record&nbsp;&mdash; we become the legal entity that contracts with your team worldwide. You get one platform, one invoice, and zero compliance headaches.
+          Stape becomes the legal entity that contracts with your team worldwide. You get one platform, one invoice, and zero compliance headaches.
         </motion.p>
 
         <motion.div
