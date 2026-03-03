@@ -52,7 +52,7 @@ export default function HeroV2() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Stape is a Contractor of Record platform for global payroll: contracts, compliance, fixed FX rates, and tax handling in 242 locations — we take it on, so you don&apos;t have to.
+          Pay contractors in 242 locations with one invoice, compliant contracts, and fixed FX rates. The entire back office&nbsp;&mdash; without the back office.
         </motion.p>
 
         {/* CTA row: email input + button */}
@@ -93,15 +93,15 @@ export default function HeroV2() {
           </div>
           <div className="flex items-center gap-2 text-sm text-foreground-muted">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-            ISO/IEC 27001 Certified
-          </div>
-          <div className="flex items-center gap-2 text-sm text-foreground-muted">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             &euro;50 Fixed Per Payout
+          </div>
+          <div className="flex items-center gap-2 text-sm text-foreground-muted">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l2.5 2.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            24h Onboarding
           </div>
         </motion.div>
       </div>

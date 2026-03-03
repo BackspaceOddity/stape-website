@@ -50,36 +50,22 @@ export default function SocialProofV2() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="bg-white rounded-2xl p-8 md:p-12 border border-border mb-8"
         >
-          <div className="grid md:grid-cols-[1fr_340px] gap-8 md:gap-10 items-stretch">
-            {/* Left: Quote */}
-            <div className="flex flex-col justify-center py-2">
-              <p className="text-lg md:text-xl text-primary leading-relaxed mb-8">
-                &ldquo;{testimonials[0].quote}&rdquo;
-              </p>
-              <div className="flex items-center gap-3">
-                <Image
-                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face"
-                  alt={testimonials[0].author}
-                  width={40}
-                  height={40}
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-                <div>
-                  <p className="text-sm font-semibold text-primary">{testimonials[0].author}</p>
-                  <p className="text-xs text-foreground-muted">{testimonials[0].role}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Contractors paid list */}
-            <div className="rounded-xl overflow-hidden max-h-[360px]">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-xl md:text-2xl text-primary leading-relaxed mb-8">
+              &ldquo;{testimonials[0].quote}&rdquo;
+            </p>
+            <div className="flex items-center justify-center gap-3">
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/all-contractors-paid.png`}
-                alt="All contractors paid — Stape payout confirmation"
-                width={340}
-                height={640}
-                className="w-full h-auto object-cover object-top rounded-xl"
+                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face"
+                alt={testimonials[0].author}
+                width={40}
+                height={40}
+                className="w-10 h-10 rounded-full object-cover"
               />
+              <div className="text-left">
+                <p className="text-sm font-semibold text-primary">{testimonials[0].author}</p>
+                <p className="text-xs text-foreground-muted">{testimonials[0].role}</p>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -97,7 +83,7 @@ export default function SocialProofV2() {
           </div>
           <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
             <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">$40M+</p>
-            <p className="text-xs text-foreground-muted">Processed across 80+ countries</p>
+            <p className="text-xs text-foreground-muted">Delivered to contractors worldwide</p>
           </div>
           <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
             <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">20x</p>

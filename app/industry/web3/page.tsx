@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import TrustBadgeBar from '@/components/TrustBadgeBar';
 
 const avatars = [
   { src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face', alt: 'Customer' },
@@ -142,6 +143,13 @@ const comparisonFeatures = [
     traditional: '\u2705 Full',
     percentage: '\u2705 Partial',
     diy: '\u274C None',
+  },
+  {
+    feature: 'Security & compliance',
+    stape: '\u2705 ISO 27001 + GDPR',
+    traditional: '—',
+    percentage: '—',
+    diy: '—',
   },
 ];
 
@@ -869,6 +877,7 @@ export default function Web3Page() {
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
       <HeroWeb3 />
+      <TrustBadgeBar />
       <PainRecognition />
       <BeforeAfter />
       <HowItWorks />

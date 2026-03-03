@@ -7,11 +7,6 @@ import { useRef } from 'react';
 
 const faqs = [
   {
-    question: 'How is this different from Deel or Remote?',
-    answer:
-      "Deel and Remote are Employers of Record \u2014 they become the legal employer. We\u2019re contractor payroll only. Your contractors stay as contractors. No entity setup. No waiting for EOR approval. You keep the relationship, we handle the money, compliance, and documents. If Deel stopped servicing your corridor \u2014 that\u2019s exactly why teams come to us.",
-  },
-  {
     question: 'What if our payment corridor gets disrupted?',
     answer:
       "We operate through multiple payment rails across multiple jurisdictions. If one corridor closes, others stay open. That\u2019s not a promise \u2014 it\u2019s the architecture. Your contractors get paid. Period.",
@@ -19,17 +14,17 @@ const faqs = [
   {
     question: 'What does \u20ac50 per payout actually cover?',
     answer:
-      "Everything. KYC, compliance checks, currency conversion at mid-market + 0.5%, local delivery, tax document generation, and the audit trail. No setup fees. No monthly minimums. No hidden FX spread. If you\u2019re paying 20 contractors monthly, that\u2019s \u20ac1,000/month. Compare that to your current time cost, wire fees, and compliance consultant.",
+      "Everything. KYC, compliance checks, fixed FX rate, local delivery, tax document generation, and the audit trail. No setup fees. No monthly minimums. No hidden FX spread.",
   },
   {
     question: 'What about documents \u2014 visas, tax forms, proof of income?',
     answer:
-      "Generated automatically per transaction. Tax forms, payment receipts, proof of income for residence permits and Digital Nomad visas. Your contractor gets what they need. You don\u2019t lift a finger.",
+      "Provided by Stape. Tax forms, payment receipts, proof of income for residence permits and Digital Nomad visas. Your contractor gets what they need. You don\u2019t lift a finger.",
   },
   {
     question: 'How long does setup actually take?',
     answer:
-      "First payment: under 24 hours. Full team: depends on how fast you upload your list. Most teams pay everyone within 2 cycles \u2014 not because we pushed them, but because they stopped thinking about payroll.",
+      "Under 24 hours.",
   },
 ];
 
@@ -105,23 +100,6 @@ export default function FAQV2() {
           <div className="border-t border-border" />
         </motion.div>
 
-        {/* All Q&A link */}
-        <motion.div
-          className="mt-8 text-center"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <a
-            href="#"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary border border-border rounded-md px-5 py-2.5 hover:bg-background-secondary transition-colors"
-          >
-            All Q&A
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </motion.div>
       </div>
     </section>
   );

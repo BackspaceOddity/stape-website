@@ -72,6 +72,13 @@ export default function Navbar() {
                     Global Hiring
                   </Link>
                   <Link
+                    href="/use-cases/ip-transfer"
+                    onClick={() => setSolutionsOpen(false)}
+                    className="block px-4 py-2 text-sm text-foreground-secondary hover:text-primary hover:bg-background-secondary transition-colors"
+                  >
+                    IP Transfer
+                  </Link>
+                  <Link
                     href="/industry/web3"
                     onClick={() => setSolutionsOpen(false)}
                     className="block px-4 py-2 text-sm text-foreground-secondary hover:text-primary hover:bg-background-secondary transition-colors"
@@ -135,6 +142,7 @@ export default function Navbar() {
               <span className="block text-sm text-foreground-secondary">Solutions</span>
               <Link href="/solutions/founders" onClick={() => setIsOpen(false)} className="block text-sm text-foreground-muted pl-4 py-1 hover:text-primary transition-colors">For Founders</Link>
               <Link href="/use-cases/global-hiring" onClick={() => setIsOpen(false)} className="block text-sm text-foreground-muted pl-4 py-1 hover:text-primary transition-colors">Global Hiring</Link>
+              <Link href="/use-cases/ip-transfer" onClick={() => setIsOpen(false)} className="block text-sm text-foreground-muted pl-4 py-1 hover:text-primary transition-colors">IP Transfer</Link>
               <Link href="/industry/web3" onClick={() => setIsOpen(false)} className="block text-sm text-foreground-muted pl-4 py-1 hover:text-primary transition-colors">Web3 & Crypto</Link>
             </div>
             <Link href="/product" className="block text-sm text-foreground-secondary py-1">Product</Link>

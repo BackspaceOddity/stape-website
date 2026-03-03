@@ -69,7 +69,7 @@ export default function PricingComparison() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <span className="opacity-60">•</span>
-                <span>Transparent forex (mid-market rate + 0.5%)</span>
+                <span>Fixed FX rates, predictable every payout</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">•</span>
@@ -81,7 +81,7 @@ export default function PricingComparison() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">•</span>
-                <span>Same-day or next-day delivery</span>
+                <span>Delivery on the promised day</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">•</span>

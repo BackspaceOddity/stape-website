@@ -6,7 +6,7 @@ import { useRef } from 'react';
 
 const whatYouGet = [
   {
-    title: 'Contractor-on-Record (COR)',
+    title: 'One invoice, one vendor',
     description:
       'One B2B invoice instead of hundreds of individual contracts. Your books show a single vendor relationship — clean, auditable, defensible.',
   },

@@ -13,7 +13,7 @@ export default function CTAV2() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          You don&apos;t have to switch everything today
+          Try one payment. You&apos;ll get it.
         </motion.h2>
         <motion.p
           className="text-base text-foreground-secondary leading-relaxed mb-10"
@@ -22,7 +22,7 @@ export default function CTAV2() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Pay one contractor through Stape this week. See how it feels when the money lands in under 24 hours and the audit trail generates itself. If it works, pay two next month.
+          Pay one contractor through Stape this week. See how it feels when the money lands in under 24 hours and the audit trail generates itself.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"
@@ -47,15 +47,6 @@ export default function CTAV2() {
             Talk to a Human First
           </a>
         </motion.div>
-        <motion.p
-          className="text-xs text-foreground-muted italic mt-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          Average time from first call to first payment: under 24 hours. 47 teams switched this month.
-        </motion.p>
       </div>
     </section>
   );

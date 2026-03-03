@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import TrustBadgeBar from '@/components/TrustBadgeBar';
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 
@@ -134,6 +135,13 @@ const comparisonData = [
     freelance: 'Painful UX',
     crypto: 'Breaks down',
     stape: 'Built for 10\u2013200+ contractors',
+  },
+  {
+    feature: 'Security & compliance',
+    eor: 'Varies',
+    freelance: '—',
+    crypto: '—',
+    stape: '\u2705 ISO 27001 + GDPR',
   },
 ];
 
@@ -884,6 +892,7 @@ export default function FoundersPage() {
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
       <HeroFounders />
+      <TrustBadgeBar />
       <PainRecognition />
       <BeforeAfter />
       <HowItWorks />

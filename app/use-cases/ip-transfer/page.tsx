@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -27,28 +27,28 @@ const reactionEmoji: Record<ReactionType, string> = { fire: '\uD83D\uDD25', bang
 
 const initialPainCards: PainCard[] = [
   {
-    id: 'talent-far',
-    title: 'The talent you need doesn\u2019t live nearby',
-    body: 'Your job post gets 200 applications. Three are qualified. Two want 30% more than your budget. The best engineer for the job is in Lisbon, Lagos, or Lahore \u2014 but you\u2019ve never hired internationally before.',
-    reactions: { fire: 267, bang: 94, skull: 58 },
+    id: 'cascade-nobody',
+    title: 'The "cascade" nobody explained',
+    body: 'Your developer works through an umbrella company in the UAE. They wrote your core product logic. But the contract between them and the umbrella says nothing about IP assignment. The umbrella\u2019s contract with you references "services rendered." Your investor\u2019s lawyers ask: "Who actually owns this code?" You don\u2019t have a good answer.',
+    reactions: { fire: 312, bang: 127, skull: 71 },
   },
   {
-    id: 'love-to-hire',
-    title: '\u201CWe\u2019d love to hire you, but\u2026\u201D',
-    body: 'You found the perfect contractor in another country. Now what? Contracts, tax compliance, currency conversion, payment rails \u2014 suddenly you need a legal team, an accountant, and three new tools just to pay one person.',
-    reactions: { fire: 341, bang: 143, skull: 44 },
+    id: 'invoice-problem',
+    title: '\u201CSoftware development services\u201D \u2014 your invoice, your problem',
+    body: 'Your finance team gets an invoice that says "Software development \u2014 March 2025." That\u2019s it. No task breakdown, no Jira references, no mention of IP transfer. Your auditors won\u2019t accept it as proof of intangible asset acquisition. Your accountant can\u2019t put it on the balance sheet. The work happened. The paper trail didn\u2019t.',
+    reactions: { fire: 289, bang: 156, skull: 48 },
   },
   {
-    id: 'spreadsheet',
-    title: 'The spreadsheet phase',
-    body: 'Five contractors, four countries, three currencies, two invoicing formats, one very tired ops person. Every month. It doesn\u2019t scale, and it definitely doesn\u2019t spark joy.',
-    reactions: { fire: 412, bang: 189, skull: 31 },
+    id: 'github-ip',
+    title: 'Your IP lives on someone else\u2019s GitHub',
+    body: 'The contractor who built your payment module still has it in a public repo. The NDA you thought was signed? It was between your company and the intermediary \u2014 not the actual developer. There\u2019s nothing stopping them from reusing your architecture, your algorithms, or your trade secrets. And you\u2019d only find out when a competitor ships something suspiciously familiar.',
+    reactions: { fire: 267, bang: 143, skull: 89 },
   },
   {
-    id: 'tax-cert',
-    title: '\u201CWe need your tax residency certificate\u201D',
-    body: 'Your contractor just got an invoice approved. But your finance team won\u2019t process it without a tax residency certificate \u2014 and getting one costs your contractor $500 and three weeks of bureaucracy. So the payment sits. And sits. And your best people start looking elsewhere.',
-    reactions: { fire: 289, bang: 112, skull: 63 },
+    id: 'invest-ip-chain',
+    title: '\u201CWe\u2019d like to invest, but show us the IP chain\u201D',
+    body: 'You\u2019re raising a Series A. The fund\u2019s legal team runs due diligence. They trace your product back to 14 contractors across 6 countries \u2014 and find zero IP assignment agreements. The term sheet isn\u2019t dead, but it\u2019s suddenly conditional. On paperwork that should have existed from day one.',
+    reactions: { fire: 341, bang: 112, skull: 63 },
   },
 ];
 
@@ -61,70 +61,64 @@ const stickyStyles = [
 
 const steps = [
   {
-    title: 'Find your person',
-    body: 'Hire the best contractor for the role \u2014 regardless of where they live. You focus on skills and fit. We handle everything else.',
+    title: 'We structure the IP chain',
+    body: 'Every contractor signs an agreement with Stape that includes full IP assignment \u2014 covering code, designs, models, and any work product. Rights transfer from contractor to Stape automatically. No manual addendums, no per-task paperwork.',
   },
   {
-    title: 'We set it up',
-    body: 'Stape signs the contract, runs KYC, and handles local compliance. Your contractor is onboarded and ready to go \u2014 typically under 24 hours.',
+    title: 'Rights cascade to you',
+    body: 'Your Master Service Agreement with Stape mirrors the contractor\u2019s IP assignment. Rights flow from contractor \u2192 Stape \u2192 your company. The chain is airtight, auditable, and designed for due diligence.',
   },
   {
-    title: 'Pay with one click',
-    body: 'Fund your balance, schedule payouts, and pay your entire global team from one dashboard. Multiple currencies, fixed FX rates, full audit trail.',
+    title: 'Documents your CFO will love',
+    body: 'Every invoice comes with detailed descriptions tied to actual deliverables \u2014 not generic "development services." Ready for intangible asset recognition, tax reporting, and investor scrutiny.',
   },
 ];
 
 const benefits = [
-  { stat: '242 locations', desc: 'Pay contractors virtually anywhere. No entity setup required.' },
-  { stat: 'One invoice', desc: '50 contractors, 12 countries, 1 invoice to your company. Your finance team will thank you.' },
-  { stat: 'Compliant by default', desc: 'Contracts, KYC, tax documentation \u2014 handled. No reclassification risk.' },
-  { stat: 'Fixed FX rates', desc: 'Lock in exchange rates at payout time. No surprises on either side.' },
-  { stat: 'Under 24-hour onboarding', desc: 'From \u201Cyou\u2019re hired\u201D to \u201Cyou\u2019re paid\u201D in two days. Not two months.' },
-  { stat: 'Flexible withdrawals', desc: 'Your contractors choose how they get paid \u2014 bank transfer, card, local rails, or USDT.' },
+  { stat: 'Cascade IP transfer', desc: 'Contractor \u2192 Stape \u2192 You. Full assignment chain built into every contract. No gaps for due diligence to find.' },
+  { stat: 'Detailed closing documents', desc: 'Invoices reference specific deliverables, not "services." Ready for balance sheet recognition as intangible assets.' },
+  { stat: 'NDA & Non-compete support', desc: 'Sign NDAs directly with your contractors \u2014 separate from the financial relationship. We\u2019ll guide you through the structure.' },
+  { stat: 'Intangible asset ready', desc: 'Documentation structured for your accountant to recognize IP on the balance sheet. Built for \u041D\u041C\u0410 / IAS 38 compliance.' },
+  { stat: 'Jurisdiction-aware contracts', desc: 'Contracts tailored per contractor\u2019s location. IP clauses that hold up in UAE, US, EU, and 240+ other jurisdictions.' },
+  { stat: 'Works with your tools', desc: 'Attach Jira exports, GitHub links, or SOW documents to invoices. Your paper trail matches your actual workflow.' },
 ];
 
 const comparisonData = [
   {
+    feature: 'IP assignment',
+    diy: 'You draft it (and hope it holds)',
+    competitors: 'Per-task manual assignment',
+    stape: 'Built into every contract',
+  },
+  {
+    feature: 'Cascade transfer',
+    diy: 'Your lawyer\u2019s problem',
+    competitors: 'Unclear chain',
+    stape: 'Contractor \u2192 Stape \u2192 You',
+  },
+  {
+    feature: 'Closing documents',
+    diy: 'Generic invoices',
+    competitors: 'Basic invoices',
+    stape: 'Detailed, deliverable-linked',
+  },
+  {
+    feature: 'NDA / Non-compete',
+    diy: 'You handle separately',
+    competitors: 'Limited support',
+    stape: 'Direct contractor agreements supported',
+  },
+  {
+    feature: 'Balance sheet ready',
+    diy: 'Depends on your accountant',
+    competitors: 'Not structured for it',
+    stape: 'IAS 38 / \u041D\u041C\u0410 ready',
+  },
+  {
     feature: 'Setup time',
-    diy: 'Weeks of legal research',
-    eor: 'Days to weeks',
+    diy: 'Weeks of legal work',
+    competitors: 'Days + manual IP per task',
     stape: 'Under 24 hours',
-  },
-  {
-    feature: 'Contracts',
-    diy: 'You draft them (and pray)',
-    eor: 'Provided, but rigid',
-    stape: 'Handled \u2014 tailored per country',
-  },
-  {
-    feature: 'Compliance',
-    diy: 'Your problem',
-    eor: 'Covered, at a premium',
-    stape: 'Built in',
-  },
-  {
-    feature: 'Cost per contractor',
-    diy: '??? + legal fees',
-    eor: '$300\u2013600/mo',
-    stape: '\u20AC50/contractor/mo',
-  },
-  {
-    feature: 'Payouts',
-    diy: 'Wire transfers + manual tracking',
-    eor: 'Through their platform',
-    stape: 'One dashboard, multiple currencies',
-  },
-  {
-    feature: 'Flexibility',
-    diy: 'Maximum (and maximum risk)',
-    eor: 'Limited to their entities',
-    stape: '242 locations, contractor chooses withdrawal method',
-  },
-  {
-    feature: 'Security & compliance',
-    diy: '—',
-    eor: 'Varies',
-    stape: '\u2705 ISO 27001 + GDPR',
   },
 ];
 
@@ -165,9 +159,9 @@ function Hero() {
         >
           <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-accent/20 rounded-full text-sm text-primary font-medium">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
-            Use Case: Global Hiring
+            Use Case: IP Transfer
           </span>
         </motion.div>
 
@@ -178,7 +172,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          Your next best hire lives 5,000&nbsp;miles away.
+          Your contractors write the&nbsp;code. But who owns&nbsp;it?
         </motion.h1>
 
         {/* Subhead */}
@@ -188,7 +182,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          The best person for the job isn&apos;t always in your timezone. Stape makes it simple to hire, pay, and stay compliant with contractors anywhere in the world&nbsp;&mdash; so you can build the team you actually want.
+          When your team is distributed across borders, intellectual property doesn&apos;t transfer itself. Stape builds IP assignment into every contract&nbsp;&mdash; so the code, designs, and ideas your contractors create are legally yours. No&nbsp;gaps. No&nbsp;guesswork.
         </motion.p>
 
         {/* CTA */}
@@ -217,9 +211,9 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           {[
-            '242 locations supported',
-            '\u20AC50 flat fee per contractor',
-            'Under 24hrs to first payment',
+            'Full IP assignment in every contract',
+            'Cascade transfer: contractor \u2192 Stape \u2192 you',
+            'Audit-ready closing documents',
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm text-foreground-muted">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -265,10 +259,10 @@ function PainPoints() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-primary tracking-[-0.02em] leading-[1.1] mb-3">
-            Hiring locally is a ceiling, not a strategy.
+            You&apos;re paying for the work. But you might not own&nbsp;it.
           </h2>
           <p className="text-foreground-muted text-sm max-w-md">
-            These aren&apos;t hypothetical problems. They&apos;re why great roles stay unfilled.
+            These aren&apos;t edge cases. They&apos;re the default when you hire contractors internationally without an IP framework.
           </p>
         </motion.div>
 
@@ -334,7 +328,7 @@ function TheShift() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          What if geography was a feature, not a bug?
+          What if IP transfer was infrastructure, not&nbsp;paperwork?
         </motion.h2>
         <motion.p
           className="text-base md:text-lg text-foreground-secondary leading-relaxed"
@@ -342,7 +336,7 @@ function TheShift() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          The best teams in the world aren&apos;t built within commuting distance. They&apos;re built by finding the right person&nbsp;&mdash; wherever they are&nbsp;&mdash; and removing everything that makes it hard to work with them. Stape handles the contracts, compliance, and payments so you can focus on the only thing that matters: is this person great at what they do?
+          The companies that lose IP don&apos;t lose it in court. They lose it in the gap between &ldquo;we have a contract&rdquo; and &ldquo;the contract actually assigns rights.&rdquo; Every contractor engagement should have a clear, auditable chain: the person who wrote the code assigns rights to the legal entity that contracted them, and that entity assigns rights to you. Not as an afterthought. As architecture. That&apos;s what Stape builds into every engagement by default.
         </motion.p>
       </div>
     </section>
@@ -363,7 +357,7 @@ function HowItWorks() {
           className="mb-4 text-center"
         >
           <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
-            Hire anywhere. Pay everyone. Stay compliant.
+            Your code. Your rights. Your balance&nbsp;sheet.
           </h2>
         </motion.div>
         <motion.p
@@ -372,7 +366,7 @@ function HowItWorks() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
           transition={{ duration: 0.5, delay: 0.05 }}
         >
-          Stape is your Contractor of Record&nbsp;&mdash; we become the legal entity that contracts with your team worldwide. You get one platform, one invoice, and zero compliance headaches.
+          Stape is your Contractor of Record&nbsp;&mdash; with IP assignment built into the legal architecture from day one. One platform, one chain of rights, zero&nbsp;ambiguity.
         </motion.p>
 
         <motion.div
@@ -418,7 +412,7 @@ function HowItWorks() {
             className="flex justify-end mt-4"
           >
             <div className="bg-accent text-primary text-sm font-semibold rounded-lg px-5 py-2.5">
-              You: Back to building your team.
+              You: Back to building your product.
             </div>
           </motion.div>
         </motion.div>
@@ -440,7 +434,7 @@ function BenefitsGrid() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          Built for teams that hire on talent, not on timezone.
+          Built for companies where IP is the&nbsp;product.
         </motion.h2>
 
         <motion.div
@@ -481,14 +475,17 @@ function RealTalk() {
           className="text-center"
         >
           <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-white mb-8 tracking-[-0.02em] leading-[1.1]">
-            Let&apos;s talk about what this really means.
+            Let&apos;s talk about what happens without&nbsp;this.
           </h2>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10">
             <p className="text-base md:text-lg text-white/80 leading-relaxed">
-              Senior engineers in Berlin bill &euro;120/hour. Equally talented engineers in Buenos Aires, Nairobi, or Krak&oacute;w bill &euro;35&ndash;60/hour&nbsp;&mdash; not because they&apos;re less skilled, but because cost of living is different. This isn&apos;t exploitation. It&apos;s access. Your contractor earns a strong local salary. You get world-class talent at a rate that lets you hire three people instead of one. Everyone wins&nbsp;&mdash; if the infrastructure is there to make it work.
+              A GameDev studio raises $5M. Half their codebase was written by contractors in three countries. During due diligence, the investor&apos;s legal team finds no IP assignment chain&nbsp;&mdash; just invoices saying &ldquo;development services.&rdquo; The round doesn&apos;t collapse. It just gets repriced. 20% lower. Because the IP risk becomes the investor&apos;s discount.
+            </p>
+            <p className="mt-6 text-base md:text-lg text-white/80 leading-relaxed">
+              A SaaS company gets acquired. The buyer&apos;s lawyers trace every line of code. Two contractors never signed IP agreements. The acquisition closes&nbsp;&mdash; but $800K goes into escrow &ldquo;until the IP situation is resolved.&rdquo; It never fully resolves.
             </p>
             <p className="mt-6 text-accent font-display font-bold text-lg">
-              That&apos;s what Stape does.
+              This isn&apos;t theoretical. This is what Stape prevents&nbsp;&mdash; by making IP transfer structural, not something you remember to add later.
             </p>
           </div>
         </motion.div>
@@ -510,7 +507,7 @@ function Comparison() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          Three ways to hire globally. Two of them are painful.
+          Three ways to handle contractor&nbsp;IP. Two of them are&nbsp;risky.
         </motion.h2>
         <motion.p
           className="text-foreground-muted text-center mb-12 text-sm"
@@ -532,8 +529,8 @@ function Comparison() {
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-4 px-3 text-sm font-semibold text-primary w-[20%]"></th>
-                  <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">DIY (Manual payouts)</th>
-                  <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">Traditional EOR</th>
+                  <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">DIY (Manual contracts)</th>
+                  <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">Competitors (Solar Staff, etc.)</th>
                   <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl">Stape</th>
                 </tr>
               </thead>
@@ -542,7 +539,7 @@ function Comparison() {
                   <tr key={index} className="border-b border-border/50 last:border-0">
                     <td className="py-4 px-3 text-sm font-medium text-primary">{row.feature}</td>
                     <td className="py-4 px-3 text-sm text-foreground-muted text-center">{row.diy}</td>
-                    <td className="py-4 px-3 text-sm text-foreground-muted text-center">{row.eor}</td>
+                    <td className="py-4 px-3 text-sm text-foreground-muted text-center">{row.competitors}</td>
                     <td className={`py-4 px-4 text-sm text-primary text-center font-semibold bg-accent/20 ${index === comparisonData.length - 1 ? 'rounded-b-xl' : ''}`}>
                       <span className="inline-flex items-center gap-1">
                         <svg className="w-3.5 h-3.5 text-[#00B887] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -590,7 +587,7 @@ function BottomCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          Your team is out there. Let&apos;s go find them.
+          Your contractors build your product. Make sure you own&nbsp;it.
         </motion.h2>
         <motion.p
           className="text-base text-foreground-secondary leading-relaxed mb-10"
@@ -599,7 +596,7 @@ function BottomCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Book a 15-minute demo and see how Stape handles global contractor payroll&nbsp;&mdash; contracts, compliance, and payments&nbsp;&mdash; so you can hire the best people, wherever they are.
+          Book a 15-minute demo and see how Stape handles IP transfer&nbsp;&mdash; cascade assignment, detailed documentation, and audit-ready contracts&nbsp;&mdash; so your code, your designs, and your ideas are legally yours.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"
@@ -631,7 +628,7 @@ function BottomCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          Average time from first call to first payment: under 24 hours.
+          Average time from first call to first contract with IP assignment: under 24 hours.
         </motion.p>
       </div>
     </section>
@@ -640,7 +637,7 @@ function BottomCTA() {
 
 /* ─── Page ────────────────────────────────────────────────────────────────── */
 
-export default function GlobalHiringPage() {
+export default function IPTransferPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />

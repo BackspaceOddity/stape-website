@@ -48,7 +48,7 @@ const initialSituations: Situation[] = [
   },
   {
     id: 'risky-geos',
-    text: 'Your best developers are in places most providers won\u2019t touch. You need someone who actually operates there.',
+    text: 'Your best developers are in places most platforms don\u2019t reach. You need someone who actually operates there.',
     reactions: { yes: 198, no: 89, fire: 67 },
   },
   {

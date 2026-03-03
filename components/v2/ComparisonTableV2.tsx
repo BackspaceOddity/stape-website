@@ -12,10 +12,10 @@ const comparisonData = [
     stape: '6 minutes total',
   },
   {
-    feature: 'What you learn',
-    diy: 'You learn tax law',
-    tool: 'You learn their system',
-    stape: 'You learn nothing',
+    feature: 'What\u2019s on your plate',
+    diy: 'Compliance in every country',
+    tool: 'A new tool to configure',
+    stape: 'Your actual work',
   },
   {
     feature: 'Risk ownership',
@@ -34,6 +34,12 @@ const comparisonData = [
     diy: '"Where\'s my payment?" DMs',
     tool: '"How do I...?" tickets',
     stape: 'Radio silence (the good kind)',
+  },
+  {
+    feature: 'Security & compliance',
+    diy: '—',
+    tool: '—',
+    stape: '\u2705 ISO 27001 + GDPR',
   },
 ];
 
