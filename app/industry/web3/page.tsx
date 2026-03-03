@@ -84,13 +84,13 @@ const howItWorksSteps = [
   },
   {
     step: 'Step 2',
-    title: 'We become your Contractor of Record',
-    description: 'Stape signs service agreements with each contractor through local entities (US, UAE, or matching jurisdiction). Contracts cover scope, IP assignment, and confidentiality \u2014 tailored to their role: Solidity Developer, Security Auditor, Protocol Researcher. Just a proper contract.',
+    title: 'We handle the contracts',
+    description: 'Stape signs service agreements with each contractor through local entities. Contracts cover scope, IP assignment, and confidentiality \u2014 tailored to their role.',
   },
   {
     step: 'Step 3',
     title: 'Everyone gets paid how they want',
-    description: 'Set up your payout list. Each contractor decides in their personal dashboard: bank card, local transfer, or stay in USDT. Flat fee: $50 per payout \u2014 whether your auditor earns $2,000 or $8,000. Zero withdrawal fees for contractors.',
+    description: 'Set up your payout list. Each contractor decides in their personal dashboard: bank card, local transfer, or stay in USDT. Flat fee: $50 per payout. Zero withdrawal fees for contractors.',
   },
 ];
 
@@ -180,8 +180,8 @@ const testimonials = [
 
 const faqs = [
   {
-    question: 'Can I fund my Stape balance directly with USDT?',
-    answer: 'Yes. We accept USDT on TRC-20 from verified corporate wallets. There\'s a 2% conversion fee to USD. Your balance is typically credited within hours after a standard wallet cleanliness check (KYT).',
+    question: 'Can I fund my Stape balance directly with crypto?',
+    answer: 'Yes. We accept USDT and USDC.',
   },
   {
     question: 'What if my contractors want to receive in USDT, not fiat?',
@@ -332,7 +332,7 @@ function HeroWeb3() {
             '$50 flat per payout',
             '0% for contractors',
           ].map((badge) => (
-            <div key={badge} className="flex items-center gap-2 text-sm text-white/50">
+            <div key={badge} className="flex items-center gap-2 text-sm text-white/50 capitalize">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -688,7 +688,7 @@ function CryptoFiatBridge() {
           <div className="bg-primary rounded-2xl p-6 md:p-8">
             <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-3">The result</h3>
             <p className="text-sm text-white/80 leading-relaxed">
-              Your books show a clean B2B service agreement with a US/UAE entity. Your contractor&apos;s bank sees a legitimate international salary payment. Your investors see documented expenses for development services. Everyone&apos;s happy&nbsp;&mdash; and every audit is covered.
+              Your books show a clean B2B service agreement. Your contractor&apos;s bank sees a legitimate international salary payment. Your investors see documented expenses for development services. Everyone&apos;s happy&nbsp;&mdash; and every audit is covered.
             </p>
           </div>
         </motion.div>
