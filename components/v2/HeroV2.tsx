@@ -52,7 +52,7 @@ export default function HeroV2() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Pay contractors in 242 locations with one invoice, compliant contracts, and fixed FX rates. The entire back office&nbsp;&mdash; without the back office.
+          Pay contractors worldwide with one invoice, compliant contracts, and fixed FX rates. The entire back office&nbsp;&mdash; without the back office.
         </motion.p>
 
         {/* CTA row: email input + button */}
