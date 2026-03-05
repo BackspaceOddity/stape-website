@@ -91,9 +91,9 @@ export default function Navbar() {
             <Link href="/product" className="text-sm text-foreground-secondary hover:text-primary transition-colors">
               Product
             </Link>
-            <a href="#pricing" className="text-sm text-foreground-secondary hover:text-primary transition-colors">
+            <Link href="/pricing" className="text-sm text-foreground-secondary hover:text-primary transition-colors">
               Pricing
-            </a>
+            </Link>
             <a href="#how-it-works" className="text-sm text-foreground-secondary hover:text-primary transition-colors">
               Resources
             </a>
@@ -146,7 +146,7 @@ export default function Navbar() {
               <Link href="/industry/web3" onClick={() => setIsOpen(false)} className="block text-sm text-foreground-muted pl-4 py-1 hover:text-primary transition-colors">Web3 & Crypto</Link>
             </div>
             <Link href="/product" className="block text-sm text-foreground-secondary py-1">Product</Link>
-            <a href="#pricing" className="block text-sm text-foreground-secondary py-1">Pricing</a>
+            <Link href="/pricing" className="block text-sm text-foreground-secondary py-1">Pricing</Link>
             <a href="#how-it-works" className="block text-sm text-foreground-secondary py-1">Resources</a>
             <a href="#" className="block text-sm text-foreground-secondary py-1">Partner Program</a>
             <div className="pt-3 border-t border-border space-y-3">
