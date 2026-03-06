@@ -85,6 +85,21 @@ export default function Navbar() {
                   >
                     Web3 & Crypto
                   </Link>
+                  <div className="my-1 border-t border-border" />
+                  <Link
+                    href="/contractor-of-record"
+                    onClick={() => setSolutionsOpen(false)}
+                    className="block px-4 py-2 text-sm text-foreground-secondary hover:text-primary hover:bg-background-secondary transition-colors"
+                  >
+                    Contractor of Record
+                  </Link>
+                  <Link
+                    href="/employer-of-record"
+                    onClick={() => setSolutionsOpen(false)}
+                    className="block px-4 py-2 text-sm text-foreground-secondary hover:text-primary hover:bg-background-secondary transition-colors"
+                  >
+                    Employer of Record
+                  </Link>
                 </div>
               )}
             </div>
@@ -144,6 +159,8 @@ export default function Navbar() {
               <Link href="/use-cases/global-hiring" onClick={() => setIsOpen(false)} className="block text-sm text-foreground-muted pl-4 py-1 hover:text-primary transition-colors">Global Hiring</Link>
               <Link href="/use-cases/ip-transfer" onClick={() => setIsOpen(false)} className="block text-sm text-foreground-muted pl-4 py-1 hover:text-primary transition-colors">IP Transfer</Link>
               <Link href="/industry/web3" onClick={() => setIsOpen(false)} className="block text-sm text-foreground-muted pl-4 py-1 hover:text-primary transition-colors">Web3 & Crypto</Link>
+              <Link href="/contractor-of-record" onClick={() => setIsOpen(false)} className="block text-sm text-foreground-muted pl-4 py-1 hover:text-primary transition-colors">Contractor of Record</Link>
+              <Link href="/employer-of-record" onClick={() => setIsOpen(false)} className="block text-sm text-foreground-muted pl-4 py-1 hover:text-primary transition-colors">Employer of Record</Link>
             </div>
             <Link href="/product" className="block text-sm text-foreground-secondary py-1">Product</Link>
             <Link href="/pricing" className="block text-sm text-foreground-secondary py-1">Pricing</Link>
