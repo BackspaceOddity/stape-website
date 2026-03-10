@@ -7,7 +7,7 @@ import { useRef } from 'react';
 const metrics = [
   {
     label: 'Teams that stopped doing payroll',
-    value: '100+',
+    value: '600+',
   },
   {
     label: 'Paid across complex corridors worldwide',

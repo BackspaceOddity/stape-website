@@ -153,7 +153,7 @@ function Hero() {
               />
             ))}
           </div>
-          <span className="text-sm text-foreground-muted">Trusted by 100+ teams getting their headspace back</span>
+          <span className="text-sm text-foreground-muted">Trusted by 600+ teams getting their headspace back</span>
         </motion.div>
 
         {/* Eyebrow */}

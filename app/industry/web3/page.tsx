@@ -240,7 +240,7 @@ function HeroWeb3() {
               />
             ))}
           </div>
-          <span className="text-sm text-white/60">Trusted by 100+ teams getting their headspace back</span>
+          <span className="text-sm text-white/60">Trusted by 600+ teams getting their headspace back</span>
         </motion.div>
 
         {/* Eyebrow */}

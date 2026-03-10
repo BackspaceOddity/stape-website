@@ -216,7 +216,7 @@ function HeroFounders() {
               />
             ))}
           </div>
-          <span className="text-sm text-foreground-muted">Trusted by 100+ teams getting their headspace back</span>
+          <span className="text-sm text-foreground-muted">Trusted by 600+ teams getting their headspace back</span>
         </motion.div>
 
         {/* Main headline */}
@@ -270,7 +270,7 @@ function HeroFounders() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           {[
-            '100+ Teams Switched',
+            '600+ Teams Switched',
             '€50 Flat Fee Per Payout',
             'Under 24hrs to First Payment',
           ].map((badge) => (

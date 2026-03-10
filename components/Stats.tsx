@@ -23,7 +23,7 @@ export default function Stats() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          100+ of teams get their time and focus back
+          600+ of teams get their time and focus back
         </motion.h2>
 
         <motion.div
