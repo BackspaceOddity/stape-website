@@ -55,19 +55,28 @@ function AboutHero() {
             </motion.p>
 
             <motion.h1
-              className="font-display font-extrabold text-[32px] md:text-[44px] lg:text-[52px] text-primary leading-[1.08] mb-6 tracking-[-0.025em]"
+              className="font-display font-extrabold text-[32px] md:text-[44px] lg:text-[52px] text-primary leading-[1.08] mb-4 tracking-[-0.025em]"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.05 }}
             >
-              Payroll is a job not to be done. That&apos;s why we exist&nbsp;&mdash; and why one day we won&apos;t have&nbsp;to.
+              Payroll is a job not to be&nbsp;done.
             </motion.h1>
 
             <motion.p
-              className="text-lg md:text-xl text-foreground-secondary leading-relaxed"
+              className="text-xl md:text-2xl text-foreground-secondary font-medium leading-snug mb-5"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              That&apos;s why we exist&nbsp;&mdash; and why one day we won&apos;t have&nbsp;to.
+            </motion.p>
+
+            <motion.p
+              className="text-base md:text-lg text-foreground-muted leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15 }}
             >
               Stape is global work infrastructure. We make payroll and compliance invisible&nbsp;&mdash; so companies hire for talent, not geography.
             </motion.p>
