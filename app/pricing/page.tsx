@@ -20,14 +20,6 @@ function PricingHero() {
           Know what you&apos;ll pay before the call.
         </motion.h1>
 
-        <motion.p
-          className="text-lg md:text-xl text-foreground-secondary leading-relaxed max-w-2xl mx-auto mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-        >
-          Most payroll providers hide pricing behind a &ldquo;Book a Demo&rdquo; button. We&apos;d rather just tell you.
-        </motion.p>
 
         <motion.div
           className="flex flex-wrap items-center justify-center gap-4 md:gap-8"
@@ -58,7 +50,6 @@ function PricingHero() {
 const corFeatures = [
   'Compliant contractor contracts',
   'Payments in 120+ currencies',
-  'FX conversion no more than 3.5% \u2014 locked at signing',
   'Wire fees included',
   'Off-cycle payments included',
   'Full compliance & audit trail',
@@ -87,6 +78,20 @@ function PricingCards() {
   return (
     <section ref={ref} className="py-16 md:py-24 bg-background-secondary">
       <div className="max-w-[1000px] mx-auto px-6 md:px-12">
+        <motion.div
+          className="bg-white rounded-2xl p-6 md:p-8 border border-border shadow-card mb-6 md:mb-8 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="flex items-center justify-center gap-2.5">
+            <svg className="w-5 h-5 text-success flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            <span className="text-base md:text-lg font-semibold text-primary">FX conversion no more than 3.5% — locked at signing</span>
+          </div>
+        </motion.div>
+
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
           initial={{ opacity: 0, y: 30 }}
