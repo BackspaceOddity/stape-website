@@ -243,16 +243,6 @@ function WhatWeDo() {
           ))}
         </div>
 
-        {/* Product screenshot */}
-        <div className="mt-12 rounded-2xl overflow-hidden border border-border shadow-card">
-          <Image
-            src={`${basePath}/product-dashboard.png`}
-            alt="Stape platform — contractor management dashboard"
-            width={1200}
-            height={700}
-            className="w-full h-auto"
-          />
-        </div>
       </div>
     </Section>
   );
