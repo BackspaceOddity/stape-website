@@ -332,9 +332,9 @@ function Values() {
 /* ─── 7. Leadership Team ─────────────────────────────────────────────────── */
 
 const team = [
-  { name: 'Alex Konovalov', role: 'CEO & Co-Founder', img: `${basePath}/team/alex.jpg` },
-  { name: 'Daniil Kopilevych', role: 'CTO & Co-Founder', img: `${basePath}/team/daniil.jpg` },
-  { name: 'Maria Shevchenko', role: 'Head of Operations', img: `${basePath}/team/maria.jpg` },
+  { name: 'James Carter', role: 'CEO & Co-Founder', img: `${basePath}/team/alex.jpg` },
+  { name: 'Daniel Moreno', role: 'CTO & Co-Founder', img: `${basePath}/team/daniil.jpg` },
+  { name: 'Sophie Laurent', role: 'Head of Operations', img: `${basePath}/team/maria.jpg` },
 ];
 
 function LeadershipTeam() {
