@@ -60,7 +60,7 @@ function AboutHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.05 }}
             >
-              We want borders and rules not to stand in the way of&nbsp;opportunities.
+              Payroll is a job not to be done. That&apos;s why we exist&nbsp;&mdash; and why one day we won&apos;t have&nbsp;to.
             </motion.h1>
 
             <motion.p
