@@ -209,9 +209,9 @@ function WhatWeDo() {
         </div>
 
         {/* Product screenshot */}
-        <div className="mt-12 rounded-2xl overflow-hidden border border-border">
+        <div className="mt-12 rounded-2xl overflow-hidden border border-border shadow-card">
           <Image
-            src="/Images/SCR-20260209-bjhb.png"
+            src="/product-dashboard.png"
             alt="Stape platform — contractor management dashboard"
             width={1200}
             height={700}
