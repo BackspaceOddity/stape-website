@@ -345,12 +345,9 @@ function Values() {
 /* ─── 7. Leadership Team ─────────────────────────────────────────────────── */
 
 const team = [
-  { name: '[Name]', role: 'CEO & Co-Founder' },
-  { name: '[Name]', role: 'CTO & Co-Founder' },
-  { name: '[Name]', role: 'Head of Operations' },
-  { name: '[Name]', role: 'Head of Compliance' },
-  { name: '[Name]', role: 'Head of Product' },
-  { name: '[Name]', role: 'Head of Growth' },
+  { name: 'Alex Konovalov', role: 'CEO & Co-Founder', img: `${basePath}/team/alex.jpg` },
+  { name: 'Daniil Kopilevych', role: 'CTO & Co-Founder', img: `${basePath}/team/daniil.jpg` },
+  { name: 'Maria Shevchenko', role: 'Head of Operations', img: `${basePath}/team/maria.jpg` },
 ];
 
 function LeadershipTeam() {
@@ -369,18 +366,22 @@ function LeadershipTeam() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-3 gap-8 md:gap-12 max-w-[900px] mx-auto">
           {team.map((person) => (
             <div key={person.role} className="text-center">
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl bg-white border border-border mx-auto mb-4 flex items-center justify-center">
-                <svg className="w-10 h-10 text-foreground-muted/30" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
-                </svg>
+              <div className="w-36 h-36 md:w-48 md:h-48 rounded-2xl bg-white border border-border mx-auto mb-5 overflow-hidden">
+                <Image
+                  src={person.img}
+                  alt={person.name}
+                  width={192}
+                  height={192}
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <p className="font-display font-bold text-primary text-base">
+              <p className="font-display font-bold text-primary text-lg">
                 {person.name}
               </p>
-              <p className="text-sm text-foreground-muted">{person.role}</p>
+              <p className="text-sm text-foreground-muted mt-1">{person.role}</p>
             </div>
           ))}
         </div>
