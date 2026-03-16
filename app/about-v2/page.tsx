@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 /* ─── Helpers ────────────────────────────────────────────────────────────── */
 
 function Section({
@@ -211,7 +213,7 @@ function WhatWeDo() {
         {/* Product screenshot */}
         <div className="mt-12 rounded-2xl overflow-hidden border border-border shadow-card">
           <Image
-            src="/product-dashboard.png"
+            src={`${basePath}/product-dashboard.png`}
             alt="Stape platform — contractor management dashboard"
             width={1200}
             height={700}
