@@ -66,7 +66,7 @@ function AboutHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          Stape is global work infrastructure. We make it possible to hire and pay anyone, anywhere&nbsp;&mdash; without the bureaucratic overhead that comes with it.
+          Stape is global work infrastructure. We make payroll and compliance invisible&nbsp;&mdash; so companies hire for talent, not geography.
         </motion.p>
       </div>
     </section>
@@ -75,18 +75,18 @@ function AboutHero() {
 
 /* ─── 2. Mission ─────────────────────────────────────────────────────────── */
 
-function Mission() {
+function WhyWeExist() {
   return (
     <Section className="bg-primary text-primary-foreground">
       <div className="max-w-[900px] mx-auto px-6 md:px-12 text-center">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-5">
-          Our Mission
+          Why We Exist
         </p>
         <h2 className="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.1] tracking-[-0.02em] mb-6">
-          Make global payroll and compliance invisible&nbsp;&mdash; so companies hire for talent, not geography.
+          We see a world where hiring talent happens instantly.
         </h2>
         <p className="text-base md:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
-          The way Stripe made payments invisible, we want to make global employment invisible. One click to pay anyone, anywhere. No tax research. No compliance panic. No work that shouldn&apos;t exist.
+          Where documents sign themselves. Where cross-border payments are fast, cheap, and guaranteed. Where a company never has to think about the fact that their team speaks different languages, lives under different laws, and uses different banks. A world where your team can focus on creating&nbsp;&mdash; not on paperwork or figuring out where the money went. That&apos;s not a dream. That&apos;s the spec.
         </p>
       </div>
     </Section>
@@ -139,7 +139,7 @@ function SocialProofBar() {
 const productValues = [
   {
     title: 'Contractor Payments',
-    description: 'Pay contractors in 150+ countries with a single click. Local currency, compliant tax documents, transparent FX rates. No SWIFT limbo, no bank interrogations.',
+    description: 'Pay contractors in 150+ countries with a single click. Local currency, compliant tax documents, transparent FX rates. No exceptions, no excuses.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
@@ -148,7 +148,7 @@ const productValues = [
   },
   {
     title: 'Contractor of Record',
-    description: 'We become the legal contracting party so you stay compliant without setting up local entities. Your contractors work for you, but the paperwork is on us.',
+    description: 'We become the legal contracting party so you stay compliant without setting up local entities. Our contract, our liability, your peace of mind.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
@@ -157,7 +157,7 @@ const productValues = [
   },
   {
     title: 'Employer of Record',
-    description: 'Hire full-time employees in new markets without incorporating. We handle employment contracts, benefits, tax withholding, and local labor law. You manage the work.',
+    description: 'Hire full-time employees in new markets without incorporating. Because the best person for the job shouldn\u2019t have to wait for your legal team.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
@@ -166,7 +166,7 @@ const productValues = [
   },
   {
     title: 'Compliance & Tax',
-    description: 'Automated tax document generation, KYC verification, and audit trails for every transaction. Compliant in every jurisdiction we operate in. You learn nothing about tax law&nbsp;&mdash; and that&apos;s the point.',
+    description: 'Automated tax document generation, KYC verification, and audit trails for every transaction. Always ready. Always clean.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
@@ -240,39 +240,15 @@ function OurStory() {
 
         <div className="space-y-6 text-base md:text-lg text-foreground-secondary leading-relaxed">
           <p>
-            Every industry has a category of work that people accept as necessary but secretly hate. Reconciling spreadsheets. Chasing tax documents. Explaining to a developer in Lagos why their payment is three days late. Nobody starts a company to do this work. Nobody&apos;s career goal is &ldquo;get really good at cross-border wire transfers.&rdquo;
+            Right now, somewhere, a founder is staring at a spreadsheet at 2&nbsp;AM. Not building. Not shipping. Not hiring. Reconciling payments to a developer in Tbilisi. Chasing an invoice from a designer in São Paulo. Googling tax residency rules for the third time this week. That&apos;s not work. That&apos;s work pretending to be work. We started Stape because we believe this entire category of work shouldn&apos;t exist. Not &ldquo;should be easier.&rdquo; Not &ldquo;should be faster.&rdquo; Should. Not. Exist.
           </p>
 
           <p>
-            And yet, this is what global hiring looks like today. You find the perfect engineer, the ideal designer, the contractor who gets your product&nbsp;&mdash; and then you spend the next two weeks figuring out how to actually pay them. You Google tax codes at midnight. You set up accounts in three different payment systems. You become an unlicensed accountant.
-          </p>
-
-          <p>
-            The entire payroll industry is built on the assumption that this work is inevitable. Better tools to manage the complexity. Nicer dashboards to watch the money move. Faster support for when things break.
+            The global economy runs on talent that crosses borders&nbsp;&mdash; but the infrastructure acts like it&apos;s 1987. Between your company and the brilliant person who could change it, there&apos;s a wall of paperwork, payment rails, and compliance nobody fully understands. Other payroll companies see that wall and sell you a better shovel. We&apos;re trying to remove the need to dig. Payroll and compliance are jobs not to be done. We&apos;re here until they&apos;re not.
           </p>
 
           <p className="text-primary font-medium">
-            We think the premise is wrong. The best version of payroll isn&apos;t a better tool. It&apos;s no tool at all.
-          </p>
-
-          <p>
-            That&apos;s the idea behind Stape. We don&apos;t optimize the work of paying people. We make it disappear. You click &ldquo;Pay Everyone&rdquo; and the money arrives, compliantly, in local currency, in 150+ countries. No dashboards to babysit. No exceptions to chase. No Slack messages asking &ldquo;where&apos;s my money?&rdquo;
-          </p>
-
-          <p>
-            We call this a &ldquo;job not to be done.&rdquo; Not because the outcome doesn&apos;t matter&nbsp;&mdash; people getting paid matters enormously. But because the process of making it happen should require zero thought from you. Like electricity in a building. You flip the switch. The lights come on. You don&apos;t think about the grid.
-          </p>
-
-          <p>
-            We started Stape because we lived this problem ourselves. We were a distributed team paying contractors in a dozen countries, and we couldn&apos;t believe how much time it consumed. So we built the thing we wished existed: infrastructure that makes global work just work.
-          </p>
-
-          <p>
-            Today, 600+ companies run their contractor payroll on Stape. Most of them stopped thinking about payroll within two billing cycles. Not because we forced them. Because there was nothing left to think about.
-          </p>
-
-          <p className="text-primary font-medium">
-            That&apos;s the goal. Not better payroll. Less payroll. Eventually, none.
+            One day, there will be no such thing as &ldquo;global payroll.&rdquo; It&apos;ll just be the way money moves&nbsp;&mdash; quietly, like electricity through a wall. We&apos;re building that day. And we&apos;ll keep going until the job is done&nbsp;&mdash; which is to say, until there&apos;s no job left at all.
           </p>
         </div>
       </div>
@@ -284,28 +260,16 @@ function OurStory() {
 
 const values = [
   {
-    title: 'Speed through honesty',
-    description: 'We don\u2019t hide pricing behind a \u201CBook a Demo\u201D button. We don\u2019t pretend compliance is simple when it isn\u2019t. Transparency removes unnecessary steps. Fewer steps means faster\u2009\u2014\u2009for us and for you.',
+    title: 'Honesty',
+    description: 'The market is full of hidden fees and fine print. We decided to go the other way. Transparent pricing. Straight answers. If we don\u2019t know something, we say so. Trust is not a feature\u2009\u2014\u2009it\u2019s a foundation.',
   },
   {
-    title: 'Invisible infrastructure',
-    description: 'The best product is one you forget about. No dashboards to check, no exceptions to fix, no Slack messages asking \u201Cwhere\u2019s my money?\u201D If you\u2019re thinking about us, we\u2019ve failed.',
+    title: 'Speed through high-agency',
+    description: 'We don\u2019t wait for permission. We see a problem, we solve it. Decisions happen fast because the people closest to the work make them. Speed isn\u2019t a goal\u2009\u2014\u2009it\u2019s a byproduct of giving a damn.',
   },
   {
-    title: 'Talent over geography',
-    description: 'Your passport shouldn\u2019t determine who you can work with. If you found the right person, it shouldn\u2019t matter whether they\u2019re in Lisbon or Lagos. We remove that constraint.',
-  },
-  {
-    title: 'Own the complexity',
-    description: 'Compliance, currency conversion, KYC, tax forms\u2009\u2014\u2009we absorb all of it so you don\u2019t have to. You own the risk of building a great product. We own the risk of everything else.',
-  },
-  {
-    title: 'Build for trust',
-    description: '\u20AC50 per payout. No setup fees. No monthly minimums. No hidden spreads. When you trust the system, you stop checking on it. That\u2019s when payroll truly disappears.',
-  },
-  {
-    title: 'Small team, big leverage',
-    description: 'We\u2019re a distributed team ourselves\u2009\u2014\u2009our own payroll runs on Stape. High-agency people, minimal hierarchy, and the conviction that a small team can build something that makes a $50B industry irrelevant.',
+    title: 'Having fun',
+    description: 'We\u2019re building infrastructure to change how the global economy works. If we can\u2019t enjoy that, something\u2019s wrong. We stay human. We keep it light. We build hard things without taking ourselves too seriously.',
   },
 ];
 
@@ -322,7 +286,7 @@ function Values() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {values.map((value) => (
             <div
               key={value.title}
@@ -409,7 +373,7 @@ function Careers() {
           Help us make payroll disappear
         </h2>
         <p className="text-base md:text-lg text-foreground-secondary leading-relaxed max-w-2xl mx-auto mb-10">
-          We&apos;re building the infrastructure layer for global work. If making a $50&nbsp;billion industry irrelevant sounds interesting, we&apos;d love to hear from you.
+          We hire for talent, not passports. If that sounds like your kind of place&nbsp;&mdash; we&apos;re looking for people who want to make an entire category of work disappear.
         </p>
 
         {/* Open positions */}
@@ -511,13 +475,13 @@ export default function AboutV2Page() {
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
       <AboutHero />
-      <Mission />
       <SocialProofBar />
       <WhatWeDo />
       <OurStory />
       <Values />
       <LeadershipTeam />
       <Careers />
+      <WhyWeExist />
       <BottomCTA />
       <Footer />
     </main>
