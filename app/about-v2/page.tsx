@@ -40,34 +40,58 @@ function Section({
 
 function AboutHero() {
   return (
-    <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-white">
-      <div className="max-w-[900px] mx-auto px-6 md:px-12 text-center">
-        <motion.p
-          className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-5"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          About Stape
-        </motion.p>
+    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 bg-white overflow-hidden">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          {/* Left — text */}
+          <div>
+            <motion.p
+              className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-5"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              About Stape
+            </motion.p>
 
-        <motion.h1
-          className="font-display font-extrabold text-[36px] md:text-[52px] lg:text-[60px] text-primary leading-[1.08] mb-6 tracking-[-0.025em]"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.05 }}
-        >
-          We want borders and rules not to stand in the way of&nbsp;opportunities.
-        </motion.h1>
+            <motion.h1
+              className="font-display font-extrabold text-[32px] md:text-[44px] lg:text-[52px] text-primary leading-[1.08] mb-6 tracking-[-0.025em]"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.05 }}
+            >
+              We want borders and rules not to stand in the way of&nbsp;opportunities.
+            </motion.h1>
 
-        <motion.p
-          className="text-lg md:text-xl text-foreground-secondary leading-relaxed max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-        >
-          Stape is global work infrastructure. We make payroll and compliance invisible&nbsp;&mdash; so companies hire for talent, not geography.
-        </motion.p>
+            <motion.p
+              className="text-lg md:text-xl text-foreground-secondary leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              Stape is global work infrastructure. We make payroll and compliance invisible&nbsp;&mdash; so companies hire for talent, not geography.
+            </motion.p>
+          </div>
+
+          {/* Right — product photo */}
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+          >
+            <div className="rounded-2xl overflow-hidden shadow-card">
+              <Image
+                src={`${basePath}/product-hero.png`}
+                alt="Stape platform on a laptop"
+                width={640}
+                height={480}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
