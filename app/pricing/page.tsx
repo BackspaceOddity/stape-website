@@ -57,6 +57,7 @@ const corFeatures = [
   'KYC handling',
   '24h onboarding',
   'One B2B invoice for your books',
+  'FX conversion no more than 3.5% — locked at signing',
 ];
 
 const eorFeatures = [
@@ -69,97 +70,120 @@ const eorFeatures = [
   'IP protection provisions',
   'Ongoing HR & legal support',
   'One B2B invoice for your books',
+  'FX conversion no more than 3.5% — locked at signing',
 ];
 
 function PricingCards() {
+  const [activeTab, setActiveTab] = useState<'cor' | 'eor'>('cor');
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
+  const tabs = [
+    { id: 'cor' as const, label: 'Contractor of Record' },
+    { id: 'eor' as const, label: 'Employer of Record' },
+  ];
+
   return (
     <section ref={ref} className="py-16 md:py-24 bg-background-secondary">
-      <div className="max-w-[1000px] mx-auto px-6 md:px-12">
+      <div className="max-w-[600px] mx-auto px-6 md:px-12">
+        {/* Tabs */}
         <motion.div
-          className="bg-white rounded-2xl p-6 md:p-8 border border-border shadow-card mb-6 md:mb-8 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
+          className="flex justify-center mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
         >
-          <div className="flex items-center justify-center gap-2.5">
-            <svg className="w-5 h-5 text-success flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-            <span className="text-base md:text-lg font-semibold text-primary">FX conversion no more than 3.5% — locked at signing</span>
+          <div className="inline-flex bg-white rounded-xl p-1.5 border border-border shadow-card">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-300 ${
+                  activeTab === tab.id
+                    ? 'bg-primary text-primary-foreground shadow-md'
+                    : 'text-foreground-muted hover:text-primary'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
         </motion.div>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Card 1: Contractor of Record */}
-          <div className="bg-white rounded-2xl p-8 md:p-10 border border-border shadow-card flex flex-col">
-            <h3 className="text-lg font-display font-bold text-primary mb-6">Contractor of Record</h3>
-
-            <div className="mb-1">
-              <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;50</span>
-            </div>
-            <p className="text-base text-foreground-secondary mb-1">/ per payout</p>
-            <p className="text-sm text-foreground-muted mb-8">Fixed. No monthly fee.</p>
-
-            <a
-              href="#"
-              className="w-full inline-flex items-center justify-center gap-1.5 px-6 py-3.5 border border-border text-primary font-semibold text-sm rounded-md hover:bg-background-secondary transition-colors mb-8"
+        {/* Card */}
+        <AnimatePresence mode="wait">
+          {activeTab === 'cor' ? (
+            <motion.div
+              key="cor"
+              className="bg-white rounded-2xl p-8 md:p-10 border border-border shadow-card flex flex-col"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
             >
-              Book a Demo
-            </a>
+              <div className="mb-1">
+                <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;50</span>
+              </div>
+              <p className="text-base text-foreground-secondary mb-1">/ per payout</p>
+              <p className="text-sm text-foreground-muted mb-8">Fixed. No monthly fee.</p>
 
-            <ul className="space-y-3 flex-1">
-              {corFeatures.map((feature) => (
-                <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground-secondary">
-                  <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+              <a
+                href="#"
+                className="w-full inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors mb-8"
+              >
+                Book a Demo
+              </a>
 
-          {/* Card 2: Employer of Record */}
-          <div className="bg-white rounded-2xl p-8 md:p-10 border border-border shadow-card flex flex-col">
-            <h3 className="text-lg font-display font-bold text-primary mb-6">Employer of Record</h3>
-
-            <div className="mb-1">
-              <span className="text-base text-foreground-muted mr-1 align-baseline">From</span>
-              <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;200</span>
-            </div>
-            <p className="text-base text-foreground-secondary mb-1">/ per employee per month</p>
-            <p className="text-sm text-foreground-muted mb-8">Depends on country. Get a quote.</p>
-
-            <a
-              href="#"
-              className="w-full inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors mb-8"
+              <ul className="space-y-3">
+                {corFeatures.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground-secondary">
+                    <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="eor"
+              className="bg-white rounded-2xl p-8 md:p-10 border border-border shadow-card flex flex-col"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
             >
-              Get a Quote
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+              <div className="mb-1">
+                <span className="text-base text-foreground-muted mr-1 align-baseline">From</span>
+                <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;200</span>
+              </div>
+              <p className="text-base text-foreground-secondary mb-1">/ per employee per month</p>
+              <p className="text-sm text-foreground-muted mb-8">Depends on country. Get a quote.</p>
 
-            <ul className="space-y-3 flex-1">
-              {eorFeatures.map((feature) => (
-                <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground-secondary">
-                  <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </motion.div>
+              <a
+                href="#"
+                className="w-full inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors mb-8"
+              >
+                Get a Quote
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+
+              <ul className="space-y-3">
+                {eorFeatures.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground-secondary">
+                    <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
@@ -198,7 +222,228 @@ function ComparisonRow() {
   );
 }
 
-/* ─── Section 4: FAQ ─────────────────────────────────────────────────────── */
+/* ─── Section 4: Interactive Quote Form ────────────────────────────────────── */
+
+const roleOptions = ['Founder/CEO', 'CFO/Finance', 'HR/People Ops', 'Operations', 'Other'];
+const contractorOptions = ['1–10', '11–50', '51–200', '200+'];
+const countryOptions = ['1–3', '4–10', '11–25', '25+'];
+const volumeOptions = ['Under €10K', '€10K–€50K', '€50K–€200K', '€200K+'];
+const paymentMethods = ['Bank transfers', 'Wise/Revolut', 'Payroll provider (Deel, Remote, etc.)', 'Crypto', 'Other'];
+
+function QuoteForm() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    company: '',
+    email: '',
+    role: '',
+    contractors: '',
+    countries: '',
+    volume: '',
+    paymentMethods: [] as string[],
+  });
+
+  const handleCheckbox = (method: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      paymentMethods: prev.paymentMethods.includes(method)
+        ? prev.paymentMethods.filter((m) => m !== method)
+        : [...prev.paymentMethods, method],
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Quote form submitted:', formData);
+    setSubmitted(true);
+  };
+
+  return (
+    <section id="quote-form" ref={ref} className="py-20 md:py-28 bg-background-secondary">
+      <div className="max-w-[640px] mx-auto px-6 md:px-12">
+        <motion.h2
+          className="text-[32px] md:text-[40px] font-display font-extrabold text-primary text-center mb-4 tracking-[-0.02em]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+        >
+          Your price in your inbox. No sales call required.
+        </motion.h2>
+
+        <motion.p
+          className="text-base text-foreground-secondary text-center mb-12 leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          Fill in a few details about your team and payment setup. We&apos;ll calculate your custom rate and send it straight to your email&nbsp;&mdash; typically within 2 hours.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <AnimatePresence mode="wait">
+            {submitted ? (
+              <motion.div
+                key="confirmation"
+                className="bg-white rounded-2xl p-8 md:p-10 border border-border text-center"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+              >
+                <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-display font-bold text-primary mb-3">Got it. Check your inbox.</h3>
+                <p className="text-sm text-foreground-secondary leading-relaxed mb-6">
+                  We&apos;re putting together your personalized pricing based on what you told us. Expect it within 2 hours. If you want to skip the wait and talk to a human&nbsp;&mdash;{' '}
+                  <a href="#" className="text-primary font-semibold underline underline-offset-2 hover:text-primary/80 transition-colors">
+                    book a call instead
+                  </a>.
+                </p>
+              </motion.div>
+            ) : (
+              <motion.form
+                key="form"
+                onSubmit={handleSubmit}
+                className="bg-white rounded-2xl p-8 md:p-10 border border-border space-y-5"
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Company name */}
+                <div>
+                  <label className="block text-sm font-semibold text-primary mb-1.5">Company name</label>
+                  <input
+                    type="text"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                    placeholder="Acme Inc."
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className="block text-sm font-semibold text-primary mb-1.5">Your work email <span className="text-foreground-muted">*</span></label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                    placeholder="you@company.com"
+                  />
+                </div>
+
+                {/* Role */}
+                <div>
+                  <label className="block text-sm font-semibold text-primary mb-1.5">Your role</label>
+                  <select
+                    value={formData.role}
+                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                    className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary appearance-none"
+                  >
+                    <option value="">Select your role</option>
+                    {roleOptions.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Number of contractors */}
+                <div>
+                  <label className="block text-sm font-semibold text-primary mb-1.5">Number of contractors</label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={formData.contractors}
+                    onChange={(e) => setFormData({ ...formData, contractors: e.target.value })}
+                    className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                    placeholder="e.g. 25"
+                  />
+                </div>
+
+                {/* Countries */}
+                <div>
+                  <label className="block text-sm font-semibold text-primary mb-1.5">Number of countries you pay into</label>
+                  <select
+                    value={formData.countries}
+                    onChange={(e) => setFormData({ ...formData, countries: e.target.value })}
+                    className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary appearance-none"
+                  >
+                    <option value="">Select range</option>
+                    {countryOptions.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Volume */}
+                <div>
+                  <label className="block text-sm font-semibold text-primary mb-1.5">Estimated monthly payout volume</label>
+                  <input
+                    type="text"
+                    value={formData.volume}
+                    onChange={(e) => setFormData({ ...formData, volume: e.target.value })}
+                    className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                    placeholder="e.g. €50,000"
+                  />
+                </div>
+
+                {/* Payment methods */}
+                <div>
+                  <label className="block text-sm font-semibold text-primary mb-3">How do you pay today?</label>
+                  <div className="space-y-2.5">
+                    {paymentMethods.map((method) => (
+                      <label key={method} className="flex items-center gap-3 cursor-pointer group">
+                        <div className="relative flex-shrink-0">
+                          <input
+                            type="checkbox"
+                            checked={formData.paymentMethods.includes(method)}
+                            onChange={() => handleCheckbox(method)}
+                            className="sr-only peer"
+                          />
+                          <div className="w-5 h-5 rounded border border-border bg-white peer-checked:bg-primary peer-checked:border-primary transition-colors flex items-center justify-center">
+                            {formData.paymentMethods.includes(method) && (
+                              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                              </svg>
+                            )}
+                          </div>
+                        </div>
+                        <span className="text-sm text-foreground-secondary group-hover:text-primary transition-colors">{method}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Submit */}
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    className="w-full inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors"
+                  >
+                    Get My Custom Quote
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
+                </div>
+              </motion.form>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Section 5: FAQ ─────────────────────────────────────────────────────── */
 
 const pricingFaqs = [
   {
@@ -340,6 +585,7 @@ export default function PricingPage() {
       <PricingHero />
       <PricingCards />
       <ComparisonRow />
+      <QuoteForm />
       <PricingFAQ />
       <BottomCTA />
       <Footer />
