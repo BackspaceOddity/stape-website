@@ -52,15 +52,9 @@ const initialPainCards: PainCard[] = [
   },
   {
     id: 'solar-staff-redoc',
-    title: 'Solar Staff: re-document IP rights every single task',
+    title: 'Re-document IP rights every single task',
     body: 'Every assignment means manually rewriting IP transfer clauses. Expensive, slow, and your team forgets to do it half the time anyway.',
     reactions: { fire: 198, bang: 174, skull: 52 },
-  },
-  {
-    id: 'no-russian-footprint',
-    title: '\u201CNo Russian footprint, please\u201D',
-    body: 'Companies with CIS-based R&D want a clean rights chain routed through the UAE or US \u2014 no traces that could spook Western partners or investors.',
-    reactions: { fire: 256, bang: 98, skull: 77 },
   },
   {
     id: 'gamedev-art',

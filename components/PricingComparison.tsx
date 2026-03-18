@@ -51,6 +51,14 @@ export default function PricingComparison() {
                 <span className="text-primary font-medium">$___</span>
               </li>
               <li className="flex items-center justify-between">
+                <span>Platform fee (% of every top-up)</span>
+                <span className="text-primary font-medium">$___</span>
+              </li>
+              <li className="flex items-center justify-between">
+                <span>What your contractors lose on withdrawal</span>
+                <span className="text-primary font-medium">$___</span>
+              </li>
+              <li className="flex items-center justify-between">
                 <span>Stress, weekends, sanity</span>
                 <span className="italic text-foreground-muted">Priceless</span>
               </li>
@@ -90,6 +98,14 @@ export default function PricingComparison() {
               <li className="flex items-start gap-2">
                 <span className="opacity-60">•</span>
                 <span>No hidden fees. Ever.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="opacity-60">•</span>
+                <span>0% top-up fee</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="opacity-60">•</span>
+                <span>Your contractors keep 100%</span>
               </li>
             </ul>
           </div>

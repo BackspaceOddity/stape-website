@@ -39,7 +39,7 @@ const initialSituations: Situation[] = [
   },
   {
     id: 'investor-ask',
-    text: 'Your investor asks: \u201CCan you show me a clean audit trail for every cross-border payment?\u201D You can\u2019t.',
+    text: 'Your investor asks: \u201CCan you show me a clean audit trail for every cross-border payment?\u201D',
     reactions: { fire: 289, bang: 112, skull: 63 },
   },
 ];
@@ -65,7 +65,7 @@ const beforeAfterData = [
     after: 'Each contractor gets a named contract and proper invoices. Banks accept it.',
   },
   {
-    before: 'Percentage fees eating 10\u201312% of payroll as salaries grow past $3\u20135k',
+    before: 'Percentage fees eating up to 10\u201312% of payroll as salaries grow past $3\u20135k',
     after: 'Flat \u20AC50 per payout. $3k salary or $8k \u2014 same fee. You save thousands monthly.',
   },
 ];

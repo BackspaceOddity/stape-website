@@ -5,11 +5,11 @@
 export const metricsContent = {
   items: [
     {
-      label: 'Teams that stopped doing payroll',
+      label: 'Teams where payroll just happens',
       value: '100+',
     },
     {
-      label: 'Paid across complex corridors worldwide',
+      label: 'Paid worldwide',
       value: '$40M+',
     },
     {

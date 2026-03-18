@@ -101,7 +101,7 @@ export default function HeroV2() {
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l2.5 2.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            24h Onboarding
+            2 hours contractor onboarding
           </div>
         </motion.div>
       </div>

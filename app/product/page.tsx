@@ -224,7 +224,7 @@ export default function ProductPage() {
           <AnimatedSection>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { value: '< 24hrs', label: 'Company setup' },
+                { value: '1 day', label: 'Company setup' },
                 { value: '1 invoice', label: 'For your books' },
                 { value: '242', label: 'Locations covered' },
                 { value: '€50', label: 'Flat fee per payout' },

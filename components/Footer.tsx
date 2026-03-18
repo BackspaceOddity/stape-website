@@ -14,28 +14,26 @@ export default function Footer() {
               Global contractor payroll. Stop doing payroll. Pay one person first. See what vanishes.
             </p>
 
-            {/* Book a Demo card */}
-            <div className="bg-white rounded-xl p-6 text-primary">
-              <p className="text-base font-semibold mb-8">Book a Demo</p>
-              <a
-                href="#"
-                className="inline-flex items-center text-sm font-medium text-primary hover:opacity-70 transition-opacity"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
+            {/* Book a Demo */}
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-primary text-sm font-semibold rounded-md hover:bg-accent/90 transition-colors"
+            >
+              Book a Demo
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
           </div>
 
           {/* Right: Link columns */}
           <div className="md:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
-              <h4 className="text-sm font-semibold mb-4">Resources</h4>
+              <h4 className="text-sm font-semibold mb-4">Product</h4>
               <ul className="space-y-2.5 text-sm text-primary-foreground/70">
-                <li><Link href="#" className="hover:text-primary-foreground transition-colors">Documentation</Link></li>
-                <li><Link href="#" className="hover:text-primary-foreground transition-colors">Support</Link></li>
-                <li><Link href="#" className="hover:text-primary-foreground transition-colors">Status</Link></li>
+                <li><Link href="/contractor-of-record" className="hover:text-primary-foreground transition-colors">For contractors</Link></li>
+                <li><Link href="/employer-of-record" className="hover:text-primary-foreground transition-colors">For companies</Link></li>
+                <li><Link href="#" className="hover:text-primary-foreground transition-colors">Blog</Link></li>
               </ul>
             </div>
             <div>
@@ -43,7 +41,7 @@ export default function Footer() {
               <ul className="space-y-2.5 text-sm text-primary-foreground/70">
                 <li><Link href="/about" className="hover:text-primary-foreground transition-colors">About</Link></li>
                 <li><Link href="#" className="hover:text-primary-foreground transition-colors">Careers</Link></li>
-                <li><Link href="#" className="hover:text-primary-foreground transition-colors">Blog</Link></li>
+                <li><a href="mailto:support@thestape.com" className="hover:text-primary-foreground transition-colors">Contact</a></li>
               </ul>
             </div>
             <div>
@@ -59,20 +57,17 @@ export default function Footer() {
               <ul className="space-y-2.5 text-sm text-primary-foreground/70">
                 <li><Link href="#" className="hover:text-primary-foreground transition-colors">Twitter</Link></li>
                 <li><Link href="#" className="hover:text-primary-foreground transition-colors">LinkedIn</Link></li>
-                <li><Link href="#" className="hover:text-primary-foreground transition-colors">GitHub</Link></li>
               </ul>
             </div>
           </div>
         </div>
 
-        {/* Bottom: badges + legal */}
-        <div className="pt-8 border-t border-primary-foreground/20 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex gap-3">
-            {['Badge', 'Badge', 'Badge'].map((badge, i) => (
-              <span key={i} className="px-3 py-1.5 bg-primary-foreground/10 text-primary-foreground/60 text-xs rounded-md">
-                {badge}
-              </span>
-            ))}
+        {/* Bottom: entity info + legal */}
+        <div className="pt-8 border-t border-primary-foreground/20 space-y-4">
+          <div className="text-xs text-primary-foreground/40 leading-relaxed space-y-1">
+            <p>Telecom Apps LLC · 303 Twin Dolphin Drive, CA, US / 541 Jefferson Ave, CA, US</p>
+            <p>Stape Online LTD · United Kingdom · TW9 2NA</p>
+            <p><a href="mailto:support@thestape.com" className="hover:text-primary-foreground/60 transition-colors">support@thestape.com</a></p>
           </div>
           <p className="text-sm text-primary-foreground/50">
             © {new Date().getFullYear()} Stape. All rights reserved.

@@ -50,12 +50,6 @@ const initialPainCards: Web3PainCard[] = [
     text: 'You tried the established payroll providers. They don\'t accept USDT as a funding source, and they\'ve stopped servicing contractors with certain passports. You need someone who actually works with how your company operates.',
     reactions: { fire: 304, bang: 128, skull: 42 },
   },
-  {
-    id: 'no-trail',
-    title: '"We have no paper trail for any of this."',
-    text: 'Your auditors want documentation. Your investors want clean books. Your contractors want proper contracts. If you\'re still running on wallet addresses and Telegram confirmations \u2014 it\'s time to set up a real process from day one.',
-    reactions: { fire: 267, bang: 94, skull: 58 },
-  },
 ];
 
 const withoutStape = [
@@ -106,8 +100,8 @@ const comparisonFeatures = [
     feature: 'Monthly cost (50 people)',
     stape: '$50 × 50 = $2,500',
     traditional: 'N/A \u2014 no crypto accepted',
-    percentage: '~$10,000 (5% of $200K)',
-    diy: '$0 fees \u2014 but 2 days of your time',
+    percentage: '~$6,000 (3% of $200K)',
+    diy: 'Unpredictable \u2014 gas fees, failed txns, blocked cards',
   },
   {
     feature: 'Works with ex-CIS',
@@ -154,10 +148,10 @@ const comparisonFeatures = [
 ];
 
 const statsBar = [
-  { value: '1,200+', label: 'contractors paid monthly' },
+  { value: '5,000+', label: 'contractors' },
   { value: '40+', label: 'countries active' },
   { value: '$50', label: 'flat per payout' },
-  { value: 'USDT', label: 'accepted' },
+  { value: 'Crypto', label: 'accepted' },
 ];
 
 const testimonials = [
@@ -389,7 +383,7 @@ function PainRecognition() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}

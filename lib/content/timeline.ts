@@ -12,7 +12,7 @@ export const timelineContent = {
     },
     {
       time: 'Today, 2:15pm',
-      title: 'We handle KYC, compliance, currency conversion',
+      title: 'We handle KYC, tax classification, compliance, and currency conversion',
       aside: null,
     },
     {

@@ -23,12 +23,12 @@ const initialSituations: Situation[] = [
   },
   {
     id: 'hire-anywhere',
-    text: 'You found the perfect engineer in S\u00e3o Paulo. Now you\u2019re stuck figuring out how to legally pay them.',
+    text: "You found the perfect engineer in São Paulo. Now you're stuck figuring out how to pay them in reais — legally, on time, and without losing on conversion.",
     reactions: { yes: 267, no: 58, fire: 94 },
   },
   {
     id: 'mental-drain',
-    text: 'You\u2019re a founder. You spent Tuesday reconciling payments instead of closing your biggest deal.',
+    text: "Your finance team is sending 200 contractor payments manually. CSV uploads, bank transfers, payment confirmations. It takes two days. Every month.",
     reactions: { yes: 412, no: 31, fire: 189 },
   },
   {
@@ -43,7 +43,7 @@ const initialSituations: Situation[] = [
   },
   {
     id: 'provider-roulette',
-    text: 'Your provider just changed pricing. Again. Time to evaluate vendors. Again. You have better things to do.',
+    text: "Your provider just raised prices mid-contract. Now you're explaining budget overruns you never planned for.",
     reactions: { yes: 341, no: 44, fire: 143 },
   },
   {

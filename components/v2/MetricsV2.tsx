@@ -6,11 +6,11 @@ import { useRef } from 'react';
 
 const metrics = [
   {
-    label: 'Teams that stopped doing payroll',
+    label: 'Teams where payroll just happens',
     value: '600+',
   },
   {
-    label: 'Paid across complex corridors worldwide',
+    label: 'Paid worldwide',
     value: '$40M+',
   },
   {
@@ -19,7 +19,7 @@ const metrics = [
   },
   {
     label: 'From signup to first payment',
-    value: '< 24hrs',
+    value: '1 day',
   },
 ];
 

@@ -35,7 +35,7 @@ export default function TrustBadgeBar() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
           transition={{ duration: 0.5 }}
         >
-          Enterprise-grade security, startup-speed execution
+          Security you can trust. Execution you can count on.
         </motion.p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">

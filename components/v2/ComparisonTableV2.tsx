@@ -15,7 +15,7 @@ const comparisonData = [
     feature: 'What\u2019s on your plate',
     diy: 'Compliance in every country',
     tool: 'A new tool to configure',
-    stape: 'Your actual work',
+    stape: 'Building your product',
   },
   {
     feature: 'Risk ownership',
