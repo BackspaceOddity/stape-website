@@ -21,7 +21,7 @@ type MenuSection = {
 
 const MENUS: Record<string, MenuSection> = {
   Solutions: {
-    label: 'For whom',
+    label: 'Built for',
     columns: 1,
     maxWidth: 420,
     items: [
