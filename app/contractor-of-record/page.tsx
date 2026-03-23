@@ -204,9 +204,9 @@ function ProblemCards() {
   );
 }
 
-/* ─── Section 4: COR vs. EOR ──────────────────────────────────────────────── */
+/* ─── Section 4: COR + EOR Complementary Table ───────────────────────────── */
 
-const comparisonRows = [
+const fullPictureRows = [
   {
     feature: 'Who it\u2019s for',
     cor: 'Contractors, freelancers, project-based talent',
@@ -223,33 +223,28 @@ const comparisonRows = [
     eor: 'Payroll, benefits, taxes, employment law',
   },
   {
-    feature: 'Best for',
-    cor: 'Flexible teams, specialist skills, cost control',
-    eor: 'Long-term roles, deep integration, employee protections',
-  },
-  {
     feature: 'Typical cost',
     cor: '\u20ac50 per payout (Stape)',
-    eor: '$400\u2013700/employee/month',
-  },
-  {
-    feature: 'Flexibility',
-    cor: 'Scale anytime. No employment obligations.',
-    eor: 'Notice periods, severance rules apply.',
+    eor: 'From \u20ac200/employee/month',
   },
   {
     feature: 'Risk it solves',
     cor: 'Misclassification, non-compliant contracts, payment failures',
     eor: 'Employment law violations without a local entity',
   },
+  {
+    feature: 'Pairs with',
+    cor: 'Add EOR when contractors become full-time hires',
+    eor: 'Add COR for project-based and freelance talent',
+  },
 ];
 
-function CORvsEOR() {
+function FullPicture() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="cor-vs-eor" ref={ref} className="py-20 md:py-28 bg-background-secondary">
+    <section ref={ref} className="py-20 md:py-28 bg-background-secondary">
       <div className="max-w-[1000px] mx-auto px-6 md:px-12">
         <motion.h2
           className="text-[32px] md:text-[40px] font-display font-extrabold text-primary text-center mb-4 tracking-[-0.02em]"
@@ -257,7 +252,7 @@ function CORvsEOR() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          COR vs. EOR
+          COR + EOR: the full picture
         </motion.h2>
 
         <motion.p
@@ -266,7 +261,7 @@ function CORvsEOR() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.05 }}
         >
-          Both help you hire across borders without a local entity. Different problems, different worker types.
+          Most companies end up using both. Here&apos;s what each one handles.
         </motion.p>
 
         <motion.div
@@ -280,22 +275,22 @@ function CORvsEOR() {
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-4 px-3 text-sm font-semibold text-primary w-1/4"></th>
-                  <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-tl-xl">
+                  <th className="text-center py-4 px-4 text-sm font-bold text-primary">
                     COR
                   </th>
-                  <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted rounded-tr-xl">
+                  <th className="text-center py-4 px-3 text-sm font-bold text-primary">
                     EOR
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {comparisonRows.map((row, index) => (
+                {fullPictureRows.map((row, index) => (
                   <tr key={index} className="border-b border-border/50 last:border-0">
                     <td className="py-3 px-3 text-sm font-medium text-primary">{row.feature}</td>
-                    <td className={`py-3 px-4 text-sm text-primary text-center font-semibold bg-accent/20 ${index === comparisonRows.length - 1 ? 'rounded-bl-xl' : ''}`}>
+                    <td className="py-3 px-4 text-sm text-foreground-secondary text-center">
                       {row.cor}
                     </td>
-                    <td className={`py-3 px-3 text-sm text-foreground-muted text-center ${index === comparisonRows.length - 1 ? 'rounded-br-xl' : ''}`}>
+                    <td className="py-3 px-3 text-sm text-foreground-secondary text-center">
                       {row.eor}
                     </td>
                   </tr>
@@ -303,13 +298,13 @@ function CORvsEOR() {
                 {/* CTA row */}
                 <tr>
                   <td className="py-4 px-3"></td>
-                  <td className="py-4 px-4 text-center bg-accent/20 rounded-bl-xl">
+                  <td className="py-4 px-4 text-center">
                     <Link href="/pricing" className="text-sm font-semibold text-primary underline underline-offset-2 hover:text-primary/80 transition-colors">
                       See COR pricing &rarr;
                     </Link>
                   </td>
-                  <td className="py-4 px-3 text-center rounded-br-xl">
-                    <Link href="/employer-of-record" className="text-sm font-semibold text-foreground-muted underline underline-offset-2 hover:text-primary transition-colors">
+                  <td className="py-4 px-3 text-center">
+                    <Link href="/employer-of-record" className="text-sm font-semibold text-primary underline underline-offset-2 hover:text-primary/80 transition-colors">
                       Learn about EOR &rarr;
                     </Link>
                   </td>
@@ -319,14 +314,26 @@ function CORvsEOR() {
           </div>
         </motion.div>
 
-        <motion.p
-          className="text-sm text-foreground-secondary text-center mt-8 font-semibold"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+        {/* Compact upsell nudge */}
+        <motion.div
+          className="mt-6 bg-white rounded-xl px-6 py-5 border border-border shadow-sm text-center"
+          initial={{ opacity: 0, y: 10 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
         >
-          Many companies use both. Start with whichever fits today. Switch or combine as you grow.
-        </motion.p>
+          <h3 className="text-lg font-display font-bold text-primary mb-2">
+            Some contractors shouldn&apos;t be contractors.
+          </h3>
+          <p className="text-sm text-foreground-secondary mb-4">
+            If they work your hours, use your tools, and report to your manager — it might be time to put them on payroll.
+          </p>
+          <Link
+            href="/employer-of-record"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors"
+          >
+            Explore Employer of Record&nbsp;&rarr;
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
@@ -580,7 +587,7 @@ const corFaqs = [
   {
     question: 'What happens if a contractor should actually be an employee?',
     answer:
-      'We flag it before it becomes a problem. If the engagement starts looking like employment, we\u2019ll recommend switching to EOR. That\u2019s the whole point of having a compliance partner.',
+      'We flag it before it becomes a problem. If the engagement starts looking like employment — fixed hours, your tools, your manager — we\u2019ll tell you. Stape can move them to full-time payroll through our Employer of Record service with minimal disruption.',
   },
   {
     question: 'What about IP ownership?',
@@ -714,7 +721,7 @@ export default function ContractorOfRecordPage() {
       <CORHero />
       <WhatCORDoes />
       <ProblemCards />
-      <CORvsEOR />
+      <FullPicture />
       <HowStapeDoesIt />
       <WhoUsesACOR />
       <CORFAQ />

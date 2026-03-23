@@ -312,121 +312,71 @@ function HonestyCheck() {
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          We&apos;d rather tell you the right model than sell you the expensive one.
+          We&apos;d rather tell you the truth than sell you something you don&apos;t need.
         </motion.p>
       </div>
     </section>
   );
 }
 
-/* ─── Section 5b: EOR vs COR Comparison ────────────────────────────────────── */
+/* ─── Section 5b: EOR vs Local Entity ─────────────────────────────────────── */
 
-const eorVsCorRows = [
-  {
-    feature: 'Who it\u2019s for',
-    eor: 'Full-time employees on local payroll',
-    cor: 'Contractors and freelancers',
-  },
-  {
-    feature: 'Legal relationship',
-    eor: 'EOR is the legal employer. Worker is salaried.',
-    cor: 'Contractor stays independent.',
-  },
-  {
-    feature: 'What\u2019s included',
-    eor: 'Payroll, taxes, benefits, employment law, termination',
-    cor: 'Contracts, compliance, payments, tax docs',
-  },
-  {
-    feature: 'Best for',
-    eor: 'Long-term roles, team integration, strict labor law countries',
-    cor: 'Project work, specialist skills, flexible scaling',
-  },
-  {
-    feature: 'Typical cost',
-    eor: 'From \u20ac200/employee/month',
-    cor: '\u20ac50 per payout',
-  },
-  {
-    feature: 'Commitment',
-    eor: 'Employment obligations: notice periods, severance, benefits',
-    cor: 'No obligations. Scale freely.',
-  },
+const eorVsEntityRows = [
+  { feature: 'Time to hire', eor: 'Days', entity: '3–6 months' },
+  { feature: 'Setup cost', eor: 'Zero', entity: '€15k–50k+' },
+  { feature: 'Ongoing overhead', eor: 'One monthly fee', entity: 'Accountants, lawyers, filings' },
+  { feature: 'Minimum headcount needed', eor: '1 person', entity: 'Usually 5+ to justify' },
+  { feature: 'Flexibility to exit', eor: 'End the agreement', entity: 'Liquidation process' },
 ];
 
-function EORvsCOR() {
+function EORvsEntity() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="eor-vs-cor" ref={ref} className="py-20 md:py-28 bg-background-secondary">
-      <div className="max-w-[1000px] mx-auto px-6 md:px-12">
+    <section ref={ref} className="py-20 md:py-28 bg-background-secondary">
+      <div className="max-w-[800px] mx-auto px-6 md:px-12">
         <motion.h2
-          className="text-[32px] md:text-[40px] font-display font-extrabold text-primary text-center mb-4 tracking-[-0.02em]"
+          className="text-[32px] md:text-[40px] font-display font-extrabold text-primary text-center mb-12 tracking-[-0.02em]"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          EOR vs. COR
+          EOR vs. opening your own entity
         </motion.h2>
 
-        <motion.p
-          className="text-base text-foreground-secondary text-center max-w-2xl mx-auto mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.05 }}
-        >
-          If you&apos;re managing what they do, when they do it, and how — that&apos;s employment. Use an EOR. If you define the outcome and they decide how — that&apos;s contracting. Use a COR.
-        </motion.p>
-
         <motion.div
-          className="overflow-x-auto"
+          className="bg-white rounded-2xl p-6 md:p-8 border border-border"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <div className="bg-white rounded-2xl p-6 md:p-8 min-w-[700px]">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-4 px-3 text-sm font-semibold text-primary w-1/4"></th>
-                  <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-tl-xl">
-                    EOR
-                  </th>
-                  <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted rounded-tr-xl">
-                    COR
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {eorVsCorRows.map((row, index) => (
-                  <tr key={index} className="border-b border-border/50 last:border-0">
-                    <td className="py-3 px-3 text-sm font-medium text-primary">{row.feature}</td>
-                    <td className={`py-3 px-4 text-sm text-primary text-center font-semibold bg-accent/20 ${index === eorVsCorRows.length - 1 ? 'rounded-bl-xl' : ''}`}>
-                      {row.eor}
-                    </td>
-                    <td className={`py-3 px-3 text-sm text-foreground-muted text-center ${index === eorVsCorRows.length - 1 ? 'rounded-br-xl' : ''}`}>
-                      {row.cor}
-                    </td>
-                  </tr>
-                ))}
-                {/* CTA row */}
-                <tr>
-                  <td className="py-4 px-3"></td>
-                  <td className="py-4 px-4 text-center bg-accent/20 rounded-bl-xl">
-                    <Link href="/pricing" className="text-sm font-semibold text-primary underline underline-offset-2 hover:text-primary/80 transition-colors">
-                      See EOR pricing &rarr;
-                    </Link>
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-4 px-3 text-sm font-semibold text-primary w-2/5"></th>
+                <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-tl-xl">
+                  EOR
+                </th>
+                <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted rounded-tr-xl">
+                  Local entity
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {eorVsEntityRows.map((row, index) => (
+                <tr key={index} className="border-b border-border/50 last:border-0">
+                  <td className="py-3 px-3 text-sm font-medium text-primary">{row.feature}</td>
+                  <td className={`py-3 px-4 text-sm text-primary text-center font-semibold bg-accent/20 ${index === eorVsEntityRows.length - 1 ? 'rounded-bl-xl' : ''}`}>
+                    {row.eor}
                   </td>
-                  <td className="py-4 px-3 text-center rounded-br-xl">
-                    <Link href="/contractor-of-record" className="text-sm font-semibold text-foreground-muted underline underline-offset-2 hover:text-primary transition-colors">
-                      Learn about COR &rarr;
-                    </Link>
+                  <td className={`py-3 px-3 text-sm text-foreground-muted text-center ${index === eorVsEntityRows.length - 1 ? 'rounded-br-xl' : ''}`}>
+                    {row.entity}
                   </td>
                 </tr>
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </motion.div>
 
         <motion.p
@@ -435,7 +385,7 @@ function EORvsCOR() {
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          Stape offers both. Start where you are. We&apos;ll tell you if the model should change.
+          An entity makes sense when you have 10+ people in one country and plan to stay. For everything else, there&apos;s EOR.
         </motion.p>
       </div>
     </section>
@@ -663,16 +613,16 @@ function EORBottomCTA() {
             href="#"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors"
           >
-            Talk to Us About EOR
+            Book a Demo
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
           <Link
-            href="/contractor-of-record"
+            href="/pricing"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 border border-border text-primary font-semibold text-sm rounded-md hover:bg-background-secondary transition-colors"
           >
-            See How COR Works Instead&nbsp;&rarr;
+            See Pricing
           </Link>
         </motion.div>
       </div>
@@ -691,7 +641,7 @@ export default function EmployerOfRecordPage() {
       <WhatEORDoes />
       <TriggerCards />
       <HonestyCheck />
-      <EORvsCOR />
+      <EORvsEntity />
       <HowStapeDoesEOR />
       <EORFAQ />
       <EORBottomCTA />
