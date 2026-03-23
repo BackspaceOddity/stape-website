@@ -4,7 +4,7 @@
 
 export const navigation = {
   mainNav: [
-    { label: 'For whom', href: '/solutions' },
+    { label: 'Built for', href: '/solutions' },
     { label: 'Solutions', href: '/product' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'Resources', href: '/resources' },
