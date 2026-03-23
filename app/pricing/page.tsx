@@ -222,62 +222,332 @@ function ComparisonRow() {
   );
 }
 
-/* ─── Section 4: Interactive Quote Form ────────────────────────────────────── */
+/* ─── Section 4: Multi-Step Pricing Wizard ─────────────────────────────────── */
 
-const roleOptions = ['Founder/CEO', 'CFO/Finance', 'HR/People Ops', 'Operations', 'Other'];
-const contractorOptions = ['1–10', '11–50', '51–200', '200+'];
-const countryOptions = ['1–3', '4–10', '11–25', '25+'];
-const volumeOptions = ['Under €10K', '€10K–€50K', '€50K–€200K', '€200K+'];
-const paymentMethods = ['Bank transfers', 'Wise/Revolut', 'Payroll provider (Deel, Remote, etc.)', 'Crypto', 'Other'];
+const STEP_LABELS = ['Team', 'Money', 'You'] as const;
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+/* ── Reusable chip components ── */
+
+function SingleChip({ label, selected, onSelect }: { label: string; selected: boolean; onSelect: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      className={`px-4 py-2 text-sm rounded-lg border transition-all duration-150 ${
+        selected
+          ? 'bg-primary text-primary-foreground border-primary shadow-sm'
+          : 'bg-white text-foreground-secondary border-border hover:border-primary/40 hover:text-primary'
+      }`}
+    >
+      {label}
+    </button>
+  );
+}
+
+function MultiChip({ label, selected, onToggle }: { label: string; selected: boolean; onToggle: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      className={`inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg border transition-all duration-150 ${
+        selected
+          ? 'bg-primary text-primary-foreground border-primary shadow-sm'
+          : 'bg-white text-foreground-secondary border-border hover:border-primary/40 hover:text-primary'
+      }`}
+    >
+      {selected && (
+        <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+        </svg>
+      )}
+      {label}
+    </button>
+  );
+}
+
+/* ── Progress indicator ── */
+
+function StepIndicator({ current }: { current: number }) {
+  return (
+    <div className="flex items-center justify-center gap-0 mb-8">
+      {STEP_LABELS.map((label, i) => {
+        const stepNum = i + 1;
+        const isCompleted = current > stepNum;
+        const isCurrent = current === stepNum;
+        const isFuture = current < stepNum;
+
+        return (
+          <div key={label} className="flex items-center">
+            {/* Circle + label */}
+            <div className="flex flex-col items-center">
+              <div
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
+                  isCompleted
+                    ? 'bg-primary text-primary-foreground'
+                    : isCurrent
+                      ? 'bg-primary text-primary-foreground'
+                      : 'border-2 border-border text-foreground-muted bg-white'
+                }`}
+              >
+                {isCompleted ? (
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  stepNum
+                )}
+              </div>
+              <span className={`text-[11px] mt-1.5 font-medium ${isFuture ? 'text-foreground-muted' : 'text-primary'}`}>
+                {label}
+              </span>
+            </div>
+            {/* Connecting line */}
+            {i < STEP_LABELS.length - 1 && (
+              <div className={`w-16 sm:w-24 h-0.5 mx-2 mb-5 rounded-full transition-colors duration-300 ${
+                current > stepNum ? 'bg-primary' : 'bg-border'
+              }`} />
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ── Main wizard ── */
 
 function QuoteForm() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    company: '',
-    email: '',
-    role: '',
-    contractors: '',
-    countries: '',
-    volume: '',
-    paymentMethods: [] as string[],
-  });
 
-  const handleCheckbox = (method: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      paymentMethods: prev.paymentMethods.includes(method)
-        ? prev.paymentMethods.filter((m) => m !== method)
-        : [...prev.paymentMethods, method],
-    }));
-  };
+  /* Step 1 */
+  const [contractors, setContractors] = useState('');
+  const [countries, setCountries] = useState('');
+  /* Step 2 */
+  const [volume, setVolume] = useState('');
+  const [payMethods, setPayMethods] = useState<string[]>([]);
+  /* Step 3 */
+  const [company, setCompany] = useState('');
+  const [email, setEmail] = useState('');
+  const [role, setRole] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Quote form submitted:', formData);
+  const togglePayMethod = (m: string) =>
+    setPayMethods((prev) => (prev.includes(m) ? prev.filter((x) => x !== m) : [...prev, m]));
+
+  const step1Valid = contractors !== '' && countries !== '';
+  const step2Valid = volume !== '' && payMethods.length > 0;
+  const step3Valid = isValidEmail(email) && role !== '';
+
+  const handleSubmit = () => {
+    console.log('Quote wizard submitted:', { contractors, countries, volume, payMethods, company, email, role });
     setSubmitted(true);
   };
 
+  /* ── step content ── */
+
+  const renderStep1 = () => (
+    <motion.div key="step1" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.25 }}>
+      <h3 className="text-lg font-display font-bold text-primary mb-6">Your team</h3>
+
+      <div className="mb-5">
+        <label className="block text-sm font-semibold text-primary mb-2.5">How many contractors do you pay?</label>
+        <div className="flex flex-wrap gap-2">
+          {['1–10', '11–50', '51–200', '200+'].map((v) => (
+            <SingleChip key={v} label={v} selected={contractors === v} onSelect={() => setContractors(v)} />
+          ))}
+        </div>
+      </div>
+
+      <div className="mb-5">
+        <label className="block text-sm font-semibold text-primary mb-2.5">Paying into how many countries?</label>
+        <div className="flex flex-wrap gap-2">
+          {['1–3', '4–10', '11–25', '25+'].map((v) => (
+            <SingleChip key={v} label={v} selected={countries === v} onSelect={() => setCountries(v)} />
+          ))}
+        </div>
+      </div>
+
+      <p className="text-xs text-foreground-muted leading-relaxed mb-6">
+        No judgment. We&apos;ve seen 400 contractors across 60 countries managed in a spreadsheet.
+      </p>
+
+      <div className="flex justify-end">
+        <button
+          type="button"
+          disabled={!step1Valid}
+          onClick={() => setStep(2)}
+          className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          Next
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+        </button>
+      </div>
+    </motion.div>
+  );
+
+  const renderStep2 = () => (
+    <motion.div key="step2" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.25 }}>
+      <h3 className="text-lg font-display font-bold text-primary mb-6">Your money</h3>
+
+      <div className="mb-5">
+        <label className="block text-sm font-semibold text-primary mb-2.5">Estimated monthly payout volume</label>
+        <div className="flex flex-wrap gap-2">
+          {['Under €25k', '€25k–100k', '€100k–500k', '€500k+'].map((v) => (
+            <SingleChip key={v} label={v} selected={volume === v} onSelect={() => setVolume(v)} />
+          ))}
+        </div>
+      </div>
+
+      <div className="mb-5">
+        <label className="block text-sm font-semibold text-primary mb-2.5">How do you pay today?</label>
+        <div className="flex flex-wrap gap-2">
+          {['Bank transfers', 'Wise / Revolut', 'Payroll provider (Deel, Remote…)', 'Crypto', 'Vibes & prayers'].map((v) => (
+            <MultiChip key={v} label={v} selected={payMethods.includes(v)} onToggle={() => togglePayMethod(v)} />
+          ))}
+        </div>
+      </div>
+
+      <p className="text-xs text-foreground-muted leading-relaxed mb-6">
+        &ldquo;Vibes &amp; prayers&rdquo; is more common than you&apos;d think.
+      </p>
+
+      <div className="flex items-center justify-between">
+        <button type="button" onClick={() => setStep(1)} className="text-sm text-foreground-secondary hover:text-primary transition-colors">
+          ← Back
+        </button>
+        <button
+          type="button"
+          disabled={!step2Valid}
+          onClick={() => setStep(3)}
+          className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          Next
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+        </button>
+      </div>
+    </motion.div>
+  );
+
+  const renderStep3 = () => (
+    <motion.div key="step3" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.25 }}>
+      <h3 className="text-lg font-display font-bold text-primary mb-2">Get your estimate</h3>
+      <p className="text-sm text-foreground-secondary leading-relaxed mb-6">
+        We&apos;ll send your custom estimate within 2 hours. Not a generic PDF&nbsp;&mdash; actual numbers for your setup.
+      </p>
+
+      <div className="space-y-4 mb-5">
+        <div>
+          <label className="block text-sm font-semibold text-primary mb-1.5">Company name</label>
+          <input
+            type="text"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+            placeholder="Acme Inc."
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-primary mb-1.5">Work email <span className="text-foreground-muted">*</span></label>
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={`w-full px-4 py-3 text-sm border rounded-md bg-white text-primary placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary ${
+              email && !isValidEmail(email) ? 'border-red-300' : 'border-border'
+            }`}
+            placeholder="you@company.com"
+          />
+          {email && !isValidEmail(email) && (
+            <p className="text-xs text-red-400 mt-1">Please enter a valid email address.</p>
+          )}
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-primary mb-2.5">Your role <span className="text-foreground-muted">*</span></label>
+          <div className="flex flex-wrap gap-2">
+            {['Founder / CEO', 'HR / People Ops', 'Finance / CFO', 'Other'].map((v) => (
+              <SingleChip key={v} label={v} selected={role === v} onSelect={() => setRole(v)} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between">
+        <button type="button" onClick={() => setStep(2)} className="text-sm text-foreground-secondary hover:text-primary transition-colors">
+          ← Back
+        </button>
+        <button
+          type="button"
+          disabled={!step3Valid}
+          onClick={handleSubmit}
+          className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          Send me the numbers
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </button>
+      </div>
+    </motion.div>
+  );
+
+  /* ── confirmation screen ── */
+
+  const renderConfirmation = () => (
+    <motion.div
+      key="confirmation"
+      className="bg-white rounded-2xl p-8 md:p-10 border border-border shadow-card text-center"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.4 }}
+    >
+      <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center mx-auto mb-5">
+        <svg className="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <h3 className="text-xl font-display font-bold text-primary mb-2">Done. Check your inbox.</h3>
+      <p className="text-sm text-foreground-secondary leading-relaxed mb-1">
+        We&apos;re building your custom estimate right now.
+      </p>
+      <p className="text-sm text-foreground-secondary leading-relaxed mb-6">
+        Expect it within 2&nbsp;hours. Not a template&nbsp;&mdash; real numbers based on what you told us.
+      </p>
+      <p className="text-xs text-foreground-muted">
+        Want to talk to a human instead?{' '}
+        <a href="#" className="text-primary font-semibold underline underline-offset-2 hover:text-primary/80 transition-colors">
+          Book a call
+        </a>.
+      </p>
+    </motion.div>
+  );
+
+  /* ── main render ── */
+
   return (
     <section id="quote-form" ref={ref} className="py-20 md:py-28 bg-background-secondary">
-      <div className="max-w-[640px] mx-auto px-6 md:px-12">
+      <div className="max-w-[560px] mx-auto px-6 md:px-12">
         <motion.h2
-          className="text-[32px] md:text-[40px] font-display font-extrabold text-primary text-center mb-4 tracking-[-0.02em]"
+          className="text-[28px] md:text-[36px] font-display font-extrabold text-primary text-center mb-3 tracking-[-0.02em]"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          Your price in your inbox. No sales call required.
+          What does your contractor setup look like?
         </motion.h2>
-
         <motion.p
-          className="text-base text-foreground-secondary text-center mb-12 leading-relaxed"
+          className="text-sm text-foreground-muted text-center mb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Fill in a few details about your team and payment setup. We&apos;ll calculate your custom rate and send it straight to your email&nbsp;&mdash; typically within 2 hours.
+          3 questions. No sales call. No demo hostage situation.
         </motion.p>
 
         <motion.div
@@ -286,155 +556,20 @@ function QuoteForm() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <AnimatePresence mode="wait">
-            {submitted ? (
+            {submitted ? renderConfirmation() : (
               <motion.div
-                key="confirmation"
-                className="bg-white rounded-2xl p-8 md:p-10 border border-border text-center"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4 }}
-              >
-                <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-display font-bold text-primary mb-3">Got it. Check your inbox.</h3>
-                <p className="text-sm text-foreground-secondary leading-relaxed mb-6">
-                  We&apos;re putting together your personalized pricing based on what you told us. Expect it within 2 hours. If you want to skip the wait and talk to a human&nbsp;&mdash;{' '}
-                  <a href="#" className="text-primary font-semibold underline underline-offset-2 hover:text-primary/80 transition-colors">
-                    book a call instead
-                  </a>.
-                </p>
-              </motion.div>
-            ) : (
-              <motion.form
-                key="form"
-                onSubmit={handleSubmit}
-                className="bg-white rounded-2xl p-8 md:p-10 border border-border space-y-5"
+                key="wizard"
+                className="bg-white rounded-2xl p-6 md:p-8 border border-border shadow-card"
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
               >
-                {/* Company name */}
-                <div>
-                  <label className="block text-sm font-semibold text-primary mb-1.5">Company name</label>
-                  <input
-                    type="text"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                    placeholder="Acme Inc."
-                  />
-                </div>
-
-                {/* Email */}
-                <div>
-                  <label className="block text-sm font-semibold text-primary mb-1.5">Your work email <span className="text-foreground-muted">*</span></label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                    placeholder="you@company.com"
-                  />
-                </div>
-
-                {/* Role */}
-                <div>
-                  <label className="block text-sm font-semibold text-primary mb-1.5">Your role</label>
-                  <select
-                    value={formData.role}
-                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary appearance-none"
-                  >
-                    <option value="">Select your role</option>
-                    {roleOptions.map((opt) => (
-                      <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Number of contractors */}
-                <div>
-                  <label className="block text-sm font-semibold text-primary mb-1.5">Number of contractors</label>
-                  <input
-                    type="number"
-                    min="1"
-                    value={formData.contractors}
-                    onChange={(e) => setFormData({ ...formData, contractors: e.target.value })}
-                    className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                    placeholder="e.g. 25"
-                  />
-                </div>
-
-                {/* Countries */}
-                <div>
-                  <label className="block text-sm font-semibold text-primary mb-1.5">Number of countries you pay into</label>
-                  <select
-                    value={formData.countries}
-                    onChange={(e) => setFormData({ ...formData, countries: e.target.value })}
-                    className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary appearance-none"
-                  >
-                    <option value="">Select range</option>
-                    {countryOptions.map((opt) => (
-                      <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Volume */}
-                <div>
-                  <label className="block text-sm font-semibold text-primary mb-1.5">Estimated monthly payout volume</label>
-                  <input
-                    type="text"
-                    value={formData.volume}
-                    onChange={(e) => setFormData({ ...formData, volume: e.target.value })}
-                    className="w-full px-4 py-3 text-sm border border-border rounded-md bg-white text-primary placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                    placeholder="e.g. €50,000"
-                  />
-                </div>
-
-                {/* Payment methods */}
-                <div>
-                  <label className="block text-sm font-semibold text-primary mb-3">How do you pay today?</label>
-                  <div className="space-y-2.5">
-                    {paymentMethods.map((method) => (
-                      <label key={method} className="flex items-center gap-3 cursor-pointer group">
-                        <div className="relative flex-shrink-0">
-                          <input
-                            type="checkbox"
-                            checked={formData.paymentMethods.includes(method)}
-                            onChange={() => handleCheckbox(method)}
-                            className="sr-only peer"
-                          />
-                          <div className="w-5 h-5 rounded border border-border bg-white peer-checked:bg-primary peer-checked:border-primary transition-colors flex items-center justify-center">
-                            {formData.paymentMethods.includes(method) && (
-                              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                              </svg>
-                            )}
-                          </div>
-                        </div>
-                        <span className="text-sm text-foreground-secondary group-hover:text-primary transition-colors">{method}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Submit */}
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    className="w-full inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors"
-                  >
-                    Get My Custom Quote
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </button>
-                </div>
-              </motion.form>
+                <StepIndicator current={step} />
+                <AnimatePresence mode="wait">
+                  {step === 1 && renderStep1()}
+                  {step === 2 && renderStep2()}
+                  {step === 3 && renderStep3()}
+                </AnimatePresence>
+              </motion.div>
             )}
           </AnimatePresence>
         </motion.div>

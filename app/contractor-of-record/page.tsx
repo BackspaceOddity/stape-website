@@ -9,10 +9,6 @@ import Footer from '@/components/Footer';
 /* ─── Section 1: Hero ──────────────────────────────────────────────────────── */
 
 function CORHero() {
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white">
       <div className="max-w-[1000px] mx-auto px-6 md:px-12 text-center">
@@ -31,135 +27,105 @@ function CORHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          A Contractor of Record handles the legal, tax, and compliance side of working with independent contractors&nbsp;&mdash; so you can focus on the work they&apos;re actually doing for you.
+          Stape handles contracts, compliance, and payments for your contractors in 242 locations. You handle the work.
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <button
-            onClick={() => scrollToSection('how-stape-does-cor')}
+          <a
+            href="#"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors"
           >
-            See How Stape Does It
+            Book a Demo
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <button
-            onClick={() => scrollToSection('cor-vs-eor')}
-            className="text-sm text-foreground-muted hover:text-primary transition-colors"
+          </a>
+          <Link
+            href="/pricing"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 border border-border text-primary font-semibold text-sm rounded-md hover:bg-background-secondary transition-colors"
           >
-            Or skip ahead to COR vs. EOR&nbsp;&rarr;
-          </button>
+            See Pricing
+          </Link>
         </motion.div>
       </div>
     </section>
   );
 }
 
-/* ─── Section 2: The Plain-English Definition ──────────────────────────────── */
+/* ─── Section 2: What Stape COR Does ──────────────────────────────────────── */
 
-function PlainEnglishDefinition() {
+function WhatCORDoes() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
     <section ref={ref} className="py-20 md:py-28 bg-background-secondary">
-      <div className="max-w-[1000px] mx-auto px-6 md:px-12">
-        <motion.h2
-          className="text-[32px] md:text-[40px] font-display font-extrabold text-primary text-center mb-14 tracking-[-0.02em]"
+      <div className="max-w-[900px] mx-auto px-6 md:px-12">
+        <motion.p
+          className="text-base md:text-lg text-foreground-secondary leading-relaxed text-center max-w-2xl mx-auto mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          What a Contractor of Record actually is
-        </motion.h2>
+          A Contractor of Record sits between you and your contractors. You manage the work. Stape manages contracts, classification, cross-border payments, tax docs, and the audit trail. One invoice from us, money in their accounts, compliance handled.
+        </motion.p>
 
+        {/* You / COR split */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-2 gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          {/* Block 1 — The problem */}
-          <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
-            <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center mb-5 text-primary">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 className="text-base font-display font-bold text-primary mb-3">You hire someone abroad. Now what?</h3>
-            <p className="text-sm text-foreground-secondary leading-relaxed">
-              Someone needs to sign the contract, handle local tax rules, make sure it doesn&apos;t look like employment, and send the money. That someone isn&apos;t you.
-            </p>
+          <div className="bg-white rounded-xl p-6 border border-border">
+            <h3 className="text-sm font-display font-bold text-primary mb-4 flex items-center gap-2">
+              <span className="text-xs font-bold text-primary bg-accent/30 rounded px-1.5 py-0.5">You</span>
+              keep
+            </h3>
+            <ul className="space-y-2.5">
+              {['Who you hire', 'Scope & deliverables', 'Day-to-day comms', 'Performance calls', 'Your sanity'].map((item, i) => (
+                <li key={i} className="flex items-center gap-2 text-sm text-foreground-secondary">
+                  <svg className="w-3.5 h-3.5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
-
-          {/* Block 2 — The answer */}
-          <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
-            <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center mb-5 text-primary">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <h3 className="text-base font-display font-bold text-primary mb-3">That someone is a Contractor of Record.</h3>
-            <p className="text-sm text-foreground-secondary leading-relaxed">
-              A third party that handles compliant contracts, classification, cross-border payments, tax docs, and audit trails. You don&apos;t build this. You plug into it.
-            </p>
-          </div>
-
-          {/* Block 3 — The division of labor */}
-          <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
-            <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center mb-5 text-primary">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-              </svg>
-            </div>
-            <h3 className="text-base font-display font-bold text-primary mb-5">You run the work. The COR runs the paperwork.</h3>
-            <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <span className="text-xs font-bold text-primary bg-accent/30 rounded px-1.5 py-0.5 mt-0.5 flex-shrink-0">You</span>
-                <p className="text-sm text-foreground-secondary leading-relaxed">What gets built. When it ships. What &ldquo;done&rdquo; looks like.</p>
-              </div>
-              <div className="border-t border-border" />
-              <div className="flex items-start gap-3">
-                <span className="text-xs font-bold text-primary bg-accent/30 rounded px-1.5 py-0.5 mt-0.5 flex-shrink-0">COR</span>
-                <p className="text-sm text-foreground-secondary leading-relaxed">Contracts. Compliance. Payments. Tax docs. Audit trail.</p>
-              </div>
-            </div>
+          <div className="bg-white rounded-xl p-6 border border-border">
+            <h3 className="text-sm font-display font-bold text-primary mb-4 flex items-center gap-2">
+              <span className="text-xs font-bold text-primary bg-accent/30 rounded px-1.5 py-0.5">COR</span>
+              handles
+            </h3>
+            <ul className="space-y-2.5">
+              {['Compliant contracts', 'Worker classification', 'Cross-border payments', 'Tax docs & audit trail', 'IP transfer clauses'].map((item, i) => (
+                <li key={i} className="flex items-center gap-2 text-sm text-foreground-secondary">
+                  <svg className="w-3.5 h-3.5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </motion.div>
-
-        {/* Closing pull quote */}
-        <motion.p
-          className="text-center text-xl md:text-2xl font-display font-bold text-primary mt-12 max-w-2xl mx-auto tracking-[-0.01em]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          You stay the boss. The COR becomes the back office you never wanted to build.
-        </motion.p>
       </div>
     </section>
   );
 }
 
-/* ─── Section 3: The Problem It Solves ─────────────────────────────────────── */
+/* ─── Section 3: Why You'd Use a COR ──────────────────────────────────────── */
 
 const problemCards = [
   {
     title: 'Misclassification risk is real',
-    body: 'Governments are cracking down. In 2023, the IRS found that 38% of audited contractors were misclassified. The EU Platform Work Directive is tightening definitions. Penalties can exceed $100K per worker. A COR ensures every engagement is classified correctly from day one.',
+    body: 'The IRS found 38% of audited contractors were misclassified in 2023. Penalties can exceed $100K per worker. A COR classifies every engagement correctly from day one.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
@@ -168,7 +134,7 @@ const problemCards = [
   },
   {
     title: 'Every country has different rules',
-    body: 'What\u2019s legal in the UK isn\u2019t legal in Brazil. Germany has a concept called \u201CScheinselbstst\u00e4ndigkeit\u201D \u2014 false self-employment \u2014 that can trigger retroactive social security payments going back years. A COR knows the local rules because they operate inside them.',
+    body: 'Germany has "Scheinselbstständigkeit" — false self-employment — that triggers retroactive social security payments going back years. A COR knows the local rules because they operate inside them.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -177,7 +143,7 @@ const problemCards = [
   },
   {
     title: 'Payments are more than bank transfers',
-    body: 'You need to handle local tax withholding, currency conversion, invoicing formats, and delivery timelines \u2014 all of which vary by country. Get one wrong and your contractor doesn\u2019t get paid on time. Or you get audited. Or both.',
+    body: 'Tax withholding, currency conversion, invoicing formats, delivery timelines — all vary by country. Get one wrong and someone doesn\u2019t get paid on time. Or you get audited.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -185,8 +151,8 @@ const problemCards = [
     ),
   },
   {
-    title: 'You don\u2019t want to build this in-house',
-    body: 'Setting up legal entities in every country you hire is slow, expensive, and overkill if you have 3 contractors in 3 countries. A COR gives you compliant global reach without the overhead of doing it yourself.',
+    title: 'Building in-house is overkill',
+    body: '3 contractors in 3 countries doesn\u2019t justify 3 legal entities.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -208,7 +174,7 @@ function ProblemCards() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          Why this exists (and why you&apos;re reading this page)
+          The problems this solves
         </motion.h2>
 
         <motion.div
@@ -225,10 +191,10 @@ function ProblemCards() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.4, delay: 0.15 + index * 0.1 }}
             >
-              <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center mb-5 text-primary">
+              <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center mb-4 text-primary">
                 {card.icon}
               </div>
-              <h3 className="text-base font-display font-bold text-primary mb-3">{card.title}</h3>
+              <h3 className="text-base font-display font-bold text-primary mb-2">{card.title}</h3>
               <p className="text-sm text-foreground-secondary leading-relaxed">{card.body}</p>
             </motion.div>
           ))}
@@ -238,139 +204,43 @@ function ProblemCards() {
   );
 }
 
-/* ─── Section 4: What a COR Actually Handles ───────────────────────────────── */
-
-const corHandles = [
-  'Locally compliant contractor agreements',
-  'Worker classification and misclassification protection',
-  'Cross-border payments in local currencies',
-  'Tax documentation and withholding where required',
-  'Invoice processing and payment reconciliation',
-  'Audit-ready records and compliance reporting',
-  'Onboarding and offboarding paperwork',
-  'IP transfer clauses built into every contract',
-];
-
-const youKeep = [
-  'Choosing who to work with',
-  'Defining scope, deliverables, and timelines',
-  'Day-to-day communication with your contractors',
-  'Performance management and feedback',
-  'Deciding when to scale up or wind down',
-  'Full visibility into costs and payment status',
-  'Your sanity',
-];
-
-function WhatCORHandles() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-
-  return (
-    <section ref={ref} className="py-20 md:py-28 bg-primary">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 text-center"
-        >
-          <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
-            What you hand off. What you keep.
-          </h2>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-          {/* Left: COR handles */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-white/5 rounded-2xl p-8 md:p-10 border border-white/10"
-          >
-            <h3 className="text-lg font-display font-bold text-white mb-6">The COR handles:</h3>
-            <ul className="space-y-3">
-              {corHandles.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-white/70 text-sm leading-relaxed">
-                  <span className="mt-0.5 flex-shrink-0 text-accent">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Right: You keep */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-accent/10 rounded-2xl p-8 md:p-10 border border-accent/20"
-          >
-            <h3 className="text-lg font-display font-bold text-white mb-6">You keep:</h3>
-            <ul className="space-y-3">
-              {youKeep.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-white/70 text-sm leading-relaxed">
-                  <span className="mt-0.5 flex-shrink-0 text-accent">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── Section 5: COR vs. EOR ──────────────────────────────────────────────── */
+/* ─── Section 4: COR vs. EOR ──────────────────────────────────────────────── */
 
 const comparisonRows = [
   {
     feature: 'Who it\u2019s for',
-    cor: 'Independent contractors, freelancers, project-based talent',
-    eor: 'Full-time employees you want on payroll abroad',
+    cor: 'Contractors, freelancers, project-based talent',
+    eor: 'Full-time employees on payroll abroad',
   },
   {
     feature: 'Legal relationship',
-    cor: 'Contractor remains independent. COR is the contracting entity.',
+    cor: 'Contractor stays independent. COR is the contracting entity.',
     eor: 'EOR becomes the legal employer on your behalf.',
   },
   {
     feature: 'What\u2019s included',
     cor: 'Contracts, compliance, payments, tax docs',
-    eor: 'Payroll, benefits, taxes, employment law compliance',
+    eor: 'Payroll, benefits, taxes, employment law',
   },
   {
     feature: 'Best for',
-    cor: 'Project work, specialist skills, flexible teams, cost control',
-    eor: 'Long-term roles, deep team integration, employee protections',
+    cor: 'Flexible teams, specialist skills, cost control',
+    eor: 'Long-term roles, deep integration, employee protections',
   },
   {
     feature: 'Typical cost',
-    cor: '$49\u201375 per contractor per payout',
-    eor: '$400\u2013700 per employee per month',
+    cor: '\u20ac50 per payout (Stape)',
+    eor: '$400\u2013700/employee/month',
   },
   {
     feature: 'Flexibility',
-    cor: 'Scale up or down anytime. No employment obligations.',
-    eor: 'Employment commitments, notice periods, severance rules apply.',
+    cor: 'Scale anytime. No employment obligations.',
+    eor: 'Notice periods, severance rules apply.',
   },
   {
     feature: 'Risk it solves',
     cor: 'Misclassification, non-compliant contracts, payment failures',
-    eor: 'Employment law violations in countries without your entity',
-  },
-  {
-    feature: 'When to choose this',
-    cor: 'You\u2019re working with contractors and want to stay compliant and fast',
-    eor: 'You\u2019re hiring employees and need full legal employment infrastructure',
+    eor: 'Employment law violations without a local entity',
   },
 ];
 
@@ -379,7 +249,7 @@ function CORvsEOR() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="cor-vs-eor" ref={ref} className="py-20 md:py-28 bg-white">
+    <section id="cor-vs-eor" ref={ref} className="py-20 md:py-28 bg-background-secondary">
       <div className="max-w-[1000px] mx-auto px-6 md:px-12">
         <motion.h2
           className="text-[32px] md:text-[40px] font-display font-extrabold text-primary text-center mb-4 tracking-[-0.02em]"
@@ -387,16 +257,16 @@ function CORvsEOR() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          COR vs. EOR&nbsp;&mdash; same letters, very different things
+          COR vs. EOR
         </motion.h2>
 
         <motion.p
-          className="text-base md:text-lg text-foreground-secondary text-center max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-base text-foreground-secondary text-center max-w-2xl mx-auto mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.05 }}
         >
-          Both help you hire across borders without setting up a local entity. But they solve different problems for different types of workers. Here&apos;s the honest breakdown.
+          Both help you hire across borders without a local entity. Different problems, different worker types.
         </motion.p>
 
         <motion.div
@@ -405,72 +275,81 @@ function CORvsEOR() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <div className="bg-background-secondary rounded-2xl p-6 md:p-8 min-w-[700px]">
+          <div className="bg-white rounded-2xl p-6 md:p-8 min-w-[700px]">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-4 px-3 text-sm font-semibold text-primary w-1/4"></th>
                   <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-tl-xl">
-                    Contractor of Record (COR)
+                    COR
                   </th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted rounded-tr-xl">
-                    Employer of Record (EOR)
+                    EOR
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {comparisonRows.map((row, index) => (
                   <tr key={index} className="border-b border-border/50 last:border-0">
-                    <td className="py-4 px-3 text-sm font-medium text-primary">{row.feature}</td>
-                    <td className={`py-4 px-4 text-sm text-primary text-center font-semibold bg-accent/20 ${index === comparisonRows.length - 1 ? 'rounded-bl-xl' : ''}`}>
+                    <td className="py-3 px-3 text-sm font-medium text-primary">{row.feature}</td>
+                    <td className={`py-3 px-4 text-sm text-primary text-center font-semibold bg-accent/20 ${index === comparisonRows.length - 1 ? 'rounded-bl-xl' : ''}`}>
                       {row.cor}
                     </td>
-                    <td className={`py-4 px-3 text-sm text-foreground-muted text-center ${index === comparisonRows.length - 1 ? 'rounded-br-xl' : ''}`}>
+                    <td className={`py-3 px-3 text-sm text-foreground-muted text-center ${index === comparisonRows.length - 1 ? 'rounded-br-xl' : ''}`}>
                       {row.eor}
                     </td>
                   </tr>
                 ))}
+                {/* CTA row */}
+                <tr>
+                  <td className="py-4 px-3"></td>
+                  <td className="py-4 px-4 text-center bg-accent/20 rounded-bl-xl">
+                    <Link href="/pricing" className="text-sm font-semibold text-primary underline underline-offset-2 hover:text-primary/80 transition-colors">
+                      See COR pricing &rarr;
+                    </Link>
+                  </td>
+                  <td className="py-4 px-3 text-center rounded-br-xl">
+                    <Link href="/employer-of-record" className="text-sm font-semibold text-foreground-muted underline underline-offset-2 hover:text-primary transition-colors">
+                      Learn about EOR &rarr;
+                    </Link>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
         </motion.div>
 
-        <motion.div
-          className="mt-10 max-w-2xl mx-auto space-y-4"
+        <motion.p
+          className="text-sm text-foreground-secondary text-center mt-8 font-semibold"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <p className="text-sm text-foreground-secondary leading-relaxed">
-            Many companies use both&nbsp;&mdash; COR for contractors, EOR for full-time hires. The mistake is using the wrong model for the wrong worker. That&apos;s where the real compliance risk lives.
-          </p>
-          <p className="text-sm text-foreground-secondary leading-relaxed font-semibold">
-            Stape offers both COR and EOR services. Start with whichever fits your team today. Switch or combine as you grow.
-          </p>
-        </motion.div>
+          Many companies use both. Start with whichever fits today. Switch or combine as you grow.
+        </motion.p>
       </div>
     </section>
   );
 }
 
-/* ─── Section 6: How Stape Does COR (Timeline) ────────────────────────────── */
+/* ─── Section 5: How It Works (Timeline) ──────────────────────────────────── */
 
 const stapeSteps = [
   {
     title: 'Tell us who you\u2019re paying and where',
-    description: 'Upload your contractor list or add them one by one. We handle the rest \u2014 contracts, classification, local compliance.',
+    description: 'Upload your contractor list — we handle contracts, classification, and local compliance.',
   },
   {
     title: 'We generate compliant contracts',
-    description: 'Locally valid agreements with proper IP transfer clauses, tax classification, and termination terms. Reviewed against the laws of each contractor\u2019s country.',
+    description: 'Locally valid agreements with IP clauses, tax classification, and termination terms.',
   },
   {
     title: 'Approve payments. We deliver them.',
-    description: 'One invoice from Stape. We convert currencies, process payments to each contractor in their local currency, and generate all tax documentation.',
+    description: 'One invoice from Stape, payments in local currencies, all tax docs generated.',
   },
   {
     title: 'Audit trail builds itself',
-    description: 'Every payment, every contract, every document \u2014 stored, timestamped, and ready if anyone ever asks.',
+    description: 'Every payment, contract, and document — stored, timestamped, ready if anyone asks.',
   },
 ];
 
@@ -497,7 +376,6 @@ function HowStapeDoesIt() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          {/* Progress dots and line */}
           <div className="relative flex items-center justify-between mb-6 px-4">
             <div className="absolute left-4 right-4 top-1/2 h-px bg-white/20" />
             {stapeSteps.map((_, i) => (
@@ -505,7 +383,6 @@ function HowStapeDoesIt() {
             ))}
           </div>
 
-          {/* Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {stapeSteps.map((step, index) => (
               <motion.div
@@ -527,7 +404,6 @@ function HowStapeDoesIt() {
           </div>
         </motion.div>
 
-        {/* CTAs */}
         <motion.div
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3"
           initial={{ opacity: 0 }}
@@ -552,7 +428,7 @@ function HowStapeDoesIt() {
   );
 }
 
-/* ─── Section 7: Who Uses a COR (Personas) ─────────────────────────────────── */
+/* ─── Section 6: Who Uses a COR (Personas) ─────────────────────────────────── */
 
 const personas = [
   {
@@ -573,7 +449,7 @@ const personas = [
     role: 'Remote-first companies',
     tagline: '15 countries, zero compliance headaches',
     description:
-      'Your team is distributed across 15 countries. Managing 15 sets of contractor laws isn\u2019t a side project \u2014 it\u2019s a full-time job. Unless you hand it off.',
+      'Your team is distributed across 15 countries. Managing 15 sets of contractor laws isn\u2019t a side project — it\u2019s a full-time job. Unless you hand it off.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -617,7 +493,6 @@ function WhoUsesACOR() {
           </h2>
         </motion.div>
 
-        {/* Persona cards */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-4"
           initial={{ opacity: 0, y: 20 }}
@@ -660,7 +535,6 @@ function WhoUsesACOR() {
           ))}
         </motion.div>
 
-        {/* Expanded detail */}
         <AnimatePresence mode="wait">
           {activePersona && (
             <motion.div
@@ -690,38 +564,28 @@ function WhoUsesACOR() {
   );
 }
 
-/* ─── Section 8: FAQ ───────────────────────────────────────────────────────── */
+/* ─── Section 7: FAQ ───────────────────────────────────────────────────────── */
 
 const corFaqs = [
   {
     question: 'Is a COR the same as an AOR (Agent of Record)?',
     answer:
-      'Practically, yes. \u201CAgent of Record\u201D is the older term. \u201CContractor of Record\u201D is more specific to how the model is used today. Some providers (like Deel) use them interchangeably. The function is the same: a third party manages your contractor relationships compliantly.',
+      'Practically, yes. "Agent of Record" is the older term. Some providers use them interchangeably. The function is the same.',
   },
   {
     question: 'Do my contractors know they\u2019re going through a COR?',
     answer:
-      'Yes. The COR is the entity that signs the contract with the contractor. Your company is referenced as the client, and the contractor works directly with your team day-to-day. It\u2019s transparent \u2014 not a shell game.',
-  },
-  {
-    question: 'Does the COR change how I manage the work?',
-    answer:
-      'Not at all. You assign tasks, set deadlines, give feedback \u2014 everything stays the same. The COR handles the paperwork and payments. You handle the work.',
+      'Yes. The COR signs the contract with the contractor. Your company is referenced as the client. It\u2019s transparent — not a shell game.',
   },
   {
     question: 'What happens if a contractor should actually be an employee?',
     answer:
-      'A good COR flags this before it becomes a problem. If the engagement starts looking like employment \u2014 fixed hours, deep integration, long-term dependence \u2014 the COR will recommend switching to an EOR model. That\u2019s the whole point of having a compliance partner.',
-  },
-  {
-    question: 'How fast can I onboard a contractor through a COR?',
-    answer:
-      'With Stape, under 24 hours. Upload contractor details, we generate the contract, they sign it, you\u2019re live.',
+      'We flag it before it becomes a problem. If the engagement starts looking like employment, we\u2019ll recommend switching to EOR. That\u2019s the whole point of having a compliance partner.',
   },
   {
     question: 'What about IP ownership?',
     answer:
-      'COR contracts include IP transfer clauses by default. Everything your contractor creates belongs to you. This is actually one of the biggest hidden risks of direct contracting \u2014 without explicit IP assignment, the contractor may legally own their work in some jurisdictions.',
+      'Every COR contract includes IP transfer clauses by default. Everything your contractor creates belongs to you. Without explicit IP assignment, the contractor may legally own their work in some jurisdictions.',
   },
 ];
 
@@ -789,7 +653,7 @@ function CORFAQ() {
   );
 }
 
-/* ─── Section 9: Bottom CTA ────────────────────────────────────────────────── */
+/* ─── Section 8: Bottom CTA ────────────────────────────────────────────────── */
 
 function BottomCTA() {
   return (
@@ -811,7 +675,7 @@ function BottomCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Pay contractors in 242 locations. Compliant contracts, locked FX rates, and an audit trail that builds itself. All for &euro;50 per payout.
+          242 locations. Compliant contracts. Locked FX rates. Audit trail included. &euro;50 per payout.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"
@@ -848,9 +712,8 @@ export default function ContractorOfRecordPage() {
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
       <CORHero />
-      <PlainEnglishDefinition />
+      <WhatCORDoes />
       <ProblemCards />
-      <WhatCORHandles />
       <CORvsEOR />
       <HowStapeDoesIt />
       <WhoUsesACOR />
