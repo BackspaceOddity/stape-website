@@ -21,7 +21,7 @@ type MenuSection = {
 
 const MENUS: Record<string, MenuSection> = {
   Solutions: {
-    label: 'Solutions',
+    label: 'For whom',
     columns: 1,
     maxWidth: 420,
     items: [
@@ -32,7 +32,7 @@ const MENUS: Record<string, MenuSection> = {
     ],
   },
   Product: {
-    label: 'Product',
+    label: 'Solutions',
     columns: 2,
     maxWidth: 500,
     items: [
@@ -225,7 +225,7 @@ export default function Navbar() {
           onClick={() => setMobileAccordion(open ? null : key)}
           className="flex items-center justify-between w-full py-3 text-sm font-semibold text-primary"
         >
-          {key}
+          {menu.label}
           <svg
             className={`w-4 h-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
             fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -282,7 +282,7 @@ export default function Navbar() {
                         : 'text-foreground-secondary hover:text-primary'
                       }`}
                   >
-                    {key}
+                    {MENUS[key].label}
                     {chevronDown}
                   </button>
                   {activeMenu === key && MENUS[key] && renderDropdown(key)}
