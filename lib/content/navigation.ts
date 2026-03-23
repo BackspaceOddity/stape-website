@@ -4,8 +4,8 @@
 
 export const navigation = {
   mainNav: [
-    { label: 'Solutions', href: '/solutions' },
-    { label: 'Product', href: '/product' },
+    { label: 'For whom', href: '/solutions' },
+    { label: 'Solutions', href: '/product' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'Resources', href: '/resources' },
     { label: 'Partner Program', href: '/partners' },
