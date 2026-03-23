@@ -485,6 +485,118 @@ function HowStapeDoesEOR() {
   );
 }
 
+/* ─── Section 6b: Pricing ─────────────────────────────────────────────────── */
+
+const eorPricingFeatures = [
+  'Full legal employment without local entity',
+  'Local labor law compliance',
+  'Payroll processing & tax filings',
+  'Benefits administration',
+  'Employment contracts per jurisdiction',
+  'Onboarding & offboarding managed',
+  'IP protection provisions',
+  'Ongoing HR & legal support',
+  'One B2B invoice for your books',
+  'FX conversion no more than 3.5% — locked at signing',
+];
+
+const employeeFeatures = [
+  'Zero fees deducted from salary',
+  'Full statutory benefits included',
+  'Local employment contract',
+  'Paid in local currency, on time',
+  'Full visibility into payslips',
+  'Same protections as any local employee',
+];
+
+function EORPricing() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  return (
+    <section ref={ref} className="py-20 md:py-28 bg-white">
+      <div className="max-w-[900px] mx-auto px-6 md:px-12">
+        <motion.h2
+          className="text-[32px] md:text-[40px] font-display font-extrabold text-primary text-center mb-4 tracking-[-0.02em]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+        >
+          EOR pricing
+        </motion.h2>
+        <motion.p
+          className="text-base text-foreground-secondary text-center max-w-xl mx-auto mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.05 }}
+        >
+          One monthly fee per employee. Your employees pay nothing.
+        </motion.p>
+
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          {/* For companies */}
+          <div className="bg-background-secondary rounded-2xl p-8 md:p-10 border-2 border-primary/20 shadow-card flex flex-col">
+            <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">For companies</span>
+            <div className="mb-1">
+              <span className="text-base text-foreground-muted mr-1 align-baseline">From</span>
+              <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;200</span>
+            </div>
+            <p className="text-base text-foreground-secondary mb-1">/ per employee per month</p>
+            <p className="text-sm text-foreground-muted mb-8">Depends on country. Get a quote.</p>
+
+            <a
+              href="#"
+              className="w-full inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors mb-8"
+            >
+              Get a Quote
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+
+            <ul className="space-y-3">
+              {eorPricingFeatures.map((feature) => (
+                <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground-secondary">
+                  <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* For employees */}
+          <div className="bg-background-secondary rounded-2xl p-8 md:p-10 border border-border shadow-card flex flex-col">
+            <span className="text-xs font-semibold uppercase tracking-widest text-foreground-muted mb-4">For employees</span>
+            <div className="mb-1">
+              <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;0</span>
+            </div>
+            <p className="text-base text-foreground-secondary mb-1">/ always</p>
+            <p className="text-sm text-foreground-muted mb-8">Your employees never pay a cent.</p>
+
+            <ul className="space-y-3">
+              {employeeFeatures.map((feature) => (
+                <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground-secondary">
+                  <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── Section 7: FAQ ───────────────────────────────────────────────────────── */
 
 const eorFaqs = [
@@ -643,6 +755,7 @@ export default function EmployerOfRecordPage() {
       <HonestyCheck />
       <EORvsEntity />
       <HowStapeDoesEOR />
+      <EORPricing />
       <EORFAQ />
       <EORBottomCTA />
       <Footer />

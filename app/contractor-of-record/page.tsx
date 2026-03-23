@@ -571,7 +571,115 @@ function WhoUsesACOR() {
   );
 }
 
-/* ─── Section 7: FAQ ───────────────────────────────────────────────────────── */
+/* ─── Section 7: Pricing ──────────────────────────────────────────────────── */
+
+const corPricingFeatures = [
+  'Compliant contractor contracts',
+  'Payments in 120+ currencies',
+  'Wire fees included',
+  'Off-cycle payments included',
+  'Full compliance & audit trail',
+  'Auto-generated tax documents',
+  'KYC handling',
+  '24h onboarding',
+  'One B2B invoice for your books',
+  'FX conversion no more than 3.5% — locked at signing',
+];
+
+const contractorPricingFeatures = [
+  'Zero platform fees',
+  'Zero withdrawal commissions',
+  'All payout methods free',
+  'Get paid in your local currency',
+  'On-time payments, every cycle',
+  'Full visibility into payment status',
+];
+
+function CORPricing() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  return (
+    <section ref={ref} className="py-20 md:py-28 bg-white">
+      <div className="max-w-[900px] mx-auto px-6 md:px-12">
+        <motion.h2
+          className="text-[32px] md:text-[40px] font-display font-extrabold text-primary text-center mb-4 tracking-[-0.02em]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+        >
+          Simple pricing. No surprises.
+        </motion.h2>
+        <motion.p
+          className="text-base text-foreground-secondary text-center max-w-xl mx-auto mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.05 }}
+        >
+          One flat fee per payout. Your contractors pay nothing.
+        </motion.p>
+
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          {/* For companies */}
+          <div className="bg-background-secondary rounded-2xl p-8 md:p-10 border-2 border-primary/20 shadow-card flex flex-col">
+            <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">For companies</span>
+            <div className="mb-1">
+              <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;50</span>
+            </div>
+            <p className="text-base text-foreground-secondary mb-1">/ per payout</p>
+            <p className="text-sm text-foreground-muted mb-8">Fixed. No monthly fee.</p>
+
+            <a
+              href="#"
+              className="w-full inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors mb-8"
+            >
+              Book a Demo
+            </a>
+
+            <ul className="space-y-3">
+              {corPricingFeatures.map((feature) => (
+                <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground-secondary">
+                  <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* For contractors */}
+          <div className="bg-background-secondary rounded-2xl p-8 md:p-10 border border-border shadow-card flex flex-col">
+            <span className="text-xs font-semibold uppercase tracking-widest text-foreground-muted mb-4">For contractors</span>
+            <div className="mb-1">
+              <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;0</span>
+            </div>
+            <p className="text-base text-foreground-secondary mb-1">/ always</p>
+            <p className="text-sm text-foreground-muted mb-8">Your contractors never pay a cent.</p>
+
+            <ul className="space-y-3">
+              {contractorPricingFeatures.map((feature) => (
+                <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground-secondary">
+                  <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Section 8: FAQ ───────────────────────────────────────────────────────── */
 
 const corFaqs = [
   {
@@ -724,6 +832,7 @@ export default function ContractorOfRecordPage() {
       <FullPicture />
       <HowStapeDoesIt />
       <WhoUsesACOR />
+      <CORPricing />
       <CORFAQ />
       <BottomCTA />
       <Footer />

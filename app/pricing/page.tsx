@@ -73,6 +73,39 @@ const eorFeatures = [
   'FX conversion no more than 3.5% — locked at signing',
 ];
 
+const employeeFeatures = [
+  'Zero fees deducted from salary',
+  'Full statutory benefits included',
+  'Local employment contract',
+  'Paid in local currency, on time',
+  'Full visibility into payslips',
+  'Same protections as any local employee',
+];
+
+const contractorFeatures = [
+  'Zero platform fees',
+  'Zero withdrawal commissions',
+  'All payout methods free',
+  'Get paid in your local currency',
+  'On-time payments, every cycle',
+  'Full visibility into payment status',
+];
+
+function FeatureList({ features }: { features: string[] }) {
+  return (
+    <ul className="space-y-3">
+      {features.map((feature) => (
+        <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground-secondary">
+          <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+          <span>{feature}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function PricingCards() {
   const [activeTab, setActiveTab] = useState<'cor' | 'eor'>('cor');
   const ref = useRef(null);
@@ -85,7 +118,7 @@ function PricingCards() {
 
   return (
     <section ref={ref} className="py-16 md:py-24 bg-background-secondary">
-      <div className="max-w-[600px] mx-auto px-6 md:px-12">
+      <div className="max-w-[900px] mx-auto px-6 md:px-12">
         {/* Tabs */}
         <motion.div
           className="flex justify-center mb-10"
@@ -110,77 +143,91 @@ function PricingCards() {
           </div>
         </motion.div>
 
-        {/* Card */}
+        {/* Cards */}
         <AnimatePresence mode="wait">
           {activeTab === 'cor' ? (
             <motion.div
               key="cor"
-              className="bg-white rounded-2xl p-8 md:p-10 border border-border shadow-card flex flex-col"
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="mb-1">
-                <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;50</span>
+              {/* For companies */}
+              <div className="bg-white rounded-2xl p-8 md:p-10 border-2 border-primary/20 shadow-card flex flex-col">
+                <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">For companies</span>
+                <div className="mb-1">
+                  <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;50</span>
+                </div>
+                <p className="text-base text-foreground-secondary mb-1">/ per payout</p>
+                <p className="text-sm text-foreground-muted mb-8">Fixed. No monthly fee.</p>
+
+                <a
+                  href="#"
+                  className="w-full inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors mb-8"
+                >
+                  Book a Demo
+                </a>
+
+                <FeatureList features={corFeatures} />
               </div>
-              <p className="text-base text-foreground-secondary mb-1">/ per payout</p>
-              <p className="text-sm text-foreground-muted mb-8">Fixed. No monthly fee.</p>
 
-              <a
-                href="#"
-                className="w-full inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors mb-8"
-              >
-                Book a Demo
-              </a>
+              {/* For contractors */}
+              <div className="bg-white rounded-2xl p-8 md:p-10 border border-border shadow-card flex flex-col">
+                <span className="text-xs font-semibold uppercase tracking-widest text-foreground-muted mb-4">For contractors</span>
+                <div className="mb-1">
+                  <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;0</span>
+                </div>
+                <p className="text-base text-foreground-secondary mb-1">/ always</p>
+                <p className="text-sm text-foreground-muted mb-8">Your contractors never pay a cent.</p>
 
-              <ul className="space-y-3">
-                {corFeatures.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground-secondary">
-                    <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
+                <FeatureList features={contractorFeatures} />
+              </div>
             </motion.div>
           ) : (
             <motion.div
               key="eor"
-              className="bg-white rounded-2xl p-8 md:p-10 border border-border shadow-card flex flex-col"
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="mb-1">
-                <span className="text-base text-foreground-muted mr-1 align-baseline">From</span>
-                <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;200</span>
+              {/* For companies */}
+              <div className="bg-white rounded-2xl p-8 md:p-10 border-2 border-primary/20 shadow-card flex flex-col">
+                <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">For companies</span>
+                <div className="mb-1">
+                  <span className="text-base text-foreground-muted mr-1 align-baseline">From</span>
+                  <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;200</span>
+                </div>
+                <p className="text-base text-foreground-secondary mb-1">/ per employee per month</p>
+                <p className="text-sm text-foreground-muted mb-8">Depends on country. Get a quote.</p>
+
+                <a
+                  href="#"
+                  className="w-full inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors mb-8"
+                >
+                  Get a Quote
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+
+                <FeatureList features={eorFeatures} />
               </div>
-              <p className="text-base text-foreground-secondary mb-1">/ per employee per month</p>
-              <p className="text-sm text-foreground-muted mb-8">Depends on country. Get a quote.</p>
 
-              <a
-                href="#"
-                className="w-full inline-flex items-center justify-center gap-1.5 px-6 py-3.5 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors mb-8"
-              >
-                Get a Quote
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
+              {/* For employees */}
+              <div className="bg-white rounded-2xl p-8 md:p-10 border border-border shadow-card flex flex-col">
+                <span className="text-xs font-semibold uppercase tracking-widest text-foreground-muted mb-4">For employees</span>
+                <div className="mb-1">
+                  <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;0</span>
+                </div>
+                <p className="text-base text-foreground-secondary mb-1">/ always</p>
+                <p className="text-sm text-foreground-muted mb-8">Your employees never pay a cent.</p>
 
-              <ul className="space-y-3">
-                {eorFeatures.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground-secondary">
-                    <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
+                <FeatureList features={employeeFeatures} />
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
