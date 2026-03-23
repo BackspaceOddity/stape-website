@@ -33,8 +33,8 @@ const MENUS: Record<string, MenuSection> = {
   },
   Product: {
     label: 'Solutions',
-    columns: 2,
-    maxWidth: 500,
+    columns: 1,
+    maxWidth: 320,
     items: [
       { title: 'Contractor of Record (COR)', subtitle: 'Pay contractors in 242 locations. We handle compliance.', href: '/contractor-of-record', enabled: true },
       { title: 'Employer of Record (EOR)', subtitle: 'Hire full-time employees without a local entity', href: '/employer-of-record', enabled: true },
