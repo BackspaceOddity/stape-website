@@ -13,8 +13,8 @@ const productLinks = [
   { label: 'Pay Contractors', href: '/use-cases/contractor-of-record' },
   { label: 'Hire via EOR', href: '/use-cases/employer-of-record' },
   { label: 'Documentation', href: 'https://docs.thestape.com/', external: true },
+  { label: 'Platform Status', href: 'https://status.thestape.com/', external: true },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'Platform Status', href: '#' },
 ];
 
 const legalLinks = [
