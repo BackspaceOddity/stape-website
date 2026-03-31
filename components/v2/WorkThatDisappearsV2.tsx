@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { EditableText } from '@/lib/edit-mode';
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 // Long exhausting list — overflows the card, feels never-ending
@@ -33,22 +34,27 @@ const todayBullets = [
 // Each slide: portrait photo + the thing you could be doing instead
 const slides = [
   {
+    id: 'wtd.slide-0',
     portrait: '/Images/portraits/2.png',
     phrase: 'Close the deal you\u2019ve been chasing for weeks',
   },
   {
+    id: 'wtd.slide-1',
     portrait: '/Images/portraits/3.png',
     phrase: 'Interview the senior engineer in S\u00e3o Paulo',
   },
   {
+    id: 'wtd.slide-2',
     portrait: '/Images/portraits/5.jpg',
     phrase: 'Launch the feature your users have been asking for',
   },
   {
+    id: 'wtd.slide-3',
     portrait: '/Images/portraits/4.png',
     phrase: 'Take a proper lunch break',
   },
   {
+    id: 'wtd.slide-4',
     portrait: '/Images/portraits/1.png',
     phrase: 'Leave at 6pm knowing everyone\u2019s paid',
   },
@@ -86,7 +92,7 @@ export default function WorkThatDisappearsV2() {
           className="mb-16 text-center"
         >
           <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
-            Two ways to spend your Tuesday
+            <EditableText id="wtd.section-title">Two ways to spend your Tuesday</EditableText>
           </h2>
         </motion.div>
 
@@ -101,7 +107,7 @@ export default function WorkThatDisappearsV2() {
             style={{ maxHeight: CARD_HEIGHT }}
           >
             <div className="px-8 md:px-10 pt-8 md:pt-10">
-              <h3 className="text-lg font-display font-bold text-white mb-6">Your Tuesday without Stape</h3>
+              <h3 className="text-lg font-display font-bold text-white mb-6"><EditableText id="wtd.left-title">Your Tuesday without Stape</EditableText></h3>
             </div>
             <div className="px-8 md:px-10 pb-0">
               <ul className="space-y-3">
@@ -147,7 +153,7 @@ export default function WorkThatDisappearsV2() {
             <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-black/60 to-transparent z-10" />
             <div className="absolute top-5 left-6 z-20">
               <span className="text-xs font-semibold text-white/70 uppercase tracking-widest">
-                Your Tuesday with Stape
+                <EditableText id="wtd.right-label">Your Tuesday with Stape</EditableText>
               </span>
             </div>
 
@@ -163,7 +169,7 @@ export default function WorkThatDisappearsV2() {
                   transition={{ duration: 0.45, ease: 'easeOut' }}
                   className="text-[26px] md:text-[30px] font-display font-extrabold text-white leading-[1.15] tracking-[-0.02em] mb-5"
                 >
-                  {slides[current].phrase}
+                  <EditableText id={slides[current].id}>{slides[current].phrase}</EditableText>
                 </motion.p>
               </AnimatePresence>
 

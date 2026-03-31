@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { EditableText } from '@/lib/edit-mode';
 
 const avatars = [
   { src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face', alt: 'Customer' },
@@ -32,7 +33,7 @@ export default function HeroV2() {
               />
             ))}
           </div>
-          <span className="text-sm text-foreground-muted">Trusted by 600+ teams getting their headspace back</span>
+          <span className="text-sm text-foreground-muted"><EditableText id="hero.social-proof">Trusted by 600+ teams getting their headspace back</EditableText></span>
         </motion.div>
 
         {/* Main headline */}
@@ -42,7 +43,7 @@ export default function HeroV2() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          Payroll was never the job you signed up for. We make it disappear
+          <EditableText id="hero.headline">Payroll was never the job you signed up for. We make it disappear</EditableText>
         </motion.h1>
 
         {/* Subhead */}
@@ -52,7 +53,7 @@ export default function HeroV2() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Pay contractors worldwide with one invoice, compliant contracts, and fixed FX rates. The entire back office&nbsp;&mdash; without the back office.
+          <EditableText id="hero.subhead">Pay contractors worldwide with one invoice, compliant contracts, and fixed FX rates. The entire back office — without the back office.</EditableText>
         </motion.p>
 
         {/* CTA row: email input + button */}
@@ -89,19 +90,19 @@ export default function HeroV2() {
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            242 Locations Covered
+            <EditableText id="hero.badge-locations">242 Locations Covered</EditableText>
           </div>
           <div className="flex items-center gap-2 text-sm text-foreground-muted">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            &euro;50 Fixed Per Payout
+            <EditableText id="hero.badge-price">€50 Fixed Per Payout</EditableText>
           </div>
           <div className="flex items-center gap-2 text-sm text-foreground-muted">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l2.5 2.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            2 hours contractor onboarding
+            <EditableText id="hero.badge-onboarding">2 hours contractor onboarding</EditableText>
           </div>
         </motion.div>
       </div>

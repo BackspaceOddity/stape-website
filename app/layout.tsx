@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { EditModeProvider, EditToolbar } from "@/lib/edit-mode";
 
 // Outfit for headlines - bold, characterful
 const outfit = Outfit({
@@ -33,7 +34,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${outfit.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <EditModeProvider>
+          {children}
+          <EditToolbar />
+        </EditModeProvider>
+      </body>
     </html>
   );
 }
