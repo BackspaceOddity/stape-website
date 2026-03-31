@@ -54,7 +54,7 @@ const slides = [
   },
 ];
 
-const CARD_HEIGHT = 580;
+const CARD_HEIGHT = 640;
 
 export default function WorkThatDisappearsV2() {
   const ref = useRef(null);
@@ -138,7 +138,7 @@ export default function WorkThatDisappearsV2() {
                 <img
                   src={`${BASE}${slides[current].portrait}`}
                   alt=""
-                  className="absolute inset-0 w-full h-full object-cover object-top"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
                 />
               </motion.div>
             </AnimatePresence>
