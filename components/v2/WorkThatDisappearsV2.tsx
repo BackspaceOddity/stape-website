@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 
-// Long exhausting list — credits-style, feels never-ending
+// Long exhausting list — overflows the card, feels never-ending
 const todayBullets = [
   'Cross-check three spreadsheets for contractor rates',
   'Google "how to pay someone in Colombia legally"',
@@ -29,28 +30,45 @@ const todayBullets = [
   'Set a reminder to do all of this again next month',
 ];
 
-const stapePhrases = [
-  'Close the deal you\u2019ve been chasing for weeks',
-  'Interview the senior engineer in S\u00e3o Paulo',
-  'Close the deal. Ship the feature. Take the call from Tokyo.',
-  'Take a proper lunch break',
-  'Close the deal you\u2019ve been chasing for weeks',
+// Each slide: portrait photo + the thing you could be doing instead
+const slides = [
+  {
+    portrait: '/stape-website/images/portraits/2.png',
+    phrase: 'Close the deal you\u2019ve been chasing for weeks',
+  },
+  {
+    portrait: '/stape-website/images/portraits/3.png',
+    phrase: 'Interview the senior engineer in S\u00e3o Paulo',
+  },
+  {
+    portrait: '/stape-website/images/portraits/5.jpg',
+    phrase: 'Launch the feature your users have been asking for',
+  },
+  {
+    portrait: '/stape-website/images/portraits/4.png',
+    phrase: 'Take a proper lunch break',
+  },
+  {
+    portrait: '/stape-website/images/portraits/1.png',
+    phrase: 'Leave at 6pm knowing everyone\u2019s paid',
+  },
 ];
+
+const CARD_HEIGHT = 580;
 
 export default function WorkThatDisappearsV2() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [currentPhrase, setCurrentPhrase] = useState(0);
+  const [current, setCurrent] = useState(0);
   const [thingsCount, setThingsCount] = useState(167);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentPhrase((prev) => (prev + 1) % stapePhrases.length);
-    }, 3000);
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 3500);
     return () => clearInterval(interval);
   }, []);
 
-  // Slowly ticking counter — things you could be doing instead
   useEffect(() => {
     const ticker = setInterval(() => {
       setThingsCount((prev) => prev + 1);
@@ -73,19 +91,18 @@ export default function WorkThatDisappearsV2() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 items-start">
-          {/* Left: Overwhelming static list — overflows the card naturally */}
+
+          {/* Left: Overwhelming static list — card clips it at the bottom */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden max-h-[480px]"
+            className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden"
+            style={{ maxHeight: CARD_HEIGHT }}
           >
-            {/* Header inside card padding */}
             <div className="px-8 md:px-10 pt-8 md:pt-10">
               <h3 className="text-lg font-display font-bold text-white mb-6">Your Tuesday without Stape</h3>
             </div>
-
-            {/* List overflows bottom of the card — no bottom padding, card clips it */}
             <div className="px-8 md:px-10 pb-0">
               <ul className="space-y-3">
                 {todayBullets.map((item, i) => (
@@ -95,54 +112,78 @@ export default function WorkThatDisappearsV2() {
                   </li>
                 ))}
               </ul>
-              {/* Spacer so the last visible item is mid-line, suggesting more below */}
               <div className="h-4" />
             </div>
           </motion.div>
 
-          {/* Right: One calm phrase at a time — big, rotating */}
+          {/* Right: Portrait banner slider */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-accent/10 rounded-2xl p-8 md:p-10 border border-accent/20 flex flex-col justify-between h-[480px]"
+            className="relative rounded-2xl overflow-hidden"
+            style={{ height: CARD_HEIGHT }}
           >
-            <h3 className="text-lg font-display font-bold text-white mb-8">Your Tuesday with Stape</h3>
+            {/* Portrait photos — cross-fade */}
+            <AnimatePresence mode="sync">
+              <motion.div
+                key={current}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7, ease: 'easeInOut' }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={slides[current].portrait}
+                  alt=""
+                  fill
+                  className="object-cover object-top"
+                  priority={current === 0}
+                />
+              </motion.div>
+            </AnimatePresence>
 
-            {/* Single rotating phrase — large type */}
-            <div className="flex-1 flex items-center">
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={currentPhrase}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  className="text-[28px] md:text-[36px] font-display font-extrabold text-white leading-[1.15] tracking-[-0.02em]"
-                >
-                  {stapePhrases[currentPhrase]}
-                </motion.p>
-              </AnimatePresence>
+            {/* Top label */}
+            <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-black/60 to-transparent z-10" />
+            <div className="absolute top-5 left-6 z-20">
+              <span className="text-xs font-semibold text-white/70 uppercase tracking-widest">
+                Your Tuesday with Stape
+              </span>
             </div>
 
-            {/* Progress dots + counter */}
-            <div>
-              <div className="flex items-center gap-2">
-                {stapePhrases.map((_, i) => (
+            {/* Bottom gradient + text */}
+            <div className="absolute bottom-0 inset-x-0 h-[55%] bg-gradient-to-t from-black/90 via-black/60 to-transparent z-10" />
+            <div className="absolute bottom-0 inset-x-0 z-20 p-7 md:p-8">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={current}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.45, ease: 'easeOut' }}
+                  className="text-[26px] md:text-[30px] font-display font-extrabold text-white leading-[1.15] tracking-[-0.02em] mb-5"
+                >
+                  {slides[current].phrase}
+                </motion.p>
+              </AnimatePresence>
+
+              {/* Progress dots */}
+              <div className="flex items-center gap-2 mb-3">
+                {slides.map((_, i) => (
                   <button
                     key={i}
-                    onClick={() => setCurrentPhrase(i)}
+                    onClick={() => setCurrent(i)}
                     className={`h-1 rounded-full transition-all duration-300 ${
-                      i === currentPhrase
+                      i === current
                         ? 'w-6 bg-accent'
-                        : 'w-2 bg-white/20 hover:bg-white/30'
+                        : 'w-2 bg-white/30 hover:bg-white/50'
                     }`}
                   />
                 ))}
               </div>
 
-              {/* "And N other things" counter */}
-              <p className="mt-5 text-white/40 text-xs leading-relaxed">
+              <p className="text-white/40 text-xs leading-relaxed">
                 …and{' '}
                 <span className="font-mono text-accent/70 text-sm font-semibold tabular-nums">
                   {thingsCount}
@@ -171,7 +212,6 @@ export default function WorkThatDisappearsV2() {
           </a>
         </motion.div>
       </div>
-
     </section>
   );
 }
