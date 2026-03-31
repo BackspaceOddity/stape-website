@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import Image from 'next/image';
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 // Long exhausting list — overflows the card, feels never-ending
 const todayBullets = [
@@ -33,23 +33,23 @@ const todayBullets = [
 // Each slide: portrait photo + the thing you could be doing instead
 const slides = [
   {
-    portrait: '/stape-website/images/portraits/2.png',
+    portrait: '/images/portraits/2.png',
     phrase: 'Close the deal you\u2019ve been chasing for weeks',
   },
   {
-    portrait: '/stape-website/images/portraits/3.png',
+    portrait: '/images/portraits/3.png',
     phrase: 'Interview the senior engineer in S\u00e3o Paulo',
   },
   {
-    portrait: '/stape-website/images/portraits/5.jpg',
+    portrait: '/images/portraits/5.jpg',
     phrase: 'Launch the feature your users have been asking for',
   },
   {
-    portrait: '/stape-website/images/portraits/4.png',
+    portrait: '/images/portraits/4.png',
     phrase: 'Take a proper lunch break',
   },
   {
-    portrait: '/stape-website/images/portraits/1.png',
+    portrait: '/images/portraits/1.png',
     phrase: 'Leave at 6pm knowing everyone\u2019s paid',
   },
 ];
@@ -134,12 +134,11 @@ export default function WorkThatDisappearsV2() {
                 transition={{ duration: 0.7, ease: 'easeInOut' }}
                 className="absolute inset-0"
               >
-                <Image
-                  src={slides[current].portrait}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`${BASE}${slides[current].portrait}`}
                   alt=""
-                  fill
-                  className="object-cover object-top"
-                  priority={current === 0}
+                  className="absolute inset-0 w-full h-full object-cover object-top"
                 />
               </motion.div>
             </AnimatePresence>
