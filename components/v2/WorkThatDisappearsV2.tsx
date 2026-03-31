@@ -33,23 +33,23 @@ const todayBullets = [
 // Each slide: portrait photo + the thing you could be doing instead
 const slides = [
   {
-    portrait: '/images/portraits/2.png',
+    portrait: '/Images/portraits/2.png',
     phrase: 'Close the deal you\u2019ve been chasing for weeks',
   },
   {
-    portrait: '/images/portraits/3.png',
+    portrait: '/Images/portraits/3.png',
     phrase: 'Interview the senior engineer in S\u00e3o Paulo',
   },
   {
-    portrait: '/images/portraits/5.jpg',
+    portrait: '/Images/portraits/5.jpg',
     phrase: 'Launch the feature your users have been asking for',
   },
   {
-    portrait: '/images/portraits/4.png',
+    portrait: '/Images/portraits/4.png',
     phrase: 'Take a proper lunch break',
   },
   {
-    portrait: '/images/portraits/1.png',
+    portrait: '/Images/portraits/1.png',
     phrase: 'Leave at 6pm knowing everyone\u2019s paid',
   },
 ];
