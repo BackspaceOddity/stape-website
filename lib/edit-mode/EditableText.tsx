@@ -1,64 +1,55 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { useEditMode } from './context';
+import { ThreadPopup } from './ThreadPopup';
 
 interface Props {
   id: string;
   children: string;
 }
 
-/**
- * Wraps a text string to make it editable in-place when Edit Mode is active.
- * Usage: <EditableText id="hero.headline">Some text here</EditableText>
- *
- * In normal mode: renders the text as-is (no DOM impact).
- * In edit mode: renders as a contenteditable inline span with a dashed blue outline.
- * On blur, registers the change so the toolbar can save it.
- */
 export function EditableText({ id, children }: Props) {
-  const { isEditing, registerChange } = useEditMode();
+  const { isEditing, threads, openPopup, activePopupId, getActiveText } = useEditMode();
   const ref = useRef<HTMLSpanElement>(null);
 
-  // Populate initial text when entering edit mode; React doesn't manage
-  // the content of contentEditable elements after initial mount.
-  useEffect(() => {
-    if (isEditing && ref.current) {
-      ref.current.textContent = children;
-    }
-  }, [isEditing]); // intentionally omit `children` — we only want to seed on mode-toggle
+  const displayText = getActiveText(id, children);
+  const thread = threads[id];
+  const hasActivity = thread && (thread.variants.length > 0 || thread.activeText !== thread.sourceText);
+  const isApproved = thread?.status === 'approved';
+  const isPopupOpen = activePopupId === id;
 
   if (!isEditing) {
-    return <>{children}</>;
+    return <>{displayText}</>;
   }
 
+  const borderBottom = isApproved
+    ? '2px solid #22c55e'
+    : hasActivity
+      ? '2px solid #f59e0b'
+      : '1.5px dashed #60a5fa';
+
   return (
-    <span
-      ref={ref}
-      contentEditable
-      suppressContentEditableWarning
-      data-edit-id={id}
-      onBlur={() => {
-        const updated = ref.current?.textContent ?? '';
-        registerChange(id, children, updated);
-      }}
-      // Prevent Enter from inserting <br> or <div>
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') e.preventDefault();
-      }}
-      style={{
-        borderBottom: '1.5px dashed #60a5fa',
-        borderRadius: '2px',
-        cursor: 'text',
-        outline: 'none',
-        display: 'inline',
-      }}
-      onFocus={(e) => {
-        (e.currentTarget as HTMLElement).style.background = 'rgba(96,165,250,0.08)';
-      }}
-      onBlurCapture={(e) => {
-        (e.currentTarget as HTMLElement).style.background = '';
-      }}
-    />
+    <>
+      <span
+        ref={ref}
+        data-edit-id={id}
+        onClick={() => openPopup(id, children)}
+        style={{
+          borderBottom,
+          borderRadius: '2px',
+          cursor: 'pointer',
+          outline: 'none',
+          display: 'inline',
+          background: isPopupOpen ? 'rgba(96,165,250,0.08)' : 'transparent',
+          transition: 'background 0.15s',
+        }}
+      >
+        {displayText}
+      </span>
+      {isPopupOpen && ref.current && (
+        <ThreadPopup anchorEl={ref.current} threadId={id} sourceText={children} />
+      )}
+    </>
   );
 }
