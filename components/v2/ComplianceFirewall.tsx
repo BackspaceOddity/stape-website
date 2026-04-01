@@ -35,7 +35,7 @@ export default function ComplianceFirewall() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-20 md:py-28 bg-primary">
+    <section data-component="ComplianceFirewall" ref={ref} className="py-20 md:py-28 bg-primary">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <motion.h2
           className="text-[32px] md:text-[40px] font-display font-extrabold text-white text-center mb-16 tracking-[-0.02em] leading-[1.1]"

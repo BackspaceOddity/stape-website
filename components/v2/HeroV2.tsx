@@ -12,7 +12,7 @@ const avatars = [
 
 export default function HeroV2() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white">
+    <section data-component="HeroV2" className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white">
       <div className="max-w-[1000px] mx-auto px-6 md:px-12 text-center">
         {/* Social proof */}
         <motion.div

@@ -38,7 +38,7 @@ export default function FAQV2() {
   };
 
   return (
-    <section ref={ref} className="py-20 md:py-28 bg-background-secondary">
+    <section data-component="FAQV2" ref={ref} className="py-20 md:py-28 bg-background-secondary">
       <div className="max-w-[800px] mx-auto px-6 md:px-12">
         <motion.h2
           className="text-[32px] md:text-[40px] font-display font-extrabold text-primary text-center mb-12"

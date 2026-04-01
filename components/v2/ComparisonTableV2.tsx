@@ -48,7 +48,7 @@ export default function ComparisonTableV2() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section data-component="ComparisonTableV2" className="py-20 md:py-28 bg-white">
       <div className="max-w-[1000px] mx-auto px-6 md:px-12">
         <motion.h2
           className="text-[32px] md:text-[40px] font-display font-extrabold text-primary text-center mb-4 tracking-[-0.02em]"

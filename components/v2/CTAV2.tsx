@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function CTAV2() {
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section data-component="CTAV2" className="py-20 md:py-28 bg-white">
       <div className="max-w-[700px] mx-auto px-6 md:px-12 text-center">
         <motion.h2
           className="text-[32px] md:text-[40px] font-display font-extrabold text-primary mb-6 tracking-[-0.02em]"

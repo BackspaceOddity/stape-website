@@ -28,7 +28,7 @@ export default function MetricsV2() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-12 md:py-20 bg-white">
+    <section data-component="MetricsV2" ref={ref} className="py-12 md:py-20 bg-white">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <motion.div
           className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"

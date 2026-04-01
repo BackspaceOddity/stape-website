@@ -31,7 +31,7 @@ export default function SocialProofV2() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-24 md:py-36 bg-background-secondary">
+    <section data-component="SocialProofV2" ref={ref} className="py-24 md:py-36 bg-background-secondary">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         {/* Section headline */}
         <motion.h2

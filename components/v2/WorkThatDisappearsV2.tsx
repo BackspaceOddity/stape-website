@@ -83,7 +83,7 @@ export default function WorkThatDisappearsV2() {
   }, []);
 
   return (
-    <section id="work-that-disappears" ref={ref} className="py-20 md:py-28 bg-primary">
+    <section data-component="WorkThatDisappearsV2" id="work-that-disappears" ref={ref} className="py-20 md:py-28 bg-primary">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

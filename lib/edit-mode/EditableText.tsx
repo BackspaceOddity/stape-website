@@ -19,6 +19,7 @@ export function EditableText({ id, children }: Props) {
   const isApproved = thread?.status === 'approved';
   const isPopupOpen = activePopupId === id;
 
+  // Always show active text (even when not editing) so approved changes are visible
   if (!isEditing) {
     return <>{displayText}</>;
   }

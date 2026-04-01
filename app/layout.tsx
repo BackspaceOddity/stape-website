@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { EditModeProvider, EditToolbar } from "@/lib/edit-mode";
+import { EditModeProvider, EditToolbar, VisualEditPicker } from "@/lib/edit-mode";
 
 // Outfit for headlines - bold, characterful
 const outfit = Outfit({
@@ -38,6 +38,7 @@ export default function RootLayout({
         <EditModeProvider>
           {children}
           <EditToolbar />
+          <VisualEditPicker />
         </EditModeProvider>
       </body>
     </html>

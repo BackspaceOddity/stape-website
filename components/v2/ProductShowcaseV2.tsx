@@ -10,7 +10,7 @@ export default function ProductShowcaseV2() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   return (
-    <section ref={ref} className="py-24 md:py-36 bg-white">
+    <section data-component="ProductShowcaseV2" ref={ref} className="py-24 md:py-36 bg-white">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
