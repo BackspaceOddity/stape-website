@@ -25,3 +25,6 @@
 [2026-04-14 16:46] Edit → scripts/verify-pixel-perfect.mjs
 [2026-04-14 16:54] Edit → .gitignore
 [2026-04-14 16:54] Edit → .gitignore
+[2026-04-14 17:15] Edit → scripts/verify-pixel-perfect.mjs
+[2026-04-14 17:15] Edit → scripts/verify-pixel-perfect.mjs
+[2026-04-14 17:39] Edit → scripts/verify-pixel-perfect.mjs
