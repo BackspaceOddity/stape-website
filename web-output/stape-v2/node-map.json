@@ -24,7 +24,12 @@
       "componentName": "Hero",
       "extracted": true,
       "converted": true,
-      "verified": false
+      "verified": false,
+      "gapBefore": 0,
+      "bleed": {
+        "top": 0,
+        "bottom": 222
+      }
     },
     {
       "name": "metrics-band",
@@ -39,7 +44,12 @@
       "componentName": "MetricsBand",
       "extracted": true,
       "converted": true,
-      "verified": false
+      "verified": false,
+      "gapBefore": 100,
+      "bleed": {
+        "top": 0,
+        "bottom": 0
+      }
     },
     {
       "name": "pain-scenarios",
@@ -54,7 +64,12 @@
       "componentName": "PainScenarios",
       "extracted": true,
       "converted": true,
-      "verified": false
+      "verified": false,
+      "gapBefore": 100,
+      "bleed": {
+        "top": 156,
+        "bottom": 977
+      }
     },
     {
       "name": "tuesday-comparison",
@@ -71,7 +86,12 @@
       "converted": false,
       "verified": false,
       "skip": true,
-      "skipReason": "not yet mounted in app/v2/page.tsx"
+      "skipReason": "not yet mounted in app/v2/page.tsx",
+      "gapBefore": 100,
+      "bleed": {
+        "top": 0,
+        "bottom": 51
+      }
     },
     {
       "name": "how-it-works",
@@ -88,7 +108,12 @@
       "converted": false,
       "verified": false,
       "skip": true,
-      "skipReason": "not yet mounted in app/v2/page.tsx"
+      "skipReason": "not yet mounted in app/v2/page.tsx",
+      "gapBefore": 100,
+      "bleed": {
+        "top": 819,
+        "bottom": 42
+      }
     },
     {
       "name": "legal-architecture",
@@ -105,7 +130,12 @@
       "converted": false,
       "verified": false,
       "skip": true,
-      "skipReason": "not yet mounted in app/v2/page.tsx"
+      "skipReason": "not yet mounted in app/v2/page.tsx",
+      "gapBefore": 100,
+      "bleed": {
+        "top": 51,
+        "bottom": 21
+      }
     },
     {
       "name": "testimonial",
@@ -122,7 +152,12 @@
       "converted": false,
       "verified": false,
       "skip": true,
-      "skipReason": "not yet mounted in app/v2/page.tsx"
+      "skipReason": "not yet mounted in app/v2/page.tsx",
+      "gapBefore": 100,
+      "bleed": {
+        "top": 68,
+        "bottom": 0
+      }
     },
     {
       "name": "comparison-table",
@@ -139,7 +174,12 @@
       "converted": false,
       "verified": false,
       "skip": true,
-      "skipReason": "not yet mounted in app/v2/page.tsx"
+      "skipReason": "not yet mounted in app/v2/page.tsx",
+      "gapBefore": 100,
+      "bleed": {
+        "top": 0,
+        "bottom": 0
+      }
     },
     {
       "name": "role-selector",
@@ -156,7 +196,12 @@
       "converted": false,
       "verified": false,
       "skip": true,
-      "skipReason": "not yet mounted in app/v2/page.tsx"
+      "skipReason": "not yet mounted in app/v2/page.tsx",
+      "gapBefore": 100,
+      "bleed": {
+        "top": 0,
+        "bottom": 3
+      }
     },
     {
       "name": "cost-comparison",
@@ -173,7 +218,12 @@
       "converted": false,
       "verified": false,
       "skip": true,
-      "skipReason": "not yet mounted in app/v2/page.tsx"
+      "skipReason": "not yet mounted in app/v2/page.tsx",
+      "gapBefore": 100,
+      "bleed": {
+        "top": 1405,
+        "bottom": 332
+      }
     },
     {
       "name": "faq",
@@ -190,7 +240,12 @@
       "converted": false,
       "verified": false,
       "skip": true,
-      "skipReason": "not yet mounted in app/v2/page.tsx"
+      "skipReason": "not yet mounted in app/v2/page.tsx",
+      "gapBefore": 100,
+      "bleed": {
+        "top": 0,
+        "bottom": 0
+      }
     },
     {
       "name": "final-cta",
@@ -207,7 +262,12 @@
       "converted": false,
       "verified": false,
       "skip": true,
-      "skipReason": "not yet mounted in app/v2/page.tsx"
+      "skipReason": "not yet mounted in app/v2/page.tsx",
+      "gapBefore": 100,
+      "bleed": {
+        "top": 126,
+        "bottom": 208
+      }
     },
     {
       "name": "footer",
@@ -224,7 +284,12 @@
       "converted": false,
       "verified": false,
       "skip": true,
-      "skipReason": "not yet mounted in app/v2/page.tsx"
+      "skipReason": "not yet mounted in app/v2/page.tsx",
+      "gapBefore": 100,
+      "bleed": {
+        "top": 0,
+        "bottom": 0
+      }
     }
   ]
 }
