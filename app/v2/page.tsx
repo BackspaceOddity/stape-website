@@ -1,39 +1,38 @@
-'use client';
+// Stape v2 homepage — flow-stack mount.
+// Each section is a block in normal document flow. Section bboxes live in
+// web-output/stape-v2/node-map.json; page.tsx only reserves each section's
+// Figma `height` via a wrapper div. Absolute positioning is allowed INSIDE a
+// section (where children carry Figma-absolute coords relative to the section's
+// own 0,0) but NEVER at page level.
+//
+// If a generated component has children with homepage-absolute Y coords baked
+// in (e.g. MetricsBand row at `top-[1298px]`), that's a pipeline bug — the
+// verify-pixel-perfect.mjs script will flag it. Do not patch page.tsx to
+// compensate; fix the generator instead.
 
-import HeroV2 from '@/components/v2/HeroV2';
-import TriggerBar from '@/components/v2/TriggerBar';
-import MetricsV2 from '@/components/v2/MetricsV2';
-import ProductShowcaseV2 from '@/components/v2/ProductShowcaseV2';
-import WorkThatDisappearsV2 from '@/components/v2/WorkThatDisappearsV2';
-import TimelineV2 from '@/components/v2/TimelineV2';
-import ComplianceFirewall from '@/components/v2/ComplianceFirewall';
-import SocialProofV2 from '@/components/v2/SocialProofV2';
-import ComparisonTableV2 from '@/components/v2/ComparisonTableV2';
-import PayrollGeekLevel from '@/components/v2/PayrollGeekLevel';
-import PricingComparison from '@/components/PricingComparison';
-import FAQV2 from '@/components/v2/FAQV2';
-import CTAV2 from '@/components/v2/CTAV2';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import Hero from '@/components/v2/Hero';
+import MetricsBand from '@/components/v2/MetricsBand';
+import PainScenarios from '@/components/v2/PainScenarios';
+
+// Heights from web-output/stape-v2/node-map.json (bbox.height).
+const SECTION_HEIGHTS = {
+  hero: 1198,
+  metricsBand: 530,
+  painScenarios: 1038,
+} as const;
 
 export default function HomeV2() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <Navbar />
-      <HeroV2 />
-      <MetricsV2 />
-      <TriggerBar />
-      <ProductShowcaseV2 />
-      <WorkThatDisappearsV2 />
-      <TimelineV2 />
-      <ComplianceFirewall />
-      <SocialProofV2 />
-      <ComparisonTableV2 />
-      <PayrollGeekLevel />
-      <PricingComparison />
-      <FAQV2 />
-      <CTAV2 />
-      <Footer />
+    <main className="w-[1440px] mx-auto bg-white">
+      <div className="relative w-full" style={{ height: SECTION_HEIGHTS.hero }}>
+        <Hero />
+      </div>
+      <div className="relative w-full" style={{ height: SECTION_HEIGHTS.metricsBand }}>
+        <MetricsBand />
+      </div>
+      <div className="relative w-full" style={{ height: SECTION_HEIGHTS.painScenarios }}>
+        <PainScenarios />
+      </div>
     </main>
   );
 }

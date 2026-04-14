@@ -14,10 +14,12 @@ function Section({
   children,
   className = '',
   id,
+  'data-component': dataComponent,
 }: {
   children: React.ReactNode;
   className?: string;
   id?: string;
+  'data-component'?: string;
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
@@ -26,6 +28,7 @@ function Section({
     <motion.section
       ref={ref}
       id={id}
+      data-component={dataComponent}
       className={`py-20 md:py-28 ${className}`}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -40,7 +43,7 @@ function Section({
 
 function AboutHero() {
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 bg-white overflow-hidden">
+    <section data-component="AboutHero" className="relative pt-28 pb-16 md:pt-36 md:pb-24 bg-white overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Left — text */}
@@ -110,7 +113,7 @@ function AboutHero() {
 
 function WhyWeExist() {
   return (
-    <Section className="bg-primary text-primary-foreground">
+    <Section data-component="WhyWeExist" className="bg-primary text-primary-foreground">
       <div className="max-w-[900px] mx-auto px-6 md:px-12 text-center">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-5">
           Why We Exist
@@ -137,7 +140,7 @@ const proofMetrics = [
 
 function SocialProofBar() {
   return (
-    <Section className="bg-background-secondary">
+    <Section data-component="SocialProofBar" className="bg-background-secondary">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         {/* Metrics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-16">
@@ -210,7 +213,7 @@ const productValues = [
 
 function WhatWeDo() {
   return (
-    <Section className="bg-white">
+    <Section data-component="WhatWeDo" className="bg-white">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <div className="max-w-[600px] mb-14">
           <p className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-4">
@@ -252,7 +255,7 @@ function WhatWeDo() {
 
 function OurStory() {
   return (
-    <Section className="bg-background-secondary">
+    <Section data-component="OurStory" className="bg-background-secondary">
       <div className="max-w-[740px] mx-auto px-6 md:px-12">
         <p className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-5 text-center">
           Our Story
@@ -298,7 +301,7 @@ const values = [
 
 function Values() {
   return (
-    <Section className="bg-white">
+    <Section data-component="Values" className="bg-white">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <div className="text-center mb-14">
           <p className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-4">
@@ -339,7 +342,7 @@ const team = [
 
 function LeadershipTeam() {
   return (
-    <Section className="bg-background-secondary">
+    <Section data-component="LeadershipTeam" className="bg-background-secondary">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <div className="text-center mb-14">
           <p className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-4">
@@ -387,7 +390,7 @@ const openRoles = [
 
 function Careers() {
   return (
-    <Section className="bg-white">
+    <Section data-component="Careers" className="bg-white">
       <div className="max-w-[900px] mx-auto px-6 md:px-12 text-center">
         <p className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-4">
           Careers
@@ -446,7 +449,7 @@ function Careers() {
 
 function BottomCTA() {
   return (
-    <section className="py-20 md:py-28 bg-primary">
+    <section data-component="BottomCTA" className="py-20 md:py-28 bg-primary">
       <div className="max-w-[700px] mx-auto px-6 md:px-12 text-center">
         <motion.h2
           className="text-[32px] md:text-[40px] font-display font-extrabold text-primary-foreground mb-4 tracking-[-0.02em]"

@@ -57,3 +57,24 @@ START.md
 TYPOGRAPHY.md
 WHY_SLOW.md
 *.mov
+
+# edit mode
+_edit-threads.json
+
+# local tool caches (not code)
+.agents/
+.kiro/
+.playwright-mcp/
+.claude/settings.local.json
+.claude/figma-to-code-report.md
+
+# prior-session local artifacts (not part of v2 rebuild)
+About Us page/
+Figma Export/
+New website design/
+about-v2-content.md
+site-product-img.png
+site-product-section.png
+test-*.png
+skills-lock.json
+public/product-hero.jpg
