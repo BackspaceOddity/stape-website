@@ -10,7 +10,7 @@ const imgImage6 = "/stape-website/v2-assets/metrics-band/d10c1ea8971f8551c796346
 export default function SectionMetricsBand() {
   return (
     <div className="contents relative size-full" data-name="section/metrics-band" data-node-id="310:841">
-      <div className="absolute gap-x-[10px] grid grid-cols-[repeat(5,minmax(0,1fr))] grid-rows-[repeat(1,fit-content(100%))] left-[50px] top-[0px] w-[1340px]" data-node-id="310:842">
+      <div className="absolute gap-x-[10px] grid grid-cols-[repeat(5,minmax(0,1fr))] grid-rows-[repeat(1,fit-content(100%))] left-[50px] top-[1298px] w-[1340px]" data-node-id="310:842">
         <div className="bg-[#f5f5f5] col-[1/span_2] content-stretch flex flex-col items-start justify-between justify-self-stretch overflow-clip p-[20px] relative rounded-[20px] row-start-1 self-stretch shrink-0" data-node-id="310:843">
           <p className="font-['ABC_Schengen_A_Cyrillic:Regular',sans-serif] leading-[1.36] not-italic relative shrink-0 text-[#727272] text-[16px] tracking-[0.16px] w-full" data-node-id="310:844" style={{ fontFeatureSettings: "'ss02'" }}>
             Fixed Per Payout
@@ -48,7 +48,7 @@ export default function SectionMetricsBand() {
           </p>
         </div>
       </div>
-      <div className="absolute gap-x-[10px] grid grid-cols-[repeat(5,minmax(0,1fr))] grid-rows-[repeat(1,fit-content(100%))] left-[50px] top-[270px] w-[1340px]" data-node-id="310:857">
+      <div className="absolute gap-x-[10px] grid grid-cols-[repeat(5,minmax(0,1fr))] grid-rows-[repeat(1,fit-content(100%))] left-[50px] top-[1568px] w-[1340px]" data-node-id="310:857">
         <div className="bg-[#f5f5f5] col-start-3 content-stretch flex flex-col items-start justify-between justify-self-stretch not-italic overflow-clip p-[20px] relative rounded-[20px] row-start-1 self-stretch shrink-0" data-node-id="310:858">
           <p className="font-['ABC_Schengen_A_Cyrillic:Regular',sans-serif] leading-[1.4] relative shrink-0 text-[#727272] text-[16px] tracking-[0.16px] w-full" data-node-id="310:859" style={{ fontFeatureSettings: "'ss02'" }}>
             From signup to first payment

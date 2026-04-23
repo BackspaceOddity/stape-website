@@ -118,19 +118,7 @@ async function resizeToMatch(src, targetW, targetH) {
   return out;
 }
 
-// Slice rows [trimTopPx*dpr .. height - trimBottomPx*dpr] out of a PNG,
-// producing a new PNG of the narrowed height. Used for neighbor-aware crop.
-function sliceRows(png, trimTop, trimBottom) {
-  if (trimTop === 0 && trimBottom === 0) return png;
-  const newH = png.height - trimTop - trimBottom;
-  if (newH <= 0) return png; // safety: refuse to over-trim
-  const out = new PNG({ width: png.width, height: newH });
-  const rowBytes = png.width * 4;
-  png.data.copy(out.data, 0, trimTop * rowBytes, (trimTop + newH) * rowBytes);
-  return out;
-}
-
-async function diffSection(section, prevBleedBottom, nextBleedTop) {
+async function diffSection(section) {
   const dir = path.join(SECTIONS_DIR, section.name);
   await fs.mkdir(dir, { recursive: true });
   const figmaPath = path.join(dir, 'figma.png');
@@ -158,41 +146,18 @@ async function diffSection(section, prevBleedBottom, nextBleedTop) {
     figmaImg.data[i + 3] = 255;
   }
   const previewImg = await resizeToMatch(previewPath, figmaImg.width, figmaImg.height);
-
-  // Neighbor-aware crop: bleed zones at top/bottom belong to the previous/next
-  // section (by design — Figma authors overlap sections with negative-top children
-  // or over-tall children). Those zones get verified in the neighbor's own crop;
-  // trimming them here removes false positives without losing signal on either side.
-  // Both images are trimmed symmetrically so pixelmatch operates on aligned data.
-  const dpr = SCALE;
-  const trimTopPx = (prevBleedBottom || 0) * dpr;
-  const trimBottomPx = (nextBleedTop || 0) * dpr;
-  const figmaCropped = sliceRows(figmaImg, trimTopPx, trimBottomPx);
-  const previewCropped = sliceRows(previewImg, trimTopPx, trimBottomPx);
-
-  const diff = new PNG({ width: figmaCropped.width, height: figmaCropped.height });
+  const diff = new PNG({ width: figmaImg.width, height: figmaImg.height });
   const mismatched = pixelmatch(
-    figmaCropped.data,
-    previewCropped.data,
+    figmaImg.data,
+    previewImg.data,
     diff.data,
-    figmaCropped.width,
-    figmaCropped.height,
-    // threshold 0.15: below this, sub-pixel font AA and minor kerning differences
-    // are treated as noise. 0.1 (default) flags AA as mismatch → ~1% noise floor
-    // on text-heavy sections. 0.15 is standard for web-diff verification.
-    { threshold: 0.15, alpha: 0.3 }
+    figmaImg.width,
+    figmaImg.height,
+    { threshold: 0.1, alpha: 0.3 }
   );
   await fs.writeFile(diffPath, PNG.sync.write(diff));
-  const pct = mismatched / (figmaCropped.width * figmaCropped.height);
-  const trimNote = (trimTopPx + trimBottomPx) > 0
-    ? ` [trim top=${prevBleedBottom || 0} bot=${nextBleedTop || 0}]`
-    : '';
-  return {
-    pct,
-    mismatched,
-    dims: `${figmaCropped.width}×${figmaCropped.height}${trimNote}`,
-    mode: previewMeta.mode,
-  };
+  const pct = mismatched / (figmaImg.width * figmaImg.height);
+  return { pct, mismatched, dims: `${figmaImg.width}×${figmaImg.height}`, mode: previewMeta.mode };
 }
 
 // --- main ---
@@ -226,17 +191,8 @@ for (const section of sections) {
     continue;
   }
   process.stdout.write(`  ${section.name.padEnd(22)} ... `);
-  // Look up prev/next within the FULL section list (not filtered), so that
-  // bleed bookkeeping stays correct when running with --section=<one>.
-  const fullIdx = nodeMap.sections.findIndex((s) => s.name === section.name);
-  const prev = fullIdx > 0 ? nodeMap.sections[fullIdx - 1] : null;
-  const next = fullIdx >= 0 && fullIdx < nodeMap.sections.length - 1
-    ? nodeMap.sections[fullIdx + 1]
-    : null;
-  const prevBleedBottom = prev?.bleed?.bottom ?? 0;
-  const nextBleedTop = next?.bleed?.top ?? 0;
   try {
-    const r = await diffSection(section, prevBleedBottom, nextBleedTop);
+    const r = await diffSection(section);
     const pass = r.pct <= THRESHOLD;
     results.push({ section: section.name, nodeId: section.nodeId, ...r, pass });
     console.log(`${pass ? '✅' : '❌'} ${(r.pct * 100).toFixed(2)}% diff [${r.mode}]`);

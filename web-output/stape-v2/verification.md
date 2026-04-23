@@ -1,15 +1,15 @@
 # Pixel-Perfect Verification
 
-**Generated:** 2026-04-14T16:28:32.511Z
+**Generated:** 2026-04-14T15:46:19.564Z
 **Base URL:** http://localhost:3000/stape-website/v2
 **Threshold:** 3.0% pixel diff
 **Scope:** all sections
 
 | Section | nodeId | Diff | Mode | Status |
 |---------|--------|------|------|--------|
-| hero | `310:1660` | 0.27% | bbox-crop | ✅ pass |
-| metrics-band | `310:841` | 0.37% | bbox-crop | ✅ pass |
-| pain-scenarios | `310:872` | 19.42% | selector | ❌ fail |
+| hero | `310:1660` | 0.30% | bbox-crop | ✅ pass |
+| metrics-band | `310:841` | 33.05% | bbox-crop | ❌ fail |
+| pain-scenarios | `310:872` | 30.12% | selector | ❌ fail |
 | tuesday-comparison | `2011:740` | — | — | ⏭ skipped |
 | how-it-works | `310:973` | — | — | ⏭ skipped |
 | legal-architecture | `310:1204` | — | — | ⏭ skipped |
@@ -24,14 +24,6 @@
 **Artifacts per section:** `web-output/stape-v2/sections/<name>/{figma,preview,diff}.png`
 
 ---
-
-## Prior runs
-
-## Prior runs
-
-## Prior runs
-
-## Prior runs
 
 ## Prior runs
 

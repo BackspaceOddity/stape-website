@@ -28,8 +28,3 @@
 [2026-04-14 17:15] Edit → scripts/verify-pixel-perfect.mjs
 [2026-04-14 17:15] Edit → scripts/verify-pixel-perfect.mjs
 [2026-04-14 17:39] Edit → scripts/verify-pixel-perfect.mjs
-[2026-04-14 18:04] Write → app/v2/page.tsx
-[2026-04-14 18:16] Edit → scripts/figma-process-section.mjs
-[2026-04-14 18:16] Edit → scripts/figma-process-section.mjs
-[2026-04-14 18:27] Edit → scripts/verify-pixel-perfect.mjs
-[2026-04-14 18:27] Edit → scripts/verify-pixel-perfect.mjs
