@@ -133,18 +133,6 @@ async function diffSection(section) {
 
   // 3. Normalize + diff
   const figmaImg = PNG.sync.read(await fs.readFile(figmaPath));
-  // Composite Figma PNG onto white — Figma's image export for GROUP/FRAME nodes
-  // returns transparent pixels outside drawn content. Without compositing, those
-  // transparent regions diff against the rendered homepage (white bg) as full
-  // mismatches, producing false positives proportional to empty space.
-  const WHITE = { r: 255, g: 255, b: 255 };
-  for (let i = 0; i < figmaImg.data.length; i += 4) {
-    const alpha = figmaImg.data[i + 3] / 255;
-    figmaImg.data[i]     = Math.round(figmaImg.data[i]     * alpha + WHITE.r * (1 - alpha));
-    figmaImg.data[i + 1] = Math.round(figmaImg.data[i + 1] * alpha + WHITE.g * (1 - alpha));
-    figmaImg.data[i + 2] = Math.round(figmaImg.data[i + 2] * alpha + WHITE.b * (1 - alpha));
-    figmaImg.data[i + 3] = 255;
-  }
   const previewImg = await resizeToMatch(previewPath, figmaImg.width, figmaImg.height);
   const diff = new PNG({ width: figmaImg.width, height: figmaImg.height });
   const mismatched = pixelmatch(
@@ -185,11 +173,6 @@ await new Promise((r) => setTimeout(r, 1500)); // let fonts/animations settle
 
 const results = [];
 for (const section of sections) {
-  if (section.skip) {
-    console.log(`  ${section.name.padEnd(22)} ... ⏭  skipped${section.skipReason ? ` (${section.skipReason})` : ''}`);
-    results.push({ section: section.name, nodeId: section.nodeId, skipped: true, pass: true });
-    continue;
-  }
   process.stdout.write(`  ${section.name.padEnd(22)} ... `);
   try {
     const r = await diffSection(section);
@@ -217,9 +200,7 @@ const lines = [
   `| Section | nodeId | Diff | Mode | Status |`,
   `|---------|--------|------|------|--------|`,
   ...results.map((r) =>
-    r.skipped
-      ? `| ${r.section} | \`${r.nodeId}\` | — | — | ⏭ skipped |`
-      : r.error
+    r.error
       ? `| ${r.section} | \`${r.nodeId}\` | — | — | 💥 ${r.error} |`
       : `| ${r.section} | \`${r.nodeId}\` | ${(r.pct * 100).toFixed(2)}% | ${r.mode} | ${r.pass ? '✅ pass' : '❌ fail'} |`
   ),
