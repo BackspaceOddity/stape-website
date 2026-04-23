@@ -20,23 +20,6 @@
 - **Fix:** `app/v2/page.tsx` is now flow-stack — each section wrapped in a `relative` div sized to the Figma `bbox.height`. No top-[Npx] at page level.
 - **Rule:** Sections stack via flow. Absolute coords are a section-internal affair only. If a generator emits a child with `top-[1298px]` (homepage Y instead of section-local), that's a generator bug — patch the generator, don't patch page.tsx.
 
-### [LEARN] Neighbor-aware crop — treat Figma overlap as design data, not as exception
-- **What happened:** After fixing generator homepage-absolute coords (metrics-band 5.74% → 3.25%), residual 3.25% broke down as 2.46% bottom-band (pain-scenarios' negative-top decorative children bleeding UP into metrics-band's crop) + 0.80% font AA on 80px ABC Schengen. Per-section bbox-crop cannot distinguish "my pixels" from "neighbor's intentional overlap" — Figma REST exports clip to node bounds but the rendered page preserves authorial bleed.
-- **Fix:** Record `bleed:{top,bottom}` per section in node-map at generation time (Figma REST descendant walk: `bleed.top = max(0, section.top − min(child.y))`, `bleed.bottom = max(0, max(child.y+h) − (section.top + section.h))`). At verify time, trim `prevSection.bleed.bottom` rows from top and `nextSection.bleed.top` rows from bottom of BOTH figma.png and preview.png symmetrically before pixelmatch. Raise pixelmatch threshold 0.1 → 0.15 for font-AA. metrics-band 3.25% → **0.37%** ✅.
-- **Rule:** Bleed is a design property, co-located with bbox/gapBefore/skip in node-map — the verifier stays generic, node-map stays the single source of truth. Don't fix verifier symptoms with magic numbers; model the design input.
-- **Promoted to:** `web-architect` HEURISTIC #12. See `Second Brain/nodes/figma-web-pixel-diff-neighbor-aware-crop.md` for full methodology.
-
-### [LEARN] Generator rewrites homepage-absolute top, not left (asymmetric heuristic)
-- **What happened:** Figma Dev Mode emitted `top-[1298px]` `left-[50px]` on MetricsBand's direct children — homepage-absolute, not section-local (the other sections emit section-local). Caused children to render 1298px past section wrapper origin → section visually empty.
-- **Fix:** `figma-process-section.mjs` rewrites `top-[Npx]` → `top-[(N − bbox.top)px]` where N ≥ bbox.top. Top threshold robust: section-local is small (0..bbox.height), homepage-absolute is large (≥ bbox.top). Left NOT rewritten by default: both values in same 50-100px page-gutter range → can't disambiguate section-local padding from homepage-absolute.
-- **Rule:** Asymmetric magnitudes → clean threshold → rewrite. Symmetric magnitudes → can't disambiguate → leave alone. Add Phase 2 for `left` only if `top`-rewrite alone doesn't close the diff AND diff.png shows horizontal sliding.
-- **Assertion:** After rewrite, fail loud if any residual `top-[Npx]` with `N ≥ bbox.height` remains — means the rule missed a case.
-
-### [LEARN] Cross-session work via DECISIONS-INBOX (git) + living agent (HEURISTICS) beats human-as-message-bus
-- **What happened:** Three consecutive Stape v2 infra bugs. First resolved via human copy-paste between SB-architect session and Stape-implementer session — slow, error-prone. Second and third via `Second Brain/docs/DECISIONS-INBOX/*.md` thread files (Problem / Hypothesis / Options / Recommendation / Resolution / Promoted rule) + `/invite web-architect` + `/learn` on resolution.
-- **Rule:** Non-trivial decisions affecting generators, schemas, or shared contracts → open a thread. Inbox holds decisions (wet clay); agent HEURISTICS hold canon (fired ceramic); project-journal holds status. Each layer has one job.
-- **Promoted to:** `Second Brain/nodes/decisions-inbox-cross-session-protocol.md`.
-
 ### [LEARN] Figma image export is transparent outside drawn content — composite before diff
 - **What happened:** verify-pixel-perfect reported hero=24.2%, metrics-band=36.5%, pain-scenarios=30.1%. diff.png showed what looked like a solid "black/red upper container" on hero — I initially hypothesized a missing dark wrapper in Hero.tsx. Checked source.raw.jsx, figma-process-section.mjs, and Figma REST tree — none of them had a dark wrapper. Figma's `section/hero` GROUP has `backgroundColor: rgba(0,0,0,0)` (transparent). Pixel sampling of `figma.png` showed `(0,0,0,0)` in empty zones.
 - **Why:** Figma `/v1/images` endpoint renders only the node's own painted pixels. A GROUP/FRAME with no fill emits alpha=0 outside drawn content. The page-level white background (homepage frame `310:840` has white fill) never makes it into the per-section PNG. Preview screenshot is opaque white everywhere. pixelmatch sees `(0,0,0,0)` vs `(255,255,255,255)` as full mismatch → false positives proportional to empty space in the section.

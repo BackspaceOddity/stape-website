@@ -1,7 +1,7 @@
 # Stape Website — Current State
 
 **Last updated:** 2026-04-14
-**Status:** v2 pixel-perfect rebuild in progress (3/13 sections extracted, **2/3 mounted pass <3% — hero ✅ metrics-band ✅**, pain-scenarios 19.42% pending)
+**Status:** v2 pixel-perfect rebuild in progress (3/13 sections extracted, 1/3 mounted passes — hero ✅)
 **Client/Context:** Stape (global work infrastructure / contractor payroll platform). Website redesign.
 
 ## Current Focus — v2 pixel-perfect rebuild
@@ -21,29 +21,21 @@ Full rebuild of the v2 homepage from Figma (`DycBk4R0tH1h3XH1F2xifX`, node 310:8
 Extracted + converted: hero (310:1660), metrics-band (310:841), pain-scenarios (310:872).
 Remaining 10: tuesday-comparison, how-it-works, legal-architecture, testimonial, comparison-table, role-selector, cost-comparison, faq, final-cta, footer.
 
-### Verification (2026-04-14 final run)
-- **hero:** 0.27% ✅ (bbox-crop)
-- **metrics-band:** 0.37% ✅ (bbox-crop)
-- **pain-scenarios:** 19.42% ❌ (selector) — separate class of mismatch
-- 10 unmounted: ⏭ skipped
+### Verification (2026-04-14 second run — after verifier patches)
+- **hero:** 0.30% diff ✅ (bbox-crop)
+- **metrics-band:** 33.05% diff ❌ (bbox-crop)
+- **pain-scenarios:** 30.12% diff ❌ (selector)
+- 10 remaining: ⏭ skipped (`skip:true` in node-map.json with reason "not yet mounted in app/v2/page.tsx") — verifier now short-circuits instead of crashing with `bitblt reading outside image`.
 
-### Pipeline changes this session (cumulative)
-1. **Transparency fix** — `verify-pixel-perfect.mjs` composites Figma PNG onto white before pixelmatch. Hero 24.20% → 0.30%.
-2. **Skip flag** — `node-map.json` + verifier support `skip:true`/`skipReason`. 10 unmounted sections stop crashing verify.
-3. **gapBefore** — `node-map.json` stores Figma inter-section gap; `app/v2/page.tsx` reads node-map and renders sections with `marginTop=gapBefore`. Metrics-band 33% → 5.74%.
-4. **Generator top-rewrite** — `figma-process-section.mjs` rewrites `top-[Npx]` → `top-[(N − bbox.top)px]` where N ≥ bbox.top, with residual-coord assertion. Metrics-band 5.74% → 3.25%.
-5. **Neighbor-aware crop + threshold 0.15** — `node-map.json` stores `bleed:{top,bottom}` from Figma REST descendant walk; verifier trims `prev.bleed.bottom` / `next.bleed.top` off both figma.png and preview.png symmetrically before pixelmatch; threshold 0.1 → 0.15 silences font-AA. Metrics-band 3.25% → **0.37%**.
-
-## Decision threads (resolved this session)
-- `Second Brain/docs/DECISIONS-INBOX/stape-metrics-band-homepage-absolute-coords.md` — top-rewrite + asymmetric-heuristic rationale.
-- `Second Brain/docs/DECISIONS-INBOX/stape-verifier-neighbor-aware-crop.md` — bleed geometry + threshold 0.15.
-
-Both promoted to `web-architect` HEURISTICS (#6, #7, #12).
+### Verifier changes this session
+1. `verify-pixel-perfect.mjs` composites Figma PNG onto white before pixelmatch. Figma `/v1/images` renders GROUP/FRAME with transparent alpha outside drawn content; preview is opaque white → false diff proportional to empty space. Hero fake-red dropped 24.20% → 0.30% with this single change.
+2. `verify-pixel-perfect.mjs` honours `section.skip` in node-map.json — prints `⏭ skipped`, counts as pass, no image-crop attempt.
+3. `web-output/stape-v2/node-map.json` — 10 unmounted sections flagged `skip:true` with `skipReason`.
 
 ## Open Issues (v2)
-1. **pain-scenarios 19.42%** — not neighbor-bleed (both neighbors have zero bleed toward it). Next session: inspect diff.png per section for localized red clusters, likely content-level class (font, asset, or layout within the section). Open a new thread when picking it up.
+1. **metrics-band 33%, pain-scenarios 30%** — now real signal (not transparency). Not yet diagnosed. Next session: inspect diff.png per section for localized red clusters, pattern likely same class as earlier hero mis-diagnosis (verify assumptions via raw alpha first).
 2. **Hero root uses `display:contents`** — preview element screenshot impossible, bbox-crop fallback works. Consider wrapping generated `contents` roots in `relative w-full h-[Npx]` in the pipeline.
-3. **10 unmounted sections** — skipped in verifier. Keep skipped until each is mounted AND verified <3% one-by-one to avoid accumulating undebuggable debt.
+3. **10 unmounted sections** — skipped in verifier. Keep skipped until each is mounted AND verified <10% one-by-one to avoid accumulating undebuggable debt.
 
 ## Other (parked)
 - About Us v2 content draft (2026-04-08). Subline still too long (5 lines), pending client review on values / services sections.
