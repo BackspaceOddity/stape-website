@@ -2,6 +2,25 @@
 
 import Link from 'next/link';
 
+const solutionsLinks = [
+  { label: 'Contractor of Record (COR)', href: '/contractor-of-record' },
+  { label: 'Employer of Record (EOR)', href: '/employer-of-record' },
+];
+
+const useCasesLinks = [
+  { label: 'Global Hiring', href: '/use-cases/global-hiring' },
+  { label: 'Crypto Payroll', href: '/industry/web3' },
+  { label: 'IP Transfer', href: '/use-cases/ip-transfer' },
+  { label: 'Contractor Compliance', href: '#' },
+];
+
+const builtForLinks = [
+  { label: 'Founders & CEOs', href: '/solutions/founders' },
+  { label: 'HR & People Ops', href: '#' },
+  { label: 'CFOs & Finance', href: '#' },
+  { label: 'Contractors', href: '#' },
+];
+
 const companyLinks = [
   { label: 'About us', href: '/about' },
   { label: 'Careers', href: '/careers' },
@@ -9,12 +28,10 @@ const companyLinks = [
   { label: 'Contact us', href: 'mailto:support@thestape.com', external: true },
 ];
 
-const productLinks = [
-  { label: 'Pay Contractors', href: '/use-cases/contractor-of-record' },
-  { label: 'Hire via EOR', href: '/use-cases/employer-of-record' },
+const resourcesLinks = [
   { label: 'Documentation', href: 'https://docs.thestape.com/', external: true },
   { label: 'Platform Status', href: 'https://status.thestape.com/', external: true },
-  { label: 'Pricing', href: '/pricing' },
+  { label: 'Referral Program', href: '/referral' },
 ];
 
 const legalLinks = [
@@ -70,10 +87,13 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Right: Link columns */}
-          <div className="md:col-span-9 grid grid-cols-2 md:grid-cols-3 gap-8">
+          {/* Right: Link columns — 2 rows × 3 columns on desktop */}
+          <div className="md:col-span-9 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-10">
+            <FooterColumn title="Solutions" links={solutionsLinks} />
+            <FooterColumn title="Use Cases" links={useCasesLinks} />
+            <FooterColumn title="Built for" links={builtForLinks} />
             <FooterColumn title="Company" links={companyLinks} />
-            <FooterColumn title="Product" links={productLinks} />
+            <FooterColumn title="Resources" links={resourcesLinks} />
             <FooterColumn title="Legal" links={legalLinks} />
           </div>
         </div>
@@ -82,8 +102,8 @@ export default function Footer() {
         <div className="pt-8 border-t border-primary-foreground/20">
           <div className="text-xs text-primary-foreground/40 leading-relaxed space-y-1 mb-8">
             <div className="space-y-1">
-              <p>Telecom Apps LLC &middot; 303 Twin Dolphin Drive, CA, US / 541 Jefferson Ave, CA, US</p>
-              <p>Stape Online LTD &middot; TW9 2NA, United Kingdom</p>
+              <p>Telecom Apps LLC &middot; 303 Twin Dolphin Drive, CA, US</p>
+              <p>Stape Online LTD &middot; TW9 2NA, London, UK</p>
             </div>
             <p className="mt-2">
               <a href="mailto:support@thestape.com" className="hover:text-primary-foreground/60 transition-colors">
