@@ -14,13 +14,7 @@ export function EditToolbar() {
   const [savedMsg, setSavedMsg] = useState('');
 
   useEffect(() => {
-    const hasParam = new URLSearchParams(window.location.search).has('edit');
-    if (hasParam) {
-      sessionStorage.setItem('edit-mode', '1');
-      setVisible(true);
-    } else if (sessionStorage.getItem('edit-mode') === '1') {
-      setVisible(true);
-    }
+    setVisible(new URLSearchParams(window.location.search).has('edit'));
   }, []);
 
   if (!visible) return null;

@@ -2,30 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ABC Schengen A Cyrillic — registered with Figma-style family names that include weight as suffix.
-   Figma exports `font-['ABC_Schengen_A_Cyrillic:Medium',sans-serif]`, so we register the same string. */
-@font-face {
-  font-family: 'ABC Schengen A Cyrillic:Regular';
-  src: url('/stape-website/fonts/ABCSchengenACyrillic-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'ABC Schengen A Cyrillic:Medium';
-  src: url('/stape-website/fonts/ABCSchengenACyrillic-Medium.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'ABC Schengen A Cyrillic:Bold';
-  src: url('/stape-website/fonts/ABCSchengenACyrillic-Bold.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   /* Stape design system */
   --background: #FFFFFF;
