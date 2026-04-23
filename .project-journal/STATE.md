@@ -1,7 +1,7 @@
 # Stape Website — Current State
 
 **Last updated:** 2026-04-14
-**Status:** v2 pixel-perfect rebuild in progress (3/13 sections extracted, 1/3 mounted passes — hero ✅)
+**Status:** v2 pixel-perfect rebuild in progress (3/13 sections extracted, 0/13 verification-pass)
 **Client/Context:** Stape (global work infrastructure / contractor payroll platform). Website redesign.
 
 ## Current Focus — v2 pixel-perfect rebuild
@@ -21,21 +21,18 @@ Full rebuild of the v2 homepage from Figma (`DycBk4R0tH1h3XH1F2xifX`, node 310:8
 Extracted + converted: hero (310:1660), metrics-band (310:841), pain-scenarios (310:872).
 Remaining 10: tuesday-comparison, how-it-works, legal-architecture, testimonial, comparison-table, role-selector, cost-comparison, faq, final-cta, footer.
 
-### Verification (2026-04-14 second run — after verifier patches)
-- **hero:** 0.30% diff ✅ (bbox-crop)
-- **metrics-band:** 33.05% diff ❌ (bbox-crop)
-- **pain-scenarios:** 30.12% diff ❌ (selector)
-- 10 remaining: ⏭ skipped (`skip:true` in node-map.json with reason "not yet mounted in app/v2/page.tsx") — verifier now short-circuits instead of crashing with `bitblt reading outside image`.
+### Verification (2026-04-14 run)
+- **hero:** 24.20% diff ❌ (bbox-crop mode, root is `contents`)
+- **metrics-band:** 36.55% diff ❌ (bbox-crop mode)
+- **pain-scenarios:** 30.12% diff ❌ (selector mode, has own box)
+- 10 remaining sections: 💥 bitblt out-of-image (expected — not yet mounted in page.tsx)
 
-### Verifier changes this session
-1. `verify-pixel-perfect.mjs` composites Figma PNG onto white before pixelmatch. Figma `/v1/images` renders GROUP/FRAME with transparent alpha outside drawn content; preview is opaque white → false diff proportional to empty space. Hero fake-red dropped 24.20% → 0.30% with this single change.
-2. `verify-pixel-perfect.mjs` honours `section.skip` in node-map.json — prints `⏭ skipped`, counts as pass, no image-crop attempt.
-3. `web-output/stape-v2/node-map.json` — 10 unmounted sections flagged `skip:true` with `skipReason`.
+All 3 above threshold. Artifacts: `web-output/stape-v2/sections/<name>/{figma,preview,diff}.png`.
 
 ## Open Issues (v2)
-1. **metrics-band 33%, pain-scenarios 30%** — now real signal (not transparency). Not yet diagnosed. Next session: inspect diff.png per section for localized red clusters, pattern likely same class as earlier hero mis-diagnosis (verify assumptions via raw alpha first).
-2. **Hero root uses `display:contents`** — preview element screenshot impossible, bbox-crop fallback works. Consider wrapping generated `contents` roots in `relative w-full h-[Npx]` in the pipeline.
-3. **10 unmounted sections** — skipped in verifier. Keep skipped until each is mounted AND verified <10% one-by-one to avoid accumulating undebuggable debt.
+1. **3/3 mounted sections fail 3% threshold.** Root cause not yet diagnosed — likely font-loading (ABC Schengen), asset scaling (Figma @2x vs preview dpr=2), or remaining Tailwind class mismatches. Next session: open the diff.png per section, identify which pixel regions diverge, trace back to source classes.
+2. **Hero root uses `display:contents`** — preview element screenshot impossible, bbox-crop fallback works but is less precise. Consider wrapping generated `contents` roots in `relative w-full h-[Npx]` in the pipeline.
+3. **10 unextracted sections** — need `get_design_context` pass each (Gate 1).
 
 ## Other (parked)
 - About Us v2 content draft (2026-04-08). Subline still too long (5 lines), pending client review on values / services sections.

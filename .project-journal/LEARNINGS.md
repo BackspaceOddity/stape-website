@@ -20,18 +20,6 @@
 - **Fix:** `app/v2/page.tsx` is now flow-stack — each section wrapped in a `relative` div sized to the Figma `bbox.height`. No top-[Npx] at page level.
 - **Rule:** Sections stack via flow. Absolute coords are a section-internal affair only. If a generator emits a child with `top-[1298px]` (homepage Y instead of section-local), that's a generator bug — patch the generator, don't patch page.tsx.
 
-### [LEARN] Figma image export is transparent outside drawn content — composite before diff
-- **What happened:** verify-pixel-perfect reported hero=24.2%, metrics-band=36.5%, pain-scenarios=30.1%. diff.png showed what looked like a solid "black/red upper container" on hero — I initially hypothesized a missing dark wrapper in Hero.tsx. Checked source.raw.jsx, figma-process-section.mjs, and Figma REST tree — none of them had a dark wrapper. Figma's `section/hero` GROUP has `backgroundColor: rgba(0,0,0,0)` (transparent). Pixel sampling of `figma.png` showed `(0,0,0,0)` in empty zones.
-- **Why:** Figma `/v1/images` endpoint renders only the node's own painted pixels. A GROUP/FRAME with no fill emits alpha=0 outside drawn content. The page-level white background (homepage frame `310:840` has white fill) never makes it into the per-section PNG. Preview screenshot is opaque white everywhere. pixelmatch sees `(0,0,0,0)` vs `(255,255,255,255)` as full mismatch → false positives proportional to empty space in the section.
-- **Fix:** `scripts/verify-pixel-perfect.mjs` now composites figma.png onto white (`WHITE.r/g/b * (1-alpha) + pixel * alpha`, alpha→255) before pixelmatch. Hero diff dropped 24.20% → 0.30% ✅ one commit. Metrics-band and pain-scenarios diffs are now real signal (33% / 30%) — not transparency noise.
-- **Rule:** Any Figma→web diff pipeline must composite the Figma export onto the page-frame's own background before pixelmatch. For pipelines across files, read the homepage/root frame's fills from Figma REST and use that color; white is a pragmatic default when homepage is known white.
-
-### [ERROR] "Black container" in diff.png was transparency — misread as design element
-- **What happened:** Looking at `sections/hero/figma.png`, I described "верхняя зона на чёрном фоне, H1 белый" and built a hypothesis around a missing dark wrapper in generated Hero.tsx. Pursued that root for several steps before checking the actual pixel alpha.
-- **Why:** PNG viewers (including the chat image renderer) fill alpha=0 with black. A transparent region looks identical to a black-filled region visually. I reasoned about layout from the rendered image, not from RGBA values.
-- **Fix:** Before any conclusion about Figma-vs-preview layout from a diff image, sample raw alpha channel of figma.png in suspect regions. If `alpha=0`, you're looking at transparency, not design. Only then look at RGB.
-- **Rule:** diff.png and figma.png are RGBA. Never infer design intent from a screenshot viewer's rendering of transparency. Python `PIL.Image.open(path).load()[x,y]` or equivalent is cheap — run it before posting a diagnosis.
-
 ### [LEARN] `display:contents` roots can't be Puppeteer-screenshotted
 - **What happened:** verify-pixel-perfect first run crashed on hero with "Node is either not visible or not an HTMLElement" — because Figma's `contents` wrapper has no box.
 - **Fix:** Gate 3 now probes computed style first and falls back to `page.screenshot({fullPage:true})` + bbox crop (from node-map.json). Less precise (includes surrounding pixels) but works.

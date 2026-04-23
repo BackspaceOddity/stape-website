@@ -1,35 +1,29 @@
 # Pixel-Perfect Verification
 
-**Generated:** 2026-04-14T15:46:19.564Z
-**Base URL:** http://localhost:3000/stape-website/v2
+**Generated:** 2026-04-14T14:50:38.940Z
+**Base URL:** http://localhost:3847/stape-website/v2
 **Threshold:** 3.0% pixel diff
 **Scope:** all sections
 
 | Section | nodeId | Diff | Mode | Status |
 |---------|--------|------|------|--------|
-| hero | `310:1660` | 0.30% | bbox-crop | ✅ pass |
-| metrics-band | `310:841` | 33.05% | bbox-crop | ❌ fail |
+| hero | `310:1660` | 24.20% | bbox-crop | ❌ fail |
+| metrics-band | `310:841` | 36.55% | bbox-crop | ❌ fail |
 | pain-scenarios | `310:872` | 30.12% | selector | ❌ fail |
-| tuesday-comparison | `2011:740` | — | — | ⏭ skipped |
-| how-it-works | `310:973` | — | — | ⏭ skipped |
-| legal-architecture | `310:1204` | — | — | ⏭ skipped |
-| testimonial | `310:1028` | — | — | ⏭ skipped |
-| comparison-table | `310:1343` | — | — | ⏭ skipped |
-| role-selector | `310:1282` | — | — | ⏭ skipped |
-| cost-comparison | `2011:741` | — | — | ⏭ skipped |
-| faq | `310:1452` | — | — | ⏭ skipped |
-| final-cta | `310:1325` | — | — | ⏭ skipped |
-| footer | `310:1483` | — | — | ⏭ skipped |
+| tuesday-comparison | `2011:740` | — | — | 💥 bitblt reading outside image |
+| how-it-works | `310:973` | — | — | 💥 bitblt reading outside image |
+| legal-architecture | `310:1204` | — | — | 💥 bitblt reading outside image |
+| testimonial | `310:1028` | — | — | 💥 bitblt reading outside image |
+| comparison-table | `310:1343` | — | — | 💥 bitblt reading outside image |
+| role-selector | `310:1282` | — | — | 💥 bitblt reading outside image |
+| cost-comparison | `2011:741` | — | — | 💥 bitblt reading outside image |
+| faq | `310:1452` | — | — | 💥 bitblt reading outside image |
+| final-cta | `310:1325` | — | — | 💥 bitblt reading outside image |
+| footer | `310:1483` | — | — | 💥 bitblt reading outside image |
 
 **Artifacts per section:** `web-output/stape-v2/sections/<name>/{figma,preview,diff}.png`
 
 ---
-
-## Prior runs
-
-## Prior runs
-
-## Prior runs
 
 ## Prior runs
 
