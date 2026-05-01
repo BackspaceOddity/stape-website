@@ -74,7 +74,7 @@ export default function SocialProof() {
             <div className="bg-background-secondary rounded-xl overflow-hidden flex items-center justify-center min-h-[240px]">
               <Image
                 src="/Images/SCR-20260209-bjhb.png"
-                alt="Stape dashboard — contractor management"
+                alt="Kleos dashboard — contractor management"
                 width={600}
                 height={400}
                 className="w-full h-full object-cover rounded-xl"

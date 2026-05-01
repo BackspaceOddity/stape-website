@@ -1,13 +1,13 @@
-# Stape Landing Page — Complete Design Brief
+# Kleos Landing Page — Complete Design Brief
 
 ## Executive Summary
 
-- **Product:** Stape — global contractor payroll platform
+- **Product:** Kleos — global contractor payroll platform
 - **Positioning:** "Job Not To Be Done" (eliminating work that shouldn't exist)
 - **Primary conversion:** "Pay One Person Today" (low-commitment entry)
 - **Target audience:** Founders, CFOs, Hiring Managers, HR Managers
 
-## Design System (Stape design system.pen)
+## Design System (Kleos design system.pen)
 
 ### Colors
 - **Primary:** `#1A2F2B` (dark green) — main background, text
@@ -74,7 +74,7 @@
 
 - **Center:** Large → arrow or transformation symbol
 
-- **Right column titled "What You Do With Stape":**
+- **Right column titled "What You Do With Kleos":**
   - Single line: "Click 'Pay Everyone'" (bold, larger)
 
 **Below columns:** Tagline in accent color: "We're excellent at work that shouldn't exist. It's the fastest way to make it disappear."
@@ -117,7 +117,7 @@
 **Header:** "You have three options. Two of them waste your life."
 
 **Three-column comparison table:**
-- Columns: "Keep DIY-ing It" | "Better Payroll Tool" | "Stape"
+- Columns: "Keep DIY-ing It" | "Better Payroll Tool" | "Kleos"
 - Rows:
   - 6 hours every payroll cycle | 2 hours configuring | ✅ 6 minutes total
   - You learn tax law | You learn their system | ✅ You learn nothing
@@ -160,7 +160,7 @@
 
 **5 questions as expandable accordions:**
 
-1. **"What if Stape gets shut down?"**
+1. **"What if Kleos gets shut down?"**
    - Answer: "We're built on multiple payment rails across multiple jurisdictions. If one path closes, others stay open. Your contractors get paid. Always."
 
 2. **"How is this different from just using Deel?"**
@@ -189,7 +189,7 @@
   - Compliance risk: Priceless (but real)
   - **Total:** €___/month + your sanity
 
-- **Right:** "Stape" (clean pricing)
+- **Right:** "Kleos" (clean pricing)
   - €50 per payout
   - Transparent forex (no hidden spreads)
   - Compliance included
@@ -205,7 +205,7 @@
 
 **Header:** "You don't have to switch everything today"
 
-**Subhead:** "Pay one contractor through Stape this month. See how it feels. If it works, pay two next month. We're not trying to own your soul — we're trying to save your Saturdays."
+**Subhead:** "Pay one contractor through Kleos this month. See how it feels. If it works, pay two next month. We're not trying to own your soul — we're trying to save your Saturdays."
 
 **Two CTAs side by side:**
 - Primary (lime): "Pay One Person Today"
@@ -218,7 +218,7 @@
 ### Footer
 
 **Core Structure:**
-- Logo: Stape
+- Logo: Kleos
 - Link groups:
   - Product: Features, How It Works, Pricing, Security
   - Company: About, Careers, Blog, Contact

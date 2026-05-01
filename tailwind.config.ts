@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        // Stape design system
+        // Kleos design system
         primary: "#1A2F2B",
         "primary-foreground": "#FFFFFF",
         accent: "#D4F651",

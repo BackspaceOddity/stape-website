@@ -52,7 +52,7 @@ export default function WorkThatDisappears() {
             </ul>
           </motion.div>
 
-          {/* Right: What You Do With Stape */}
+          {/* Right: What You Do With Kleos */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -60,7 +60,7 @@ export default function WorkThatDisappears() {
             className="bg-accent/10 rounded-2xl p-8 md:p-10 border border-accent/20 flex flex-col justify-between"
           >
             <div>
-              <h3 className="text-lg font-display font-bold text-white mb-6">What You Do With Stape</h3>
+              <h3 className="text-lg font-display font-bold text-white mb-6">What You Do With Kleos</h3>
               <ul className="space-y-4">
                 {[
                   'Meeting new clients',

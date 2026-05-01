@@ -27,7 +27,7 @@ function EORHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          Stape puts your people on local payroll in 15+ countries. Employment law, taxes, benefits, compliance — handled.
+          Kleos puts your people on local payroll in 15+ countries. Employment law, taxes, benefits, compliance — handled.
         </motion.p>
 
         <motion.div
@@ -93,7 +93,7 @@ function WhoThisIsFor() {
   );
 }
 
-/* ─── Section 3: What Stape EOR Does ──────────────────────────────────────── */
+/* ─── Section 3: What Kleos EOR Does ──────────────────────────────────────── */
 
 function WhatEORDoes() {
   const ref = useRef(null);
@@ -108,7 +108,7 @@ function WhatEORDoes() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          An Employer of Record becomes the legal employer on your behalf. On paper, Stape employs them. In practice, they work for you. Payroll, taxes, benefits, contracts — we run it. You run the team.
+          An Employer of Record becomes the legal employer on your behalf. On paper, Kleos employs them. In practice, they work for you. Payroll, taxes, benefits, contracts — we run it. You run the team.
         </motion.p>
 
         {/* You / EOR split */}
@@ -413,7 +413,7 @@ const eorSteps = [
   },
 ];
 
-function HowStapeDoesEOR() {
+function HowKleosDoesEOR() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
@@ -427,7 +427,7 @@ function HowStapeDoesEOR() {
           className="mb-12 text-center"
         >
           <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
-            How it works with Stape
+            How it works with Kleos
           </h2>
         </motion.div>
 
@@ -754,7 +754,7 @@ export default function EmployerOfRecordPage() {
       <TriggerCards />
       <HonestyCheck />
       <EORvsEntity />
-      <HowStapeDoesEOR />
+      <HowKleosDoesEOR />
       <EORPricing />
       <EORFAQ />
       <EORBottomCTA />

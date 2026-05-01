@@ -263,7 +263,7 @@ export default function Navbar() {
 
             {/* ── Logo ── */}
             <Link href="/" className="text-xl font-display font-extrabold text-primary tracking-tight">
-              Stape
+              Kleos
             </Link>
 
             {/* ── Desktop nav items ── */}

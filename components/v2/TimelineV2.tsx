@@ -12,12 +12,12 @@ const timelineSteps = [
   },
   {
     time: 'Today, 2:15pm',
-    title: 'We handle KYC, tax classification, compliance, and currency conversion',
+    title: 'Compliant contracts, IP assignment, KYC, and tax classification — handled',
     aside: null,
   },
   {
     time: 'Tomorrow, 10am',
-    title: 'Money lands in 242 locations, local currency',
+    title: 'Your team is contracted and paid in 242 locations',
     aside: '(No SWIFT limbo. No bank interrogations.)',
   },
   {
@@ -41,7 +41,7 @@ export default function TimelineV2() {
           className="mb-12 text-center"
         >
           <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
-            From payroll overwhelm to &ldquo;wait, that was it?&rdquo; in under 24 hours
+            From global hiring overwhelm to &ldquo;wait, that was it?&rdquo;
           </h2>
         </motion.div>
 

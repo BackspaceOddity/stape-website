@@ -58,7 +58,7 @@ const beforeAfterData = [
   },
   {
     before: 'Investors see direct links to high-risk jurisdictions in your payment chain',
-    after: 'One agreement with Stape. Compliant contracts with every hire. Your cap table stays clean.',
+    after: 'One agreement with Kleos. Compliant contracts with every hire. Your cap table stays clean.',
   },
   {
     before: 'Key developers can\u2019t get nomad docs \u2014 threatening to leave',
@@ -66,7 +66,7 @@ const beforeAfterData = [
   },
   {
     before: 'Percentage fees eating up to 10\u201312% of payroll as salaries grow past $3\u20135k',
-    after: 'Flat \u20AC50 per payout. $3k salary or $8k \u2014 same fee. You save thousands monthly.',
+    after: 'Flat \u20AC50 per contractor. $3k salary or $8k \u2014 same fee. Plus zero fees from contractors themselves.',
   },
 ];
 
@@ -79,7 +79,7 @@ const timelineSteps = [
   {
     time: 'Step 2',
     title: 'We set up the legal rails',
-    aside: 'Your company signs one B2B agreement with Stape. We handle individual contracts with each team member — compliance, documentation, and local requirements included.',
+    aside: 'Your company signs one B2B agreement with Kleos. We handle individual contracts with each team member — compliance, documentation, and local requirements included.',
   },
   {
     time: 'Step 3',
@@ -89,7 +89,7 @@ const timelineSteps = [
   {
     time: 'Step 4',
     title: 'You press \u201CPay all\u201D',
-    aside: 'Upload your registry. Money hits contractor accounts. Invoices and compliance docs generate automatically. You\u2019re done.',
+    aside: 'Upload your registry. Your team gets paid. Invoices and compliance docs generate automatically. You\u2019re done.',
   },
 ];
 
@@ -120,7 +120,7 @@ const comparisonData = [
     eor: '% of salary + hidden FX + withdraw fee',
     freelance: '% of salary + \u201Ctasks\u201D overhead',
     crypto: '1\u20132% + your time',
-    stape: '\u20AC50 flat + fixed FX',
+    stape: '\u20AC50 flat per contractor + zero contractor fees',
   },
   {
     feature: 'Admin time per payout',
@@ -147,12 +147,12 @@ const comparisonData = [
 
 const testimonials = [
   {
-    quote: 'Once we hit 50 people, crypto payouts became simply impossible to administer. It was taking a huge amount of time. Stape automated the whole thing.',
+    quote: 'Once we hit 50 people, crypto payouts became simply impossible to administer. It was taking a huge amount of time. Kleos automated the whole thing.',
     author: 'Founder, SaaS company',
     detail: '50+ contractors',
   },
   {
-    quote: 'It\u2019s extremely important for us to keep our US entity\u2019s payment trail clean. Stape\u2019s structure solved that completely.',
+    quote: 'It\u2019s extremely important for us to keep our US entity\u2019s payment trail clean. Kleos\u2019s structure solved that completely.',
     author: 'CEO, US-incorporated startup',
     detail: '',
   },
@@ -166,7 +166,7 @@ const testimonials = [
 const faqs = [
   {
     question: 'How do I explain this structure to my investors / auditors?',
-    answer: 'Your company has a standard B2B services agreement with Stape. You receive invoices from our entity. There\u2019s no direct contractual or payment link between your company and individual contractors in sanctioned regions. We provide full documentation that satisfies audit requirements.',
+    answer: 'Your company has a standard B2B services agreement with Kleos. You receive invoices from our entity. There\u2019s no direct contractual or payment link between your company and individual contractors in sanctioned regions. We provide full documentation that satisfies audit requirements.',
   },
   {
     question: 'What happens if a payment corridor gets blocked?',
@@ -271,8 +271,8 @@ function HeroFounders() {
         >
           {[
             '600+ Teams Switched',
-            '€50 Flat Fee Per Payout',
-            'Under 24hrs to First Payment',
+            '€50 Flat Per Contractor',
+            '60 seconds contractor onboarding',
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm text-foreground-muted">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -403,7 +403,7 @@ function BeforeAfter() {
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-4 px-3 text-sm font-bold text-foreground-muted w-1/2">Your life now</th>
-                  <th className="text-left py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl w-1/2">Your life with Stape</th>
+                  <th className="text-left py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl w-1/2">Your life with Kleos</th>
                 </tr>
               </thead>
               <tbody>
@@ -436,7 +436,7 @@ function HowItWorks() {
           className="mb-12 text-center"
         >
           <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
-            From &ldquo;we have a problem&rdquo; to &ldquo;wait, that was it?&rdquo; in 48&nbsp;hours
+            From &ldquo;we have a problem&rdquo; to &ldquo;wait, that was it?&rdquo;
           </h2>
         </motion.div>
 
@@ -532,7 +532,7 @@ function AlternativesComparison() {
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">Global EOR</th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">Freelance Platforms</th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">Crypto / DIY</th>
-                  <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl">Stape</th>
+                  <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl">Kleos</th>
                 </tr>
               </thead>
               <tbody>
@@ -697,14 +697,14 @@ function CostComparison() {
             </div>
           </div>
 
-          {/* Stape */}
+          {/* Kleos */}
           <div className="bg-accent rounded-2xl p-8 text-primary">
             <h3 className="text-3xl md:text-4xl font-display font-extrabold mb-1">&euro;50</h3>
-            <p className="text-sm mb-6">per payout</p>
+            <p className="text-sm mb-6">per contractor</p>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <span className="opacity-60">&bull;</span>
-                <span>Fixed FX rates, predictable every payout</span>
+                <span>Flat fee, zero fees from contractors</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">&bull;</span>
@@ -842,7 +842,7 @@ function FinalCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Pay one contractor through Stape this week. See how it feels when the money lands in 48&nbsp;hours and the audit trail generates itself. If it works, pay two next month.
+          Pay one contractor through Kleos this week. 60 seconds to onboard them. The audit trail generates itself. If it works, pay two next month.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"

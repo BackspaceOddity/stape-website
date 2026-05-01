@@ -22,7 +22,7 @@ export const heroContent = {
   },
   headline: 'Payroll was never the job you signed up for. We make it disappear',
   subheadline:
-    "Stape is an AI-powered platform for global contractor payroll: compliance, fixed FX rates, tax handling in 240+ countries — we've got it sorted, so you don't have to.",
+    "Kleos is an AI-powered platform for global contractor payroll: compliance, fixed FX rates, tax handling in 240+ countries — we've got it sorted, so you don't have to.",
   cta: {
     primary: {
       label: 'Book a Demo',

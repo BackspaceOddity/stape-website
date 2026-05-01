@@ -51,7 +51,7 @@ function AboutHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              About Stape
+              About Kleos
             </motion.p>
 
             <motion.h1
@@ -78,7 +78,7 @@ function AboutHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15 }}
             >
-              Stape is global work infrastructure. We make payroll and compliance invisible&nbsp;&mdash; so companies hire for talent, not geography.
+              Kleos is global work infrastructure. We make payroll and compliance invisible&nbsp;&mdash; so companies hire for talent, not geography.
             </motion.p>
           </div>
 
@@ -92,7 +92,7 @@ function AboutHero() {
             <div className="rounded-2xl overflow-hidden shadow-card">
               <Image
                 src={`${basePath}/product-hero.png`}
-                alt="Stape platform on a laptop"
+                alt="Kleos platform on a laptop"
                 width={640}
                 height={480}
                 className="w-full h-auto"
@@ -129,7 +129,7 @@ function WhyWeExist() {
 /* ─── 3. Social Proof / Numbers Bar ──────────────────────────────────────── */
 
 const proofMetrics = [
-  { value: '600+', label: 'Companies trust Stape' },
+  { value: '600+', label: 'Companies trust Kleos' },
   { value: '150+', label: 'Countries covered' },
   { value: '$40M+', label: 'Paid to contractors' },
   { value: '0', label: 'Payment failures in 12 months' },
@@ -220,7 +220,7 @@ function WhatWeDo() {
             The entire back-office for global teams&nbsp;&mdash; in one platform.
           </h2>
           <p className="text-base md:text-lg text-foreground-secondary leading-relaxed">
-            From a single contractor payment to a full international roster, Stape handles the complexity that sits between &ldquo;we found the right person&rdquo; and &ldquo;they got paid on time, compliantly.&rdquo;
+            From a single contractor payment to a full international roster, Kleos handles the complexity that sits between &ldquo;we found the right person&rdquo; and &ldquo;they got paid on time, compliantly.&rdquo;
           </p>
         </div>
 
@@ -263,7 +263,7 @@ function OurStory() {
 
         <div className="space-y-6 text-base md:text-lg text-foreground-secondary leading-relaxed">
           <p>
-            Right now, somewhere, a founder is staring at a spreadsheet at 2&nbsp;AM. Not building. Not shipping. Not hiring. Reconciling payments to a developer in Tbilisi. Chasing an invoice from a designer in São Paulo. Googling tax residency rules for the third time this week. That&apos;s not work. That&apos;s work pretending to be work. We started Stape because we believe this entire category of work shouldn&apos;t exist. Not &ldquo;should be easier.&rdquo; Not &ldquo;should be faster.&rdquo; Should. Not. Exist.
+            Right now, somewhere, a founder is staring at a spreadsheet at 2&nbsp;AM. Not building. Not shipping. Not hiring. Reconciling payments to a developer in Tbilisi. Chasing an invoice from a designer in São Paulo. Googling tax residency rules for the third time this week. That&apos;s not work. That&apos;s work pretending to be work. We started Kleos because we believe this entire category of work shouldn&apos;t exist. Not &ldquo;should be easier.&rdquo; Not &ldquo;should be faster.&rdquo; Should. Not. Exist.
           </p>
 
           <p>
@@ -346,10 +346,10 @@ function LeadershipTeam() {
             Leadership
           </p>
           <h2 className="text-[28px] md:text-[36px] font-display font-extrabold text-primary tracking-[-0.02em]">
-            The team behind Stape
+            The team behind Kleos
           </h2>
           <p className="text-base text-foreground-secondary mt-4 max-w-2xl mx-auto">
-            A small, high-agency team spread across multiple countries. We practice what we preach&nbsp;&mdash; our own payroll runs on Stape.
+            A small, high-agency team spread across multiple countries. We practice what we preach&nbsp;&mdash; our own payroll runs on Kleos.
           </p>
         </div>
 
@@ -464,7 +464,7 @@ function BottomCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.05 }}
         >
-          Pay one contractor through Stape this month. See how it feels. If it works, pay two next month. We&apos;re not trying to own your soul&nbsp;&mdash; we&apos;re trying to save your Saturdays.
+          Pay one contractor through Kleos this month. See how it feels. If it works, pay two next month. We&apos;re not trying to own your soul&nbsp;&mdash; we&apos;re trying to save your Saturdays.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"

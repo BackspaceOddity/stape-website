@@ -13,7 +13,7 @@ export default function ReferralPage() {
             Referral Program
           </h1>
           <p className="text-lg text-foreground-secondary leading-relaxed">
-            Refer a team to Stape and earn rewards. Details coming soon.
+            Refer a team to Kleos and earn rewards. Details coming soon.
           </p>
         </div>
       </main>

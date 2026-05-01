@@ -26,7 +26,7 @@ const todayBullets = [
   'Discover Wise flagged a payment for review. Again.',
   'Email your accountant asking about Brazilian tax codes',
   'Apologize to your best developer for the late payment',
-  'Open yet another tab to check FX rates',
+  'Open yet another tab to see what today’s rate actually is',
   'Realize it\u2019s 7pm and you haven\u2019t done actual work',
   'Set a reminder to do all of this again next month',
 ];
@@ -107,7 +107,7 @@ export default function WorkThatDisappearsV2() {
             style={{ maxHeight: CARD_HEIGHT }}
           >
             <div className="px-8 md:px-10 pt-8 md:pt-10">
-              <h3 className="text-lg font-display font-bold text-white mb-6"><EditableText id="wtd.left-title">Your Tuesday without Stape</EditableText></h3>
+              <h3 className="text-lg font-display font-bold text-white mb-6"><EditableText id="wtd.left-title">Your Tuesday without Kleos</EditableText></h3>
             </div>
             <div className="px-8 md:px-10 pb-0">
               <ul className="space-y-3">
@@ -153,7 +153,7 @@ export default function WorkThatDisappearsV2() {
             <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-black/60 to-transparent z-10" />
             <div className="absolute top-5 left-6 z-20">
               <span className="text-xs font-semibold text-white/70 uppercase tracking-widest">
-                <EditableText id="wtd.right-label">Your Tuesday with Stape</EditableText>
+                <EditableText id="wtd.right-label">Your Tuesday with Kleos</EditableText>
               </span>
             </div>
 

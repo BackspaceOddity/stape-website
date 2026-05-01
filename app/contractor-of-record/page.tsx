@@ -27,7 +27,7 @@ function CORHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          Stape handles contracts, compliance, and payments for your contractors in 242 locations. You handle the work.
+          Kleos handles contracts, compliance, and payments for your contractors in 242 locations. You handle the work.
         </motion.p>
 
         <motion.div
@@ -57,7 +57,7 @@ function CORHero() {
   );
 }
 
-/* ─── Section 2: What Stape COR Does ──────────────────────────────────────── */
+/* ─── Section 2: What Kleos COR Does ──────────────────────────────────────── */
 
 function WhatCORDoes() {
   const ref = useRef(null);
@@ -72,7 +72,7 @@ function WhatCORDoes() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          A Contractor of Record sits between you and your contractors. You manage the work. Stape manages contracts, classification, cross-border payments, tax docs, and the audit trail. One invoice from us, money in their accounts, compliance handled.
+          A Contractor of Record sits between you and your contractors. You manage the work. Kleos manages contracts, classification, cross-border payments, tax docs, and the audit trail. One invoice from us, money in their accounts, compliance handled.
         </motion.p>
 
         {/* You / COR split */}
@@ -224,7 +224,7 @@ const fullPictureRows = [
   },
   {
     feature: 'Typical cost',
-    cor: '\u20ac50 per payout (Stape)',
+    cor: '\u20ac50 per contractor (Kleos)',
     eor: 'From \u20ac200/employee/month',
   },
   {
@@ -352,7 +352,7 @@ const stapeSteps = [
   },
   {
     title: 'Approve payments. We deliver them.',
-    description: 'One invoice from Stape, payments in local currencies, all tax docs generated.',
+    description: 'One invoice from Kleos, payments in local currencies, all tax docs generated.',
   },
   {
     title: 'Audit trail builds itself',
@@ -360,7 +360,7 @@ const stapeSteps = [
   },
 ];
 
-function HowStapeDoesIt() {
+function HowKleosDoesIt() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
@@ -374,7 +374,7 @@ function HowStapeDoesIt() {
           className="mb-12 text-center"
         >
           <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
-            How it works with Stape
+            How it works with Kleos
           </h2>
         </motion.div>
 
@@ -441,7 +441,7 @@ const personas = [
   {
     id: 'startups',
     role: 'Startups scaling fast',
-    tagline: 'Onboarded and paid in under 24 hours',
+    tagline: 'Onboarded in 60 seconds',
     description:
       'You found a senior dev in Argentina and a designer in Poland. You need them working next week, not next quarter. A COR gets them onboarded and paid in under 24 hours.',
     icon: (
@@ -454,7 +454,7 @@ const personas = [
   {
     id: 'remote-first',
     role: 'Remote-first companies',
-    tagline: '15 countries, zero compliance headaches',
+    tagline: '242 countries, zero compliance headaches',
     description:
       'Your team is distributed across 15 countries. Managing 15 sets of contractor laws isn\u2019t a side project — it\u2019s a full-time job. Unless you hand it off.',
     icon: (
@@ -467,7 +467,7 @@ const personas = [
   {
     id: 'finance',
     role: 'Finance teams tired of the mess',
-    tagline: 'One invoice. Fixed FX. Clean audit trail.',
+    tagline: 'One invoice. Predictable cost. Clean audit trail.',
     description:
       'One invoice instead of dozens. Fixed FX rates instead of surprise conversion fees. An audit trail that doesn\u2019t require a forensic accountant to reconstruct.',
     icon: (
@@ -581,7 +581,7 @@ const corPricingFeatures = [
   'Full compliance & audit trail',
   'Auto-generated tax documents',
   'KYC handling',
-  '24h onboarding',
+  '60 seconds onboarding',
   'One B2B invoice for your books',
   'FX conversion no more than 3.5% — locked at signing',
 ];
@@ -631,7 +631,7 @@ function CORPricing() {
             <div className="mb-1">
               <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;50</span>
             </div>
-            <p className="text-base text-foreground-secondary mb-1">/ per payout</p>
+            <p className="text-base text-foreground-secondary mb-1">/ per contractor</p>
             <p className="text-sm text-foreground-muted mb-8">Fixed. No monthly fee.</p>
 
             <a
@@ -695,7 +695,7 @@ const corFaqs = [
   {
     question: 'What happens if a contractor should actually be an employee?',
     answer:
-      'We flag it before it becomes a problem. If the engagement starts looking like employment — fixed hours, your tools, your manager — we\u2019ll tell you. Stape can move them to full-time payroll through our Employer of Record service with minimal disruption.',
+      'We flag it before it becomes a problem. If the engagement starts looking like employment — fixed hours, your tools, your manager — we\u2019ll tell you. Kleos can move them to full-time payroll through our Employer of Record service with minimal disruption.',
   },
   {
     question: 'What about IP ownership?',
@@ -790,7 +790,7 @@ function BottomCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          242 locations. Compliant contracts. Locked FX rates. Audit trail included. &euro;50 per payout.
+          242 locations. Compliant contracts. Predictable cost. Audit trail included. &euro;50 per contractor.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"
@@ -830,7 +830,7 @@ export default function ContractorOfRecordPage() {
       <WhatCORDoes />
       <ProblemCards />
       <FullPicture />
-      <HowStapeDoesIt />
+      <HowKleosDoesIt />
       <WhoUsesACOR />
       <CORPricing />
       <CORFAQ />

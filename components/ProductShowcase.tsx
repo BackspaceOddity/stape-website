@@ -24,7 +24,7 @@ export default function ProductShowcase() {
           <div className="relative w-full rounded-xl overflow-hidden shadow-lg">
             <Image
               src="/Images/SCR-20260209-bjhb.png"
-              alt="Stape dashboard — contractor payment management"
+              alt="Kleos dashboard — contractor payment management"
               width={1600}
               height={900}
               className="w-full h-auto"

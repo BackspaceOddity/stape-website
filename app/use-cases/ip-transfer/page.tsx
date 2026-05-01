@@ -84,11 +84,11 @@ const stickyStyles = [
 const steps = [
   {
     title: 'We structure the IP chain',
-    body: 'Every contractor signs an agreement with Stape that includes full IP assignment \u2014 covering code, designs, models, and any work product. Rights transfer from contractor to Stape automatically. No manual addendums, no per-task paperwork.',
+    body: 'Every contractor signs an agreement with Kleos that includes full IP assignment \u2014 covering code, designs, models, and any work product. Rights transfer from contractor to Kleos automatically. No manual addendums, no per-task paperwork.',
   },
   {
     title: 'Rights cascade to you',
-    body: 'Your Master Service Agreement with Stape mirrors the contractor\u2019s IP assignment. Rights flow from contractor \u2192 Stape \u2192 your company. The chain is airtight, auditable, and designed for due diligence.',
+    body: 'Your Master Service Agreement with Kleos mirrors the contractor\u2019s IP assignment. Rights flow from contractor \u2192 Kleos \u2192 your company. The chain is airtight, auditable, and designed for due diligence.',
   },
   {
     title: 'Documents your CFO will love',
@@ -97,10 +97,10 @@ const steps = [
 ];
 
 const benefits = [
-  { stat: 'Cascade IP transfer', desc: 'Contractor \u2192 Stape \u2192 You. Full assignment chain built into every contract. No gaps for due diligence to find.' },
+  { stat: 'Cascade IP transfer', desc: 'Contractor \u2192 Kleos \u2192 You. Full assignment chain built into every contract. No gaps for due diligence to find.' },
   { stat: 'Detailed closing documents', desc: 'Invoices reference specific deliverables, not "services." Ready for balance sheet recognition as intangible assets.' },
   { stat: 'NDA & Non-compete support', desc: 'Sign NDAs directly with your contractors \u2014 separate from the financial relationship. We\u2019ll guide you through the structure.' },
-  { stat: 'Intangible asset ready', desc: 'Documentation structured for your accountant to recognize IP on the balance sheet. Built for \u041D\u041C\u0410 / IAS 38 compliance.' },
+  { stat: 'Intangible asset ready', desc: 'Documentation structured for your accountant to recognize IP on the balance sheet. Built for IFRS / IAS 38 intangible asset recognition.' },
   { stat: 'Jurisdiction-aware contracts', desc: 'Contracts tailored per contractor\u2019s location. IP clauses that hold up in UAE, US, EU, and 240+ other jurisdictions.' },
   { stat: 'Works with your tools', desc: 'Attach Jira exports, GitHub links, or SOW documents to invoices. Your paper trail matches your actual workflow.' },
 ];
@@ -116,7 +116,7 @@ const comparisonData = [
     feature: 'Cascade transfer',
     diy: 'Your lawyer\u2019s problem',
     competitors: 'Unclear chain',
-    stape: 'Contractor \u2192 Stape \u2192 You',
+    stape: 'Contractor \u2192 Kleos \u2192 You',
   },
   {
     feature: 'Closing documents',
@@ -140,7 +140,7 @@ const comparisonData = [
     feature: 'Setup time',
     diy: 'Weeks of legal work',
     competitors: 'Days + manual IP per task',
-    stape: 'Under 24 hours',
+    stape: '60 seconds',
   },
 ];
 
@@ -204,7 +204,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          When your team is distributed across borders, intellectual property doesn&apos;t transfer itself. Stape builds IP assignment into every contract&nbsp;&mdash; so the code, designs, and ideas your contractors create are legally yours. No&nbsp;gaps. No&nbsp;guesswork.
+          When your team is distributed across borders, intellectual property doesn&apos;t transfer itself. Kleos builds IP assignment into every contract&nbsp;&mdash; so the code, designs, and ideas your contractors create are legally yours. No&nbsp;gaps. No&nbsp;guesswork.
         </motion.p>
 
         {/* CTA */}
@@ -234,7 +234,7 @@ function Hero() {
         >
           {[
             'Full IP assignment in every contract',
-            'Cascade transfer: contractor \u2192 Stape \u2192 you',
+            'Cascade transfer: contractor \u2192 Kleos \u2192 you',
             'Audit-ready closing documents',
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm text-foreground-muted">
@@ -358,7 +358,7 @@ function TheShift() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          The companies that lose IP don&apos;t lose it in court. They lose it in the gap between &ldquo;we have a contract&rdquo; and &ldquo;the contract actually assigns rights.&rdquo; Every contractor engagement should have a clear, auditable chain: the person who wrote the code assigns rights to the legal entity that contracted them, and that entity assigns rights to you. Not as an afterthought. As architecture. That&apos;s what Stape builds into every engagement by default.
+          The companies that lose IP don&apos;t lose it in court. They lose it in the gap between &ldquo;we have a contract&rdquo; and &ldquo;the contract actually assigns rights.&rdquo; Every contractor engagement should have a clear, auditable chain: the person who wrote the code assigns rights to the legal entity that contracted them, and that entity assigns rights to you. Not as an afterthought. As architecture. That&apos;s what Kleos builds into every engagement by default.
         </motion.p>
       </div>
     </section>
@@ -388,7 +388,7 @@ function HowItWorks() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
           transition={{ duration: 0.5, delay: 0.05 }}
         >
-          Stape is your Contractor of Record&nbsp;&mdash; with IP assignment built into the legal architecture from day one. One platform, one chain of rights, zero&nbsp;ambiguity.
+          Kleos is your Contractor of Record&nbsp;&mdash; with IP assignment built into the legal architecture from day one. One platform, one chain of rights, zero&nbsp;ambiguity.
         </motion.p>
 
         <motion.div
@@ -507,7 +507,7 @@ function RealTalk() {
               A SaaS company gets acquired. The buyer&apos;s lawyers trace every line of code. Two contractors never signed IP agreements. The acquisition closes&nbsp;&mdash; but $800K goes into escrow &ldquo;until the IP situation is resolved.&rdquo; It never fully resolves.
             </p>
             <p className="mt-6 text-accent font-display font-bold text-lg">
-              This isn&apos;t theoretical. This is what Stape prevents&nbsp;&mdash; by making IP transfer structural, not something you remember to add later.
+              This isn&apos;t theoretical. This is what Kleos prevents&nbsp;&mdash; by making IP transfer structural, not something you remember to add later.
             </p>
           </div>
         </motion.div>
@@ -553,7 +553,7 @@ function Comparison() {
                   <th className="text-left py-4 px-3 text-sm font-semibold text-primary w-[20%]"></th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">DIY (Manual contracts)</th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">Competitors (Solar Staff, etc.)</th>
-                  <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl">Stape</th>
+                  <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl">Kleos</th>
                 </tr>
               </thead>
               <tbody>
@@ -618,7 +618,7 @@ function BottomCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Book a 15-minute demo and see how Stape handles IP transfer&nbsp;&mdash; cascade assignment, detailed documentation, and audit-ready contracts&nbsp;&mdash; so your code, your designs, and your ideas are legally yours.
+          Book a 15-minute demo and see how Kleos handles IP transfer&nbsp;&mdash; cascade assignment, detailed documentation, and audit-ready contracts&nbsp;&mdash; so your code, your designs, and your ideas are legally yours.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"
@@ -650,7 +650,7 @@ function BottomCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          Average time from first call to first contract with IP assignment: under 24 hours.
+          Average time from first call to first contract with IP assignment: 60 seconds.
         </motion.p>
       </div>
     </section>

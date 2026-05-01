@@ -22,7 +22,7 @@ export default function CTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Pay one contractor through Stape this month. See how it feels. If it works, pay two next month. We&apos;re not trying to own your soul — we&apos;re trying to save your Saturdays.
+          Pay one contractor through Kleos this month. See how it feels. If it works, pay two next month. We&apos;re not trying to own your soul — we&apos;re trying to save your Saturdays.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"

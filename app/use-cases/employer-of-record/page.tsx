@@ -13,7 +13,7 @@ export default function EmployerOfRecordUseCasePage() {
             Employer of Record
           </h1>
           <p className="text-lg text-foreground-secondary leading-relaxed">
-            Learn how Stape acts as your Employer of Record for compliant global hiring. Coming soon.
+            Learn how Kleos acts as your Employer of Record for compliant global hiring. Coming soon.
           </p>
         </div>
       </main>

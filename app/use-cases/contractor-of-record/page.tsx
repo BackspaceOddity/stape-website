@@ -13,7 +13,7 @@ export default function ContractorOfRecordUseCasePage() {
             Contractor of Record
           </h1>
           <p className="text-lg text-foreground-secondary leading-relaxed">
-            Learn how Stape acts as your Contractor of Record to simplify global contractor payments. Coming soon.
+            Learn how Kleos acts as your Contractor of Record to simplify global contractor payments. Coming soon.
           </p>
         </div>
       </main>

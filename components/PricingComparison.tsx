@@ -70,14 +70,14 @@ export default function PricingComparison() {
             </div>
           </div>
 
-          {/* Stape */}
+          {/* Kleos */}
           <div className="bg-accent rounded-2xl p-8 text-primary">
             <h3 className="text-3xl md:text-4xl font-display font-extrabold mb-1">€50</h3>
-            <p className="text-sm mb-6">per payout</p>
+            <p className="text-sm mb-6">per contractor</p>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <span className="opacity-60">•</span>
-                <span>Fixed FX rates, predictable every payout</span>
+                <span>Flat fee, zero fees from contractors</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">•</span>

@@ -52,7 +52,7 @@ const initialPainCards: Web3PainCard[] = [
   },
 ];
 
-const withoutStape = [
+const withoutKleos = [
   'Check which contractors need fiat vs. crypto this month',
   'Buy USDT on an exchange (or move from treasury)',
   'Send individually from a cold wallet to 30+ addresses',
@@ -62,43 +62,43 @@ const withoutStape = [
   'Repeat next month',
 ];
 
-const withStape = [
-  'Fund your Stape balance in stablecoins (one transaction)',
+const withKleos = [
+  'Fund your account using your preferred method, including stablecoin-friendly options (one transaction)',
   'Approve the monthly payout batch in the dashboard',
-  'Each contractor chooses their own split: card, bank transfer, or USDT',
-  'Stape handles service agreements, invoices, and compliance docs throughout the entire contractor lifecycle',
+  'Each contractor chooses how they get paid in their personal dashboard',
+  'Kleos handles service agreements, IP assignment, invoices, and compliance docs throughout the entire contractor lifecycle',
   'Your investors get a clean audit trail. Your team gets paid without drama.',
 ];
 
 const howItWorksSteps = [
   {
     step: 'Step 1',
-    title: 'Fund your balance in crypto',
-    description: 'Send stablecoins from your verified corporate wallet. We run a standard KYT check (wallet cleanliness verification), convert to USD, and your Stape balance is ready. One transaction covers your entire team.',
+    title: 'Fund your account',
+    description: 'Choose your funding method, including stablecoin-friendly options for verified corporate wallets. Standard KYT checks included. One transaction covers your entire team.',
   },
   {
     step: 'Step 2',
     title: 'We handle the contracts',
-    description: 'Stape signs service agreements with each contractor through local entities. Contracts cover scope, IP assignment, and confidentiality \u2014 tailored to their role.',
+    description: 'Kleos signs service agreements with each contractor through local entities. Contracts cover scope, IP assignment, and confidentiality \u2014 tailored to their role.',
   },
   {
     step: 'Step 3',
     title: 'Everyone gets paid how they want',
-    description: 'Set up your payout list. Each contractor decides in their personal dashboard: bank card, local transfer, or stay in USDT. Flat fee: $50 per payout. Zero withdrawal fees for contractors.',
+    description: 'Set up your payout list. Each contractor decides how they receive payment in their personal dashboard. Flat fee: €50 per contractor. Zero fees from contractors themselves.',
   },
 ];
 
 const comparisonFeatures = [
   {
-    feature: 'Accepts USDT funding',
-    stape: '\u2705 Yes (fixed FX rate)',
+    feature: 'Stablecoin-friendly funding',
+    stape: '\u2705 Yes',
     traditional: '\u274C No',
     percentage: '\u2705 Yes',
     diy: '\u2705 Yes (but manual)',
   },
   {
     feature: 'Monthly cost (50 people)',
-    stape: '$50 × 50 = $2,500',
+    stape: '€50 × 50 = €2,500',
     traditional: 'N/A \u2014 no crypto accepted',
     percentage: '~$6,000 (3% of $200K)',
     diy: 'Unpredictable \u2014 gas fees, failed txns, blocked cards',
@@ -150,8 +150,8 @@ const comparisonFeatures = [
 const statsBar = [
   { value: '5,000+', label: 'contractors' },
   { value: '40+', label: 'countries active' },
-  { value: '$50', label: 'flat per payout' },
-  { value: 'Crypto', label: 'accepted' },
+  { value: '€50', label: 'Flat per contractor' },
+  { value: 'Funding', label: 'Stablecoin-friendly' },
 ];
 
 const testimonials = [
@@ -161,7 +161,7 @@ const testimonials = [
     detail: '50+ contractors',
   },
   {
-    quote: 'Our investors explicitly told us our previous payment provider was a problem \u2014 the payment trail was too visible. Stape\'s CoR structure solved the compliance issue overnight.',
+    quote: 'Our investors explicitly told us our previous payment provider was a problem \u2014 the payment trail was too visible. Kleos\'s CoR structure solved the compliance issue overnight.',
     author: 'CFO, Web3 security audit firm',
     detail: '',
   },
@@ -174,7 +174,7 @@ const testimonials = [
 
 const faqs = [
   {
-    question: 'Can I fund my Stape balance directly with crypto?',
+    question: 'Can I fund my Kleos balance directly with crypto?',
     answer: 'Yes. We accept USDT and USDC.',
   },
   {
@@ -254,8 +254,8 @@ function HeroWeb3() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          Your treasury is in USDT.{' '}
-          <span className="text-accent">Your team needs real money to pay rent.</span>
+          Your treasury isn&apos;t traditional.{' '}
+          <span className="text-accent">Your hiring shouldn&apos;t have to be either.</span>
         </motion.h1>
 
         {/* Subhead */}
@@ -265,36 +265,8 @@ function HeroWeb3() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          You raised in crypto. Your contractors live in fiat. P2P and cold wallets worked at 5 people&nbsp;&mdash; not at 50. Stape accepts your USDT, handles contracts, and pays your team in local currency.
+          You raised in crypto. Your team is distributed across complex jurisdictions. Mainstream platforms either don&apos;t accept your funding model or don&apos;t operate where your contractors live. Kleos is built for both realities&nbsp;&mdash; compliant contracts, IP assignment, and payouts for distributed Web3 teams in 242&nbsp;countries.
         </motion.p>
-
-        {/* Flow diagram */}
-        <motion.div
-          className="flex items-center justify-center gap-3 md:gap-4 mb-10 flex-wrap"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.25 }}
-        >
-          <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg px-4 py-2.5 text-sm font-mono text-white">
-            USDT / USDC
-          </div>
-          <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-          <div className="bg-accent text-primary rounded-lg px-4 py-2.5 text-sm font-bold">
-            Stape
-          </div>
-          <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-          <div className="flex items-center gap-2">
-            {['USD', 'EUR', 'GEL', 'ARS', 'RSD'].map((currency) => (
-              <span key={currency} className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg px-3 py-2.5 text-xs font-mono text-white/80">
-                {currency}
-              </span>
-            ))}
-          </div>
-        </motion.div>
 
         {/* CTA */}
         <motion.div
@@ -322,8 +294,8 @@ function HeroWeb3() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           {[
-            'Stablecoins accepted',
-            '$50 flat per payout',
+            'Stablecoin-friendly funding',
+            '€50 per contractor',
             '0% for contractors',
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm text-white/50 capitalize">
@@ -457,11 +429,11 @@ function BeforeAfter() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          {/* Without Stape */}
+          {/* Without Kleos */}
           <div className="bg-background-secondary rounded-2xl p-6 md:p-8 border border-border/50">
-            <h3 className="text-sm font-bold text-foreground-muted mb-6 uppercase tracking-wide">Without Stape</h3>
+            <h3 className="text-sm font-bold text-foreground-muted mb-6 uppercase tracking-wide">Without Kleos</h3>
             <ol className="space-y-4">
-              {withoutStape.map((item, i) => (
+              {withoutKleos.map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="w-5 h-5 rounded-full bg-border/60 text-foreground-muted text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
                     {i + 1}
@@ -472,11 +444,11 @@ function BeforeAfter() {
             </ol>
           </div>
 
-          {/* With Stape */}
+          {/* With Kleos */}
           <div className="bg-accent/20 rounded-2xl p-6 md:p-8 border border-accent/30">
-            <h3 className="text-sm font-bold text-primary mb-6 uppercase tracking-wide">With Stape</h3>
+            <h3 className="text-sm font-bold text-primary mb-6 uppercase tracking-wide">With Kleos</h3>
             <ol className="space-y-4">
-              {withStape.map((item, i) => (
+              {withKleos.map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="w-5 h-5 rounded-full bg-accent text-primary text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
                     {i + 1}
@@ -506,7 +478,7 @@ function HowItWorks() {
           className="mb-12 text-center"
         >
           <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
-            From USDT to payslips in 3&nbsp;steps
+            From distributed team to compliant operations in 3&nbsp;steps
           </h2>
         </motion.div>
 
@@ -585,7 +557,7 @@ function PricingComparison() {
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-4 px-3 text-sm font-semibold text-primary w-[20%]"></th>
-                  <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl">Stape</th>
+                  <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl">Kleos</th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">Traditional EOR</th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">%-fee payroll services</th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">DIY (P2P + wallet)</th>
@@ -616,10 +588,10 @@ function PricingComparison() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <p className="text-primary font-display font-bold text-lg md:text-xl">
-            $50 per payout.
+            &euro;50 per contractor.
           </p>
           <p className="text-primary/80 text-sm mt-1">
-            Whether your Software Developer earns $2,000 or $8,000. We don&apos;t charge more because your team is good at what they do.
+            Whether your Software Developer earns $2,000 or $8,000. We don&apos;t charge more because your team is good at what they do. Plus zero fees from contractors themselves.
           </p>
         </motion.div>
       </div>
@@ -640,7 +612,7 @@ function CryptoFiatBridge() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          You have USDT. Your team needs euros, zloty, and dollars.
+          Hiring globally when your treasury isn&apos;t traditional.
         </motion.h2>
 
         <motion.div
@@ -650,7 +622,7 @@ function CryptoFiatBridge() {
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <p className="text-sm text-foreground-secondary leading-relaxed">
-            The Web3 payroll problem isn&apos;t paying people&nbsp;&mdash; it&apos;s bridging two financial systems that don&apos;t talk to each other. Your company holds USDT. Your smart contract auditor in Barcelona needs euros for rent. Your protocol researcher in Lisbon needs euros for a mortgage application&nbsp;&mdash; with a real employment contract attached. Your marketing lead in Warsaw wants half in zloty, half in USDT.
+            Web3 companies have distinct hiring challenges: distributed teams across complex jurisdictions, treasury that doesn&apos;t fit standard payroll providers&apos; funding models, and contractors who often want flexibility in how they receive payment. Kleos is built to absorb all three&nbsp;&mdash; without forcing you to restructure how your company holds value.
           </p>
 
           {/* Flow visual */}
@@ -662,7 +634,7 @@ function CryptoFiatBridge() {
                 <h3 className="text-sm font-bold text-primary uppercase tracking-wide">Company side</h3>
               </div>
               <p className="text-sm text-foreground-secondary leading-relaxed">
-                You send USDT (TRC-20) from a verified corporate wallet. We verify the transaction (KYT check for wallet cleanliness), convert at fixed rate, and credit your Stape balance in USD.
+                Choose your funding method, including stablecoin-friendly options. Verified corporate wallets supported, with standard KYT checks. One funding transaction covers your entire team.
               </p>
             </div>
 
@@ -673,7 +645,7 @@ function CryptoFiatBridge() {
                 <h3 className="text-sm font-bold text-primary uppercase tracking-wide">Contractor side</h3>
               </div>
               <p className="text-sm text-foreground-secondary leading-relaxed">
-                Each person chooses their own payout method in their dashboard. Bank card, local bank transfer, or USDT&nbsp;&mdash; their choice, every month. They can split: $3,000 to a Serbian bank account, $2,000 in USDT. Zero withdrawal fees.
+                Each person decides how they want to receive payment in their personal dashboard. Bank card, local bank transfer, or stablecoin&nbsp;&mdash; their choice. They can even split. Zero fees from contractors.
               </p>
             </div>
           </div>
@@ -682,7 +654,7 @@ function CryptoFiatBridge() {
           <div className="bg-primary rounded-2xl p-6 md:p-8">
             <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-3">The result</h3>
             <p className="text-sm text-white/80 leading-relaxed">
-              Your books show a clean B2B service agreement. Your contractor&apos;s bank sees a legitimate international salary payment. Your investors see documented expenses for development services. Everyone&apos;s happy&nbsp;&mdash; and every audit is covered.
+              Your books show a clean B2B service agreement. Your contractors get paid in the format they prefer. Your investors see documented expenses for development services. Everyone&apos;s happy&nbsp;&mdash; and every audit is covered.
             </p>
           </div>
         </motion.div>

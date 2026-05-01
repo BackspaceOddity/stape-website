@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Global Hiring — Stape',
+  title: 'Global Hiring — Kleos',
   description:
-    'Hire the best contractors worldwide — regardless of timezone. Stape handles contracts, compliance, and payroll in 242 locations. Book a demo.',
+    'Hire the best contractors worldwide — regardless of timezone. Kleos handles contracts, compliance, and payroll in 242 locations. Book a demo.',
   openGraph: {
-    title: 'Global Hiring — Stape',
+    title: 'Global Hiring — Kleos',
     description:
-      'Hire the best contractors worldwide — regardless of timezone. Stape handles contracts, compliance, and payroll in 242 locations.',
+      'Hire the best contractors worldwide — regardless of timezone. Kleos handles contracts, compliance, and payroll in 242 locations.',
   },
 };
 

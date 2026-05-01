@@ -72,9 +72,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-12">
           {/* Left: Title + description + CTA */}
           <div className="md:col-span-3">
-            <h3 className="text-xl font-display font-bold mb-2">Stape</h3>
+            <h3 className="text-xl font-display font-bold mb-2">Kleos</h3>
             <p className="text-sm text-primary-foreground/70 mb-6 leading-relaxed">
-              Global contractor payroll. Stop doing payroll. Pay one person first. See what vanishes.
+              Global teams management. 242 countries. Hire one person first. See what vanishes.
             </p>
             <a
               href="#"
@@ -103,7 +103,7 @@ export default function Footer() {
           <div className="text-xs text-primary-foreground/40 leading-relaxed space-y-1 mb-8">
             <div className="space-y-1">
               <p>Telecom Apps LLC &middot; 303 Twin Dolphin Drive, CA, US</p>
-              <p>Stape Online LTD &middot; TW9 2NA, London, UK</p>
+              <p>Kleos Online LTD &middot; TW9 2NA, London, UK</p>
             </div>
             <p className="mt-2">
               <a href="mailto:support@thestape.com" className="hover:text-primary-foreground/60 transition-colors">
@@ -116,7 +116,7 @@ export default function Footer() {
         {/* Section 3: Bottom bar */}
         <div className="pt-6 border-t border-primary-foreground/20 flex items-center justify-between">
           <p className="text-sm text-primary-foreground/50">
-            &copy; {new Date().getFullYear()} Stape
+            &copy; {new Date().getFullYear()} Kleos
           </p>
           <div className="flex items-center gap-4">
             <a href="#" aria-label="LinkedIn" className="text-primary-foreground/50 hover:text-primary-foreground transition-colors">

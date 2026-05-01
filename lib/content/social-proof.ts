@@ -38,6 +38,6 @@ export const socialProofContent = {
   ],
   dashboardImage: {
     src: '/Images/SCR-20260209-bjhb.png',
-    alt: 'Stape dashboard — contractor management',
+    alt: 'Kleos dashboard — contractor management',
   },
 };

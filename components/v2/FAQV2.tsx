@@ -12,14 +12,14 @@ const faqs = [
       "We operate through multiple payment rails across multiple jurisdictions. If one corridor closes, others stay open. That\u2019s not a promise \u2014 it\u2019s the architecture. Your contractors get paid. Period.",
   },
   {
-    question: 'What does \u20ac50 per payout actually cover?',
+    question: 'What does \u20ac50 per contractor actually cover?',
     answer:
       "Everything. KYC, compliance checks, fixed FX rate, local delivery, tax document generation, and the audit trail. No setup fees. No monthly minimums. No hidden FX spread.",
   },
   {
     question: 'What about documents \u2014 visas, tax forms, proof of income?',
     answer:
-      "Provided by Stape. Tax forms, payment receipts, proof of income for residence permits and Digital Nomad visas. Your contractor gets what they need. You don\u2019t lift a finger.",
+      "Provided by Kleos. Tax forms, payment receipts, proof of income for residence permits and Digital Nomad visas. Your contractor gets what they need. You don\u2019t lift a finger.",
   },
   {
     question: 'How long does setup actually take?',

@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stape — Payroll that shouldn't exist",
+  title: "Kleos — Payroll that shouldn't exist",
   description: "Global contractor payroll. Stop doing payroll. Pay one person first. See what vanishes.",
 };
 

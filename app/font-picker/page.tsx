@@ -7,7 +7,7 @@ export default function FontPicker() {
         <div className="text-center space-y-4 mb-12">
           <h1 className="text-5xl font-bold text-white">Choose Your Typography</h1>
           <p className="text-xl text-gray-400">
-            Three font options for the Stape homepage
+            Three font options for the Kleos homepage
           </p>
         </div>
 

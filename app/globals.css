@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* Stape design system */
+  /* Kleos design system */
   --background: #FFFFFF;
   --foreground: #1A2F2B;
   --primary: #1A2F2B;
@@ -43,7 +43,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Stape: no generic gradient blobs — use minimal abstract shapes or solid backgrounds */
+/* Kleos: no generic gradient blobs — use minimal abstract shapes or solid backgrounds */
 .glass-effect {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);

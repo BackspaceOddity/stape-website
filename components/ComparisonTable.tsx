@@ -68,7 +68,7 @@ export default function ComparisonTable() {
                   <th className="text-left py-4 px-3 text-sm font-semibold text-primary w-1/4"></th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-primary">Keep DIY-ing It</th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-primary">Better Payroll Tool</th>
-                  <th className="text-center py-4 px-3 text-sm font-semibold text-primary">Stape</th>
+                  <th className="text-center py-4 px-3 text-sm font-semibold text-primary">Kleos</th>
                 </tr>
               </thead>
               <tbody>

@@ -1,5 +1,5 @@
 /**
- * Comparison table content — DIY vs Tool vs Stape.
+ * Comparison table content — DIY vs Tool vs Kleos.
  */
 
 export const comparisonContent = {
@@ -8,7 +8,7 @@ export const comparisonContent = {
   columns: {
     diy: 'Keep DIY-ing It',
     tool: 'Better Payroll Tool',
-    stape: 'Stape',
+    stape: 'Kleos',
   },
   rows: [
     {

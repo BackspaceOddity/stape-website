@@ -82,7 +82,7 @@ export default function ComparisonTableV2() {
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">Keep DIY-ing It</th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">Better Payroll Tool</th>
                   <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl">
-                    Stape
+                    Kleos
                   </th>
                 </tr>
               </thead>

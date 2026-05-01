@@ -23,7 +23,7 @@ const initialSituations: Situation[] = [
   },
   {
     id: 'hire-anywhere',
-    text: "You found the perfect engineer in São Paulo. Now you're stuck figuring out how to pay them in reais — legally, on time, and without losing on conversion.",
+    text: "You found the perfect engineer in São Paulo. Now you're stuck figuring out how to pay them in reais — legally, on time, and in full.",
     reactions: { yes: 267, no: 58, fire: 94 },
   },
   {
@@ -53,7 +53,7 @@ const initialSituations: Situation[] = [
   },
   {
     id: 'hostage',
-    text: 'You can\u2019t hire who you want, where you want, because payroll complexity is making decisions for you.',
+    text: 'You can\u2019t hire who you want, where you want, because the back-office complexity is making decisions for you.',
     reactions: { yes: 356, no: 47, fire: 156 },
   },
 ];
@@ -218,7 +218,7 @@ export default function TriggerBar() {
             >
               More than one? That&apos;s a pattern.{' '}
               <a href="#" className="text-accent font-semibold hover:underline">
-                We built Stape for exactly this &rarr;
+                We built Kleos for exactly this &rarr;
               </a>
             </motion.p>
           )}

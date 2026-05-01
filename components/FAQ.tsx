@@ -7,7 +7,7 @@ import { useRef } from 'react';
 
 const faqs = [
   {
-    question: "What if Stape gets shut down?",
+    question: "What if Kleos gets shut down?",
     answer: "We're built on multiple payment rails across multiple jurisdictions. If one path closes, others stay open. Your contractors get paid. Always.",
   },
   {

@@ -55,7 +55,7 @@ const corFeatures = [
   'Full compliance & audit trail',
   'Auto-generated tax documents',
   'KYC handling',
-  '24h onboarding',
+  '60 seconds onboarding',
   'One B2B invoice for your books',
   'FX conversion no more than 3.5% — locked at signing',
 ];
@@ -160,7 +160,7 @@ function PricingCards() {
                 <div className="mb-1">
                   <span className="text-[40px] md:text-[48px] font-display font-extrabold text-primary tracking-tight leading-none align-baseline">&euro;50</span>
                 </div>
-                <p className="text-base text-foreground-secondary mb-1">/ per payout</p>
+                <p className="text-base text-foreground-secondary mb-1">/ per contractor</p>
                 <p className="text-sm text-foreground-muted mb-8">Fixed. No monthly fee.</p>
 
                 <a
@@ -629,7 +629,7 @@ function QuoteForm() {
 
 const pricingFaqs = [
   {
-    question: 'What does \u20AC50 per payout cover?',
+    question: 'What does \u20AC50 per contractor cover?',
     answer: 'Everything. Compliant contractor contracts, payment processing, FX conversion, wire fees, tax document generation, KYC handling, compliance audit trail, and delivery. No separate line items, no add-ons.',
   },
   {

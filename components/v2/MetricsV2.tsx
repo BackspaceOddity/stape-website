@@ -6,7 +6,7 @@ import { useRef } from 'react';
 
 const metrics = [
   {
-    label: 'Teams where payroll just happens',
+    label: 'Teams getting their headspace back',
     value: '600+',
   },
   {
@@ -18,8 +18,8 @@ const metrics = [
     value: 'Zero',
   },
   {
-    label: 'From signup to first payment',
-    value: '1 day',
+    label: 'From signup to first contractor onboarded',
+    value: '60 seconds',
   },
 ];
 

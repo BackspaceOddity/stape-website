@@ -81,7 +81,7 @@ export default function ProductPage() {
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            Stape is your Contractor of Record. We sign the contracts, handle KYC, manage compliance, and pay your team in 242 locations. You get one invoice.
+            Kleos is your Contractor of Record. We sign the contracts, handle KYC, manage compliance, and pay your team in 242 locations. You get one invoice.
           </motion.p>
 
           <motion.div
@@ -120,13 +120,13 @@ export default function ProductPage() {
                 Get your company set up in under 24 hours.
               </h2>
               <p className="text-base md:text-lg text-foreground-secondary leading-relaxed max-w-2xl mb-8 md:mb-12">
-                Create your company profile, sign a single service agreement with Stape, and you&apos;re ready to pay contractors worldwide. No legal legwork on your end.
+                Create your company profile, sign a single service agreement with Kleos, and you&apos;re ready to pay contractors worldwide. No legal legwork on your end.
               </p>
 
               <div className="relative rounded-2xl overflow-hidden shadow-lg ring-1 ring-border/50">
                 <Image
                   src={`${basePath}/product-onboarding2.png`}
-                  alt="Stape dashboard — Company Profile setup"
+                  alt="Kleos dashboard — Company Profile setup"
                   width={2400}
                   height={1400}
                   className="w-full h-auto block"
@@ -145,13 +145,13 @@ export default function ProductPage() {
                 Add your contractors. We handle the rest.
               </h2>
               <p className="text-base md:text-lg text-foreground-secondary leading-relaxed max-w-2xl mb-8 md:mb-12">
-                Add contractors in bulk or one by one. Stape handles contract signing, KYC verification, and onboarding — so you&apos;re never chasing paperwork across time zones.
+                Add contractors in bulk or one by one. Kleos handles contract signing, KYC verification, and onboarding — so you&apos;re never chasing paperwork across time zones.
               </p>
 
               <div className="relative rounded-2xl overflow-hidden shadow-lg ring-1 ring-border/50">
                 <Image
                   src={`${basePath}/product-contractors2.png`}
-                  alt="Stape dashboard — Contractor import with validation"
+                  alt="Kleos dashboard — Contractor import with validation"
                   width={2400}
                   height={1400}
                   className="w-full h-auto block"
@@ -176,7 +176,7 @@ export default function ProductPage() {
               <div className="relative rounded-2xl overflow-hidden shadow-lg ring-1 ring-border/50">
                 <Image
                   src={`${basePath}/product-payout.png`}
-                  alt="Stape dashboard — Payouts with multi-currency balance"
+                  alt="Kleos dashboard — Payouts with multi-currency balance"
                   width={2400}
                   height={1400}
                   className="w-full h-auto block"
@@ -198,13 +198,13 @@ export default function ProductPage() {
                   Compliance that handles itself.
                 </h2>
                 <p className="text-base md:text-lg text-foreground-secondary leading-relaxed max-w-2xl mb-8 md:mb-12">
-                  Upload a payroll file or salary sheet — Stape cross-checks amounts, flags discrepancies, and generates the compliance documents you need. Contracts, invoices, tax forms, and work completion reports — verified and ready for your auditor. Skip the manual cross-checking. Close every payroll cycle with confidence.
+                  Upload a payroll file or salary sheet — Kleos cross-checks amounts, flags discrepancies, and generates the compliance documents you need. Contracts, invoices, tax forms, and work completion reports — verified and ready for your auditor. Skip the manual cross-checking. Close every payroll cycle with confidence.
                 </p>
               </div>
               <div className="relative rounded-2xl overflow-hidden shadow-lg ring-1 ring-border/50">
                 <Image
                   src={`${basePath}/compl.png`}
-                  alt="Stape — Payroll verification and compliance document generation (Beta)"
+                  alt="Kleos — Payroll verification and compliance document generation (Beta)"
                   width={2400}
                   height={1400}
                   className="w-full h-auto block"
@@ -251,7 +251,7 @@ export default function ProductPage() {
         <div className="max-w-[700px] mx-auto px-6 md:px-12">
           <AnimatedSection className="flex flex-col items-center text-center">
             <h2 className="text-[28px] md:text-[40px] font-display font-extrabold text-primary tracking-[-0.02em] leading-[1.1]">
-              See how Stape works for your team.
+              See how Kleos works for your team.
             </h2>
             <p className="mt-4 text-base text-foreground-secondary leading-relaxed max-w-md">
               Book a 15-minute walkthrough. We&apos;ll show you the platform with your specific setup — countries, currencies, team size.

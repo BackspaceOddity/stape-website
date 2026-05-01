@@ -4,8 +4,8 @@
 
 export const workThatDisappearsContent = {
   headline: 'Two ways to spend your Tuesday',
-  withoutStape: {
-    heading: 'Your Tuesday without Stape',
+  withoutKleos: {
+    heading: 'Your Tuesday without Kleos',
     items: [
       'Cross-check three spreadsheets for contractor rates',
       'Google "how to pay someone in Colombia legally"',
@@ -29,8 +29,8 @@ export const workThatDisappearsContent = {
       'Set a reminder to do all of this again next month',
     ],
   },
-  withStape: {
-    heading: 'Your Tuesday with Stape',
+  withKleos: {
+    heading: 'Your Tuesday with Kleos',
     phrases: [
       'Close the deal you\u2019ve been chasing for weeks',
       'Interview the senior engineer in São Paulo',

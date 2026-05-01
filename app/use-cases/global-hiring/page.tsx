@@ -66,11 +66,11 @@ const steps = [
   },
   {
     title: 'We set it up',
-    body: 'Stape signs the contract, runs KYC, and handles local compliance. Your contractor is onboarded and ready to go \u2014 typically under 24 hours.',
+    body: 'Kleos signs the contract, runs KYC, and handles local compliance. Your contractor is onboarded and ready to go \u2014 typically under 24 hours.',
   },
   {
     title: 'Pay with one click',
-    body: 'Fund your balance, schedule payouts, and pay your entire global team from one dashboard. Multiple currencies, fixed FX rates, full audit trail.',
+    body: 'Fund your balance, schedule payouts, and pay your entire global team from one dashboard. Compliant per jurisdiction, full audit trail, predictable cost.',
   },
 ];
 
@@ -78,8 +78,8 @@ const benefits = [
   { stat: '242 locations', desc: 'Pay contractors virtually anywhere. No entity setup required.' },
   { stat: 'One invoice', desc: '50 contractors, 12 countries, 1 invoice to your company. Your finance team will thank you.' },
   { stat: 'Compliant by default', desc: 'Contracts, KYC, tax documentation \u2014 handled. No reclassification risk.' },
-  { stat: 'Fixed FX rates', desc: 'Lock in exchange rates at payout time. No surprises on either side.' },
-  { stat: 'Under 24-hour onboarding', desc: 'From \u201Cyou\u2019re hired\u201D to \u201Cyou\u2019re paid\u201D in two days. Not two months.' },
+  { stat: 'Predictable cost', desc: 'Flat \u20AC50 per contractor, every cycle. No percentage charges, no hidden fees. Cost doesn\u2019t scale with salary.' },
+  { stat: '60 seconds contractor onboarding', desc: 'From \u201Cyou\u2019re hired\u201D to \u201Cyou\u2019re paid\u201D in 60 seconds. Not two months.' },
   { stat: 'Flexible withdrawals', desc: 'Your contractors choose how they get paid \u2014 bank transfer, card, local rails, or USDT.' },
 ];
 
@@ -88,7 +88,7 @@ const comparisonData = [
     feature: 'Setup time',
     diy: 'Weeks of legal research',
     eor: 'Days to weeks',
-    stape: 'Under 24 hours',
+    stape: '60 seconds',
   },
   {
     feature: 'Contracts',
@@ -188,7 +188,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          The best person for the job isn&apos;t always in your timezone. Stape makes it simple to hire, pay, and stay compliant with contractors anywhere in the world&nbsp;&mdash; so you can build the team you actually want.
+          The best person for the job isn&apos;t always in your timezone. Kleos makes it simple to hire, pay, and stay compliant with contractors anywhere in the world&nbsp;&mdash; so you can build the team you actually want.
         </motion.p>
 
         {/* CTA */}
@@ -219,7 +219,7 @@ function Hero() {
           {[
             '242 Locations Supported',
             '€50 Flat Fee Per Contractor',
-            'Under 24hrs to First Payment',
+            '60 seconds contractor onboarding',
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm text-foreground-muted">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -342,7 +342,7 @@ function TheShift() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          The best teams in the world aren&apos;t built within commuting distance. They&apos;re built by finding the right person&nbsp;&mdash; wherever they are&nbsp;&mdash; and removing everything that makes it hard to work with them. Stape handles the contracts, compliance, and payments so you can focus on the only thing that matters: is this person great at what they do?
+          The best teams in the world aren&apos;t built within commuting distance. They&apos;re built by finding the right person&nbsp;&mdash; wherever they are&nbsp;&mdash; and removing everything that makes it hard to work with them. Kleos handles the contracts, compliance, and payments so you can focus on the only thing that matters: is this person great at what they do?
         </motion.p>
       </div>
     </section>
@@ -372,7 +372,7 @@ function HowItWorks() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
           transition={{ duration: 0.5, delay: 0.05 }}
         >
-          Stape becomes the legal entity that contracts with your team worldwide. You get one platform, one invoice, and zero compliance headaches.
+          Kleos becomes the legal entity that contracts with your team worldwide. You get one platform, one invoice, and zero compliance headaches.
         </motion.p>
 
         <motion.div
@@ -488,7 +488,7 @@ function RealTalk() {
               Senior engineers in Berlin bill &euro;120/hour. Equally talented engineers in Buenos Aires, Nairobi, or Krak&oacute;w bill &euro;35&ndash;60/hour&nbsp;&mdash; not because they&apos;re less skilled, but because cost of living is different. This isn&apos;t exploitation. It&apos;s access. Your contractor earns a strong local salary. You get world-class talent at a rate that lets you hire three people instead of one. Everyone wins&nbsp;&mdash; if the infrastructure is there to make it work.
             </p>
             <p className="mt-6 text-accent font-display font-bold text-lg">
-              That&apos;s what Stape does.
+              That&apos;s what Kleos does.
             </p>
           </div>
         </motion.div>
@@ -534,7 +534,7 @@ function Comparison() {
                   <th className="text-left py-4 px-3 text-sm font-semibold text-primary w-[20%]"></th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">DIY (Manual payouts)</th>
                   <th className="text-center py-4 px-3 text-sm font-semibold text-foreground-muted">Traditional EOR</th>
-                  <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl">Stape</th>
+                  <th className="text-center py-4 px-4 text-sm font-bold text-primary bg-accent/20 rounded-t-xl">Kleos</th>
                 </tr>
               </thead>
               <tbody>
@@ -599,7 +599,7 @@ function BottomCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Book a 15-minute demo and see how Stape handles global contractor payroll&nbsp;&mdash; contracts, compliance, and payments&nbsp;&mdash; so you can hire the best people, wherever they are.
+          Book a 15-minute demo and see how Kleos handles global teams management&nbsp;&mdash; contracts, compliance, and payments&nbsp;&mdash; so you can hire the best people, wherever they are.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"
@@ -631,7 +631,7 @@ function BottomCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          Average time from first call to first payment: under 24 hours.
+          Average time from first call to first contractor onboarded: 60 seconds.
         </motion.p>
       </div>
     </section>

@@ -1,6 +1,6 @@
-# Stape Website
+# Kleos Website
 
-Современный, красивый прототип главной страницы для Stape, созданный с использованием Next.js, TypeScript, Tailwind CSS и Framer Motion.
+Современный, красивый прототип главной страницы для Kleos, созданный с использованием Next.js, TypeScript, Tailwind CSS и Framer Motion.
 
 ## Особенности
 

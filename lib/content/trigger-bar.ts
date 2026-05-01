@@ -17,7 +17,7 @@ export const triggerBarContent = {
   subheadline: "Say it as it is. We're curious, not judgemental.",
   engagementCta: {
     text: "More than one? That's a pattern.",
-    linkText: 'We built Stape for exactly this →',
+    linkText: 'We built Kleos for exactly this →',
     href: '/demo',
   },
   minReactionsForCta: 2,

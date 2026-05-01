@@ -22,7 +22,7 @@ export default function CTAV2() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Pay one contractor through Stape this week. See how it feels when the money lands in under 24 hours and the audit trail generates itself.
+          Pay one contractor through Kleos this week. 60 seconds to onboard them. The audit trail generates itself.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"
