@@ -27,6 +27,10 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# session-state markers (per-session, not for git)
+.project-journal/.last-*
+.project-journal/.session-*
+
 # vercel
 .vercel
 
