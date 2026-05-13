@@ -62,6 +62,9 @@ TYPOGRAPHY.md
 WHY_SLOW.md
 *.mov
 
+# MCP config (contains tokens — per-machine, not for git)
+.mcp.json
+
 # Per-session ephemera written by Second Brain hooks and /wrap skill (local-only by design).
 # `**/` prefix matches at any depth (root + nested sub-projects).
 # Canonical source: SB `_system/git-config/gitignore-project-journal-rules.txt`.
