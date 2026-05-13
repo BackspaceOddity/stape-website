@@ -27,6 +27,7 @@ const config: Config = {
         "foreground-muted": "#7A8A87",
         "foreground-secondary": "#4A5E5A",
         success: "#00B887",
+        "cor-green": "#009423",
         error: "#EF4444",
         warning: "#F59E0B",
       },
