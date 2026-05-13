@@ -4,6 +4,25 @@
 
 ---
 
+## 2026-05-13 — DS token provenance gap in Figma builds
+
+### [CROSS-PROJECT] CRITICAL: Figma DS colors/fonts ≠ Tailwind/Next.js tokens
+- **What happened:** Built Figma COR block variant using Next.js Tailwind token values (`#1A2F2B`, `#00B887`, `Outfit`) instead of actual Kleos DS tokens (`#141414`, `#009423`, `Kleos Schengen A Cyrillic`). Two completely different palettes. User caught it immediately.
+- **Root cause:** Never read DS token nodes (75:9810 colors, 212:887 fonts) before building. Used web-layer Tailwind config as if it were the Figma DS source of truth — it is not. Tailwind config reflects brand decisions; Figma DS is the canonical visual spec. They can diverge.
+- **Canonical DS tokens for Kleos (from nodes 75:9810 + 212:887 + 620:3766):**
+  - Font: `Kleos Schengen A Cyrillic` (Regular + Medium) — NOT Outfit, NOT Inter, NOT ABC Schengen A Cyrillic
+  - Left card bg: `#141414` (near-black)
+  - Right card bg: `#009423` (green, rgba(0,148,35))
+  - Pill: `#fefda8` (yellow)
+  - Text on cards: white
+  - Subheading: `#5b5b5b` (gray)
+  - Card padding: 48px all sides, cornerRadius 24px, gap between cards 24px
+- **Systemic fix landed:** Extended `pre-figma-gate.py` with hardcoded-hex-without-DS-token-read warning (Option A, minimal-diff). BSO issue filed for dedicated `require-ds-grounding-before-figma-build.py` hook (Option B).
+- **Rule (MANDATORY):** Before ANY `figma_execute` build touching colors/fonts — read the canonical DS component OR token nodes first. `figma_get_variables` / `figma_get_styles` / read the actual node with `figma_execute` inspect. Tailwind config is web-layer, NOT Figma DS source of truth.
+- **Pattern:** `creation-without-prior-observation-antipattern` — third incident this project.
+
+---
+
 ## 2026-05-13 — SVG mock logos в /about + resume workflow
 
 ### [LOCAL] Stop hook Gate 3 — false positive после rebrand

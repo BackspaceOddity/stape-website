@@ -38,3 +38,8 @@
 [2026-05-13 15:58] Edit → app/about/page.tsx
 [2026-05-13 16:00] Edit → _edit-threads.json
 [2026-05-13 16:51] Edit → .gitignore
+[2026-05-13 17:19] Write → app/cor-variants/page.tsx
+[2026-05-13 17:23] Write → .mcp.json
+[2026-05-13 17:24] Edit → .gitignore
+[2026-05-13 18:57] Write → components/v2/CORSplit.tsx
+[2026-05-13 18:58] Edit → app/contractor-of-record/page.tsx
