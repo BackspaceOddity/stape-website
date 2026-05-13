@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import CORSplit from '@/components/v2/CORSplit';
 
 /* ─── Section 1: Hero ──────────────────────────────────────────────────────── */
 
@@ -827,6 +828,7 @@ export default function ContractorOfRecordPage() {
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
       <CORHero />
+      <CORSplit />
       <WhatCORDoes />
       <ProblemCards />
       <FullPicture />
