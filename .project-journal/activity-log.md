@@ -35,3 +35,6 @@
 [2026-04-14 18:27] Edit → scripts/verify-pixel-perfect.mjs
 [2026-04-29 12:37] Edit → .gitignore
 [2026-04-29 12:46] Edit → .gitignore
+[2026-05-13 15:58] Edit → app/about/page.tsx
+[2026-05-13 16:00] Edit → _edit-threads.json
+[2026-05-13 16:51] Edit → .gitignore
