@@ -75,3 +75,7 @@
 - `about-v2-content.md` created with full page content
 - Content verified against brand strategy docs (WHY, values, JTBD audiences, positioning all reflected)
 - Identified gaps: Super App positioning omitted (intentional), "default layer" vision implicit not explicit
+
+### 2026-05-13 — orphan session rolled up (PID no longer alive)
+
+- Timeline file `2026-05-13-1556-42774-yegorkorobeynikov.md` had 2 user prompts, 91 tool calls, 0 errors. Full raw log has been deleted (retention policy).
