@@ -1,64 +1,89 @@
-# Stape Website — Current State
+# Stape Website (Kleos) — Current State
 
-> **⚠️ Историческая запись (Figma-verify ветка).**
-> Журнал ниже описывает экспериментальную Figma-verify работу 2026-04-14 (pixel-perfect pipeline + 3 v2-секции, hero + metrics-band passed). На `main` эта работа была **revert'нута Анной 2026-04-23** в 5 коммитах (`a0fd085` … `7506f5b`); поверх Анна положила footer rewrite (`57f2347`).
-> Локальный snapshot Figma-verify ветки сохранён в branch `local-figma-verify-2026-04-14`. Содержимое STATE / CHANGELOG / LEARNINGS ниже сохранено как контекст экспериментов и причин откатов, **не как актуальный статус проекта**.
-> **Актуальное состояние main:** Anna's footer-rewrite + последующая работа.
+**Last updated:** 2026-05-13
+**Status:** Live on GitHub Pages. Site fully functional with Kleos branding.
+**Client:** Kleos (rebranded Stape). Production URL: https://backspaceoddity.github.io/stape-website/
+**Repo:** https://github.com/BackspaceOddity/stape-website
 
 ---
 
-**Last updated:** 2026-04-14
-**Status (historical, Figma-verify branch):** v2 pixel-perfect rebuild in progress (3/13 sections extracted, **2/3 mounted pass <3% — hero ✅ metrics-band ✅**, pain-scenarios 19.42% pending)
-**Client/Context:** Stape (global work infrastructure / contractor payroll platform). Website redesign.
+## What the site is
 
-## Current Focus — v2 pixel-perfect rebuild
+Next.js 14 + TypeScript + Tailwind CSS + Framer Motion. Static export for GitHub Pages (`output: 'export'`, `basePath: '/stape-website'`). All pages are server-component safe; edit-mode toolbar uses `'use client'` + `/api/save-draft` (dev-only).
 
-Full rebuild of the v2 homepage from Figma (`DycBk4R0tH1h3XH1F2xifX`, node 310:840, 1440×13645) using the pixel-perfect skill pipeline: `get_design_context` → `figma-process-section.mjs` → `verify-pixel-perfect.mjs`.
+Rebranded Stape→Kleos by Anna Barinova on 2026-05-01 (commit `3f9db9e`).
 
-### Infrastructure (in place)
-- `scripts/figma-process-section.mjs` — Gate 2 (CONVERT). Downloads localhost:3845 Figma assets, rewrites URLs to `/stape-website/v2-assets/<name>/HASH.ext`, sanitizes Figma's non-Tailwind `col-N`/`row-N` → `col-start-N`/`row-start-N`, writes `components/v2/<Name>.tsx` with GENERATED banner.
-- `scripts/verify-pixel-perfect.mjs` — Gate 3 (VERIFY). Fetches Figma PNG via REST, screenshots preview per section (`[data-node-id]` selector or bbox crop fallback for `display:contents`), pixelmatch diff, writes `web-output/stape-v2/verification.md`. Threshold: 3% pixel diff.
-- `web-output/stape-v2/node-map.json` — 13 sections with verified bbox `{top, left, width, height}` from Figma.
-- `_system/hooks/session-end-gate.py` (Second Brain repo) — Stop hook. Blocks session end on uncommitted changes, unpushed commits, missing/stale verification.md, or ❌ failures in verification report.
+## Current route map
 
-### Page structure
-- `app/v2/page.tsx` — flow-stack: each section mounted in its own `relative` wrapper div sized to Figma `bbox.height`. NO `top-[XXXXpx]` at page level. Absolute coords allowed ONLY inside section components.
+| Route | Status | Notes |
+|---|---|---|
+| `/` | ✅ Live | 14-section homepage (see below) |
+| `/about` | ✅ Live | Hero + story + values + team + careers |
+| `/pricing` | ✅ Live | |
+| `/contractor-of-record` | ✅ Live | |
+| `/employer-of-record` | ✅ Live | |
+| `/solutions/founders` | ✅ Live | |
+| `/use-cases/global-hiring` | ✅ Live | |
+| `/use-cases/ip-transfer` | ✅ Live | |
+| `/industry/web3` | ✅ Live | Stablecoin-friendly framing |
+| `/blog` | ✅ Scaffold | No real posts |
+| `/careers` | ✅ Scaffold | |
+| `/about-v2` | 🧪 Dev-only | Alternative about page draft |
+| `/v2` | 🗑 Legacy | Pixel-perfect branch — reverted, do not touch |
 
-### Sections
-Extracted + converted: hero (310:1660), metrics-band (310:841), pain-scenarios (310:872).
-Remaining 10: tuesday-comparison, how-it-works, legal-architecture, testimonial, comparison-table, role-selector, cost-comparison, faq, final-cta, footer.
+## Homepage sections (top to bottom)
 
-### Verification (2026-04-14 final run)
-- **hero:** 0.27% ✅ (bbox-crop)
-- **metrics-band:** 0.37% ✅ (bbox-crop)
-- **pain-scenarios:** 19.42% ❌ (selector) — separate class of mismatch
-- 10 unmounted: ⏭ skipped
+1. HeroV2
+2. TrustBadgeBar
+3. MetricsV2
+4. TriggerBar
+5. WorkThatDisappearsV2
+6. TimelineV2
+7. ComplianceFirewall
+8. SocialProofV2
+9. ComparisonTableV2
+10. PayrollGeekLevel
+11. PricingComparison
+12. FAQV2
+13. CTAV2
+14. Footer
 
-### Pipeline changes this session (cumulative)
-1. **Transparency fix** — `verify-pixel-perfect.mjs` composites Figma PNG onto white before pixelmatch. Hero 24.20% → 0.30%.
-2. **Skip flag** — `node-map.json` + verifier support `skip:true`/`skipReason`. 10 unmounted sections stop crashing verify.
-3. **gapBefore** — `node-map.json` stores Figma inter-section gap; `app/v2/page.tsx` reads node-map and renders sections with `marginTop=gapBefore`. Metrics-band 33% → 5.74%.
-4. **Generator top-rewrite** — `figma-process-section.mjs` rewrites `top-[Npx]` → `top-[(N − bbox.top)px]` where N ≥ bbox.top, with residual-coord assertion. Metrics-band 5.74% → 3.25%.
-5. **Neighbor-aware crop + threshold 0.15** — `node-map.json` stores `bleed:{top,bottom}` from Figma REST descendant walk; verifier trims `prev.bleed.bottom` / `next.bleed.top` off both figma.png and preview.png symmetrically before pixelmatch; threshold 0.1 → 0.15 silences font-AA. Metrics-band 3.25% → **0.37%**.
+## About page sections
 
-## Decision threads (resolved this session)
-- `Second Brain/docs/DECISIONS-INBOX/stape-metrics-band-homepage-absolute-coords.md` — top-rewrite + asymmetric-heuristic rationale.
-- `Second Brain/docs/DECISIONS-INBOX/stape-verifier-neighbor-aware-crop.md` — bleed geometry + threshold 0.15.
+- Hero + hero image (Kleos dashboard)
+- Metrics band (600+, 150+, $40M+, 0 failures)
+- Client logos (SVG wordmarks — Vertex AI, Beacon Labs, Nexus Studios, Lightfold, Orbital, Basecamp)
+- Our Story (W+K manifesto style, 3 paragraphs)
+- Values (Honesty, Speed through high-agency, Having fun)
+- What We Do (4 product pillars)
+- Leadership (3 mock team members)
+- Careers
+- Footer
 
-Both promoted to `web-architect` HEURISTICS (#6, #7, #12).
+## Key technical notes
 
-## Open Issues (v2)
-1. **pain-scenarios 19.42%** — not neighbor-bleed (both neighbors have zero bleed toward it). Next session: inspect diff.png per section for localized red clusters, likely content-level class (font, asset, or layout within the section). Open a new thread when picking it up.
-2. **Hero root uses `display:contents`** — preview element screenshot impossible, bbox-crop fallback works. Consider wrapping generated `contents` roots in `relative w-full h-[Npx]` in the pipeline.
-3. **10 unmounted sections** — skipped in verifier. Keep skipped until each is mounted AND verified <3% one-by-one to avoid accumulating undebuggable debt.
+- **basePath:** `/stape-website` — still old Stape name, not updated after rebrand
+- **Edit mode:** `?edit` query param activates visual comment toolbar (dev only)
+- **Visual edits:** `_edit-threads.json` — currently 0 pending
+- **Static export:** `next.config.js` → `output: 'export'` in production, `undefined` in dev (needed for `/api/save-draft`)
+- **Fonts:** Custom fonts via `app/fonts/` + `app/globals.css`
+- **Images:** Unoptimized (GitHub Pages constraint)
 
-## Other (parked)
-- About Us v2 content draft (2026-04-08). Subline still too long (5 lines), pending client review on values / services sections.
-- Visual Edit mode (`?edit`) — built + operational.
+## Open issues / tech debt
 
-## How to Resume
-1. Start dev server: `cd Stape/Website && npx next dev -p 3847` (preview `stape` config).
-2. Run verify: `FIGMA_ACCESS_TOKEN=... node scripts/verify-pixel-perfect.mjs --url=http://localhost:3847/stape-website/v2 --section=<name>`.
-3. Read verification.md + open `web-output/stape-v2/sections/<name>/diff.png` to see divergence.
-4. Fix generator (`scripts/figma-process-section.mjs`), NOT the generated component. Regenerate with `node scripts/figma-process-section.mjs <name>`.
-5. Do NOT edit `components/v2/*.tsx` by hand — they are regenerated from `source.raw.jsx`.
+1. **`basePath: '/stape-website'`** — inconsistent with Kleos brand. Changing requires updating GitHub Pages deployment config + all internal links.
+2. **`app/v2/` legacy route** — pixel-perfect pipeline artifacts from reverted branch. Can be cleaned up.
+3. **Stop hook Gate 3 false positive** — `web-output/stape-v2/verification.md` triggers pixel-perfect stale warning on any `.tsx` change. Not a real issue; legacy from revert.
+4. **STATE.md stale → fixed 2026-05-13** (this file).
+
+## How to run locally
+
+```bash
+cd "Client projects/Stape/Website"
+npx next dev -p 3850
+# Preview: http://localhost:3850/stape-website/
+```
+
+## Historical context (archived)
+
+The pixel-perfect Figma→Next.js pipeline (`scripts/figma-process-section.mjs`, `scripts/verify-pixel-perfect.mjs`, `app/v2/`) was built 2026-04-14 and reverted by Anna on 2026-04-23. Relevant learnings preserved in LEARNINGS.md. Branch snapshot: `local-figma-verify-2026-04-14`.
