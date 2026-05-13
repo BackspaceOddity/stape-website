@@ -151,16 +151,46 @@ function SocialProofBar() {
           ))}
         </div>
 
-        {/* Client logos placeholder */}
-        <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-30">
-          {['Vertex AI', 'Beacon Labs', 'Nexus Studios', 'Lightfold', 'Orbital', 'Basecamp'].map((name) => (
-            <div
-              key={name}
-              className="h-8 flex items-center"
-            >
-              <span className="text-sm font-semibold text-foreground-muted tracking-wide uppercase">{name}</span>
-            </div>
-          ))}
+        {/* Client logos */}
+        <div className="flex flex-wrap items-center justify-center gap-10 md:gap-14 opacity-40">
+          {/* Vertex AI */}
+          <svg height="22" viewBox="0 0 120 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Vertex AI">
+            <polygon points="9,0 18,16 0,16" fill="currentColor" opacity="0.9" className="text-foreground-muted"/>
+            <text x="24" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="700" letterSpacing="0.06em" fill="currentColor" className="text-foreground-muted">VERTEX AI</text>
+          </svg>
+
+          {/* Beacon Labs */}
+          <svg height="22" viewBox="0 0 128 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Beacon Labs">
+            <circle cx="9" cy="11" r="5" fill="currentColor" opacity="0.9" className="text-foreground-muted"/>
+            <circle cx="9" cy="11" r="9" stroke="currentColor" strokeWidth="1.5" opacity="0.5" className="text-foreground-muted"/>
+            <text x="24" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="600" letterSpacing="0.04em" fill="currentColor" className="text-foreground-muted">BEACON LABS</text>
+          </svg>
+
+          {/* Nexus Studios */}
+          <svg height="22" viewBox="0 0 138 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Nexus Studios">
+            <path d="M9 1 L17 6 L17 16 L9 21 L1 16 L1 6 Z" stroke="currentColor" strokeWidth="1.5" fill="none" className="text-foreground-muted"/>
+            <text x="24" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="600" letterSpacing="0.05em" fill="currentColor" className="text-foreground-muted">NEXUS STUDIOS</text>
+          </svg>
+
+          {/* Lightfold */}
+          <svg height="22" viewBox="0 0 100 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Lightfold">
+            <path d="M10 1 L6 10 L9 10 L5 21 L14 8 L10 8 L14 1 Z" fill="currentColor" className="text-foreground-muted"/>
+            <text x="22" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="700" letterSpacing="0.03em" fill="currentColor" className="text-foreground-muted">LIGHTFOLD</text>
+          </svg>
+
+          {/* Orbital */}
+          <svg height="22" viewBox="0 0 88 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Orbital">
+            <ellipse cx="9" cy="11" rx="8" ry="4.5" stroke="currentColor" strokeWidth="1.5" className="text-foreground-muted"/>
+            <circle cx="9" cy="11" r="2.5" fill="currentColor" className="text-foreground-muted"/>
+            <text x="22" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="600" letterSpacing="0.06em" fill="currentColor" className="text-foreground-muted">ORBITAL</text>
+          </svg>
+
+          {/* Basecamp */}
+          <svg height="22" viewBox="0 0 105 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Basecamp">
+            <path d="M1 19 L9 4 L17 19 Z" stroke="currentColor" strokeWidth="1.5" fill="none" className="text-foreground-muted"/>
+            <path d="M9 4 L13 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-foreground-muted"/>
+            <text x="22" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="600" letterSpacing="0.05em" fill="currentColor" className="text-foreground-muted">BASECAMP</text>
+          </svg>
         </div>
       </div>
     </Section>

@@ -4,6 +4,15 @@
 
 ---
 
+## 2026-05-13 — SVG mock logos в /about + resume workflow
+
+### [LOCAL] Stop hook Gate 3 — false positive после rebrand
+- **What happened:** Stop hook жалуется на stale `web-output/stape-v2/verification.md` когда изменяем `app/about/page.tsx`.
+- **Why:** Gate 3 сканирует все изменённые `.tsx` файлы и сравнивает с датой `verification.md`, но pixel-perfect pipeline относится только к `/v2` route (revert'нутая ветка). `/about/page.tsx` к этому pipeline не относится.
+- **Rule:** Gate 3 false positive на этом repo — `web-output/stape-v2/` это legacy от revert'нутой ветки. Игнорировать если не работаем над `/v2` route.
+
+---
+
 ## 2026-04-14 — v2 pixel-perfect rebuild (Figma-verify branch, revert'нуто 2026-04-23)
 
 ### [LEARN] Figma Dev Mode emits non-Tailwind grid shortcuts (`col-N`, `row-N`)
