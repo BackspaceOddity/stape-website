@@ -2,518 +2,297 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+/* ─── Data ────────────────────────────────────────────────────────────────── */
 
-/* ─── Helpers ────────────────────────────────────────────────────────────── */
+const pillars = [
+  {
+    label: 'Pillar 1',
+    title: 'Game-changing',
+    aside:
+      'We don’t iterate on the category — we argue with it. Every feature passes one test: does it move the line on whether payroll exists as a task you do, or does it just decorate the dashboard? If it’s the second one, we don’t ship it.',
+  },
+  {
+    label: 'Pillar 2',
+    title: 'Dependable',
+    aside:
+      '€50, exactly. On the day we said. In the currency we said. Every cycle. We are deliberately, unglamorously boring on this dimension — it’s the most respectful thing infrastructure can be.',
+  },
+  {
+    label: 'Pillar 3',
+    title: 'Exceptional',
+    aside:
+      'We work the geographies mainstream providers quietly stop covering. CIS, LATAM, Central Asia, parts of Africa — not as a brave gesture, as a baseline. If it works where it’s hardest, your country is easy.',
+  },
+];
 
-function Section({
-  children,
-  className = '',
-  id,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  id?: string;
-}) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
+const receipts = [
+  {
+    quote:
+      'We had a contractor in a corridor three providers had quietly dropped. They got paid on schedule, with documents the local bank accepted. No call, no escalation.',
+    author: 'Head of Finance',
+    detail: 'EU-based marketplace',
+  },
+  {
+    quote:
+      'Our first audit since switching. The auditor asked for the payment chain. We forwarded one folder. No back-and-forth.',
+    author: 'CFO',
+    detail: 'US-incorporated startup',
+  },
+  {
+    quote: 'I never know when something arrived at Kleos because I never have to.',
+    author: 'Founder',
+    detail: 'distributed SaaS team',
+  },
+];
 
+/* ─── Section: Hero ──────────────────────────────────────────────────────── */
+
+function HeroAbout() {
   return (
-    <motion.section
-      ref={ref}
-      id={id}
-      className={`py-20 md:py-28 ${className}`}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.6 }}
-    >
-      {children}
-    </motion.section>
-  );
-}
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white">
+      <div className="max-w-[1000px] mx-auto px-6 md:px-12 text-center">
+        {/* Eyebrow — etymology */}
+        <motion.div
+          className="mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="text-sm text-foreground-muted italic">
+            κλέος · /ˈkleɪɒs/ — ancient Greek for reputation earned through action.
+          </span>
+        </motion.div>
 
-/* ─── 1. Hero ────────────────────────────────────────────────────────────── */
+        {/* Main headline */}
+        <motion.h1
+          className="font-display font-extrabold text-[40px] md:text-[56px] lg:text-[64px] text-primary leading-[1.08] mb-6 tracking-[-0.025em]"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+        >
+          We&apos;re here until payroll isn&apos;t on your calendar.
+        </motion.h1>
 
-function AboutHero() {
-  return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 bg-white overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-          {/* Left — text */}
-          <div>
-            <motion.p
-              className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-5"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              About Kleos
-            </motion.p>
+        {/* Subhead */}
+        <motion.p
+          className="text-lg md:text-xl text-foreground-secondary leading-relaxed max-w-2xl mx-auto mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Most of our category sells contractor payments, payroll, and compliance infrastructure. Accurate &mdash; and incomplete. The clients who get the most from us stopped thinking about payroll entirely. Not cheaper transfers. Gone. We&apos;re built around that one outcome and we measure ourselves against it every cycle.
+        </motion.p>
 
-            <motion.h1
-              className="font-display font-extrabold text-[32px] md:text-[44px] lg:text-[52px] text-primary leading-[1.08] mb-4 tracking-[-0.025em]"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.05 }}
-            >
-              Payroll is a job not to be&nbsp;done.
-            </motion.h1>
-
-            <motion.p
-              className="text-xl md:text-2xl text-foreground-secondary font-medium leading-snug mb-5"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-            >
-              That&apos;s why we exist&nbsp;&mdash; and why one day we won&apos;t have&nbsp;to.
-            </motion.p>
-
-            <motion.p
-              className="text-base md:text-lg text-foreground-muted leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15 }}
-            >
-              Kleos is global work infrastructure. We make payroll and compliance invisible&nbsp;&mdash; so companies hire for talent, not geography.
-            </motion.p>
-          </div>
-
-          {/* Right — product photo */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
+        {/* CTAs */}
+        <motion.div
+          className="flex flex-col sm:flex-row items-center justify-center gap-3"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <a
+            href="#"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors whitespace-nowrap"
           >
-            <div className="rounded-2xl overflow-hidden shadow-card">
-              <Image
-                src={`${basePath}/product-hero.png`}
-                alt="Kleos platform on a laptop"
-                width={640}
-                height={480}
-                className="w-full h-auto"
-                priority
-              />
-            </div>
-          </motion.div>
-        </div>
+            See how we run a cycle
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a
+            href="#"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 border border-border text-primary font-semibold text-sm rounded-md hover:bg-background-secondary transition-colors whitespace-nowrap"
+          >
+            Talk to a human
+          </a>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-/* ─── 2. Mission ─────────────────────────────────────────────────────────── */
+/* ─── Section: Three pillars (HowItWorks clone, 3 cards) ─────────────────── */
 
-function WhyWeExist() {
+function ThreePillars() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
   return (
-    <Section className="bg-primary text-primary-foreground">
-      <div className="max-w-[900px] mx-auto px-6 md:px-12 text-center">
-        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-5">
-          Why We Exist
-        </p>
-        <h2 className="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.1] tracking-[-0.02em] mb-6">
-          We see a world where hiring talent happens instantly.
-        </h2>
-        <p className="text-base md:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
-          Where documents sign themselves. Where cross-border payments are fast, cheap, and guaranteed. Where a company never has to think about the fact that their team speaks different languages, lives under different laws, and uses different banks. A world where your team can focus on creating&nbsp;&mdash; not on paperwork or figuring out where the money went. That&apos;s not a dream. That&apos;s the spec.
-        </p>
-      </div>
-    </Section>
-  );
-}
-
-/* ─── 3. Social Proof / Numbers Bar ──────────────────────────────────────── */
-
-const proofMetrics = [
-  { value: '600+', label: 'Companies trust Kleos' },
-  { value: '150+', label: 'Countries covered' },
-  { value: '$40M+', label: 'Paid to contractors' },
-  { value: '0', label: 'Payment failures in 12 months' },
-];
-
-function SocialProofBar() {
-  return (
-    <Section className="bg-background-secondary">
+    <section ref={ref} className="py-20 md:py-28 bg-primary">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-        {/* Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-16">
-          {proofMetrics.map((m) => (
-            <div key={m.label} className="text-center">
-              <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-1">
-                {m.value}
-              </p>
-              <p className="text-sm text-foreground-muted">{m.label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Client logos */}
-        <div className="flex flex-wrap items-center justify-center gap-10 md:gap-14 opacity-40">
-          {/* Vertex AI */}
-          <svg height="22" viewBox="0 0 120 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Vertex AI">
-            <polygon points="9,0 18,16 0,16" fill="currentColor" opacity="0.9" className="text-foreground-muted"/>
-            <text x="24" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="700" letterSpacing="0.06em" fill="currentColor" className="text-foreground-muted">VERTEX AI</text>
-          </svg>
-
-          {/* Beacon Labs */}
-          <svg height="22" viewBox="0 0 128 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Beacon Labs">
-            <circle cx="9" cy="11" r="5" fill="currentColor" opacity="0.9" className="text-foreground-muted"/>
-            <circle cx="9" cy="11" r="9" stroke="currentColor" strokeWidth="1.5" opacity="0.5" className="text-foreground-muted"/>
-            <text x="24" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="600" letterSpacing="0.04em" fill="currentColor" className="text-foreground-muted">BEACON LABS</text>
-          </svg>
-
-          {/* Nexus Studios */}
-          <svg height="22" viewBox="0 0 138 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Nexus Studios">
-            <path d="M9 1 L17 6 L17 16 L9 21 L1 16 L1 6 Z" stroke="currentColor" strokeWidth="1.5" fill="none" className="text-foreground-muted"/>
-            <text x="24" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="600" letterSpacing="0.05em" fill="currentColor" className="text-foreground-muted">NEXUS STUDIOS</text>
-          </svg>
-
-          {/* Lightfold */}
-          <svg height="22" viewBox="0 0 100 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Lightfold">
-            <path d="M10 1 L6 10 L9 10 L5 21 L14 8 L10 8 L14 1 Z" fill="currentColor" className="text-foreground-muted"/>
-            <text x="22" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="700" letterSpacing="0.03em" fill="currentColor" className="text-foreground-muted">LIGHTFOLD</text>
-          </svg>
-
-          {/* Orbital */}
-          <svg height="22" viewBox="0 0 88 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Orbital">
-            <ellipse cx="9" cy="11" rx="8" ry="4.5" stroke="currentColor" strokeWidth="1.5" className="text-foreground-muted"/>
-            <circle cx="9" cy="11" r="2.5" fill="currentColor" className="text-foreground-muted"/>
-            <text x="22" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="600" letterSpacing="0.06em" fill="currentColor" className="text-foreground-muted">ORBITAL</text>
-          </svg>
-
-          {/* Basecamp */}
-          <svg height="22" viewBox="0 0 105 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Basecamp">
-            <path d="M1 19 L9 4 L17 19 Z" stroke="currentColor" strokeWidth="1.5" fill="none" className="text-foreground-muted"/>
-            <path d="M9 4 L13 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-foreground-muted"/>
-            <text x="22" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="600" letterSpacing="0.05em" fill="currentColor" className="text-foreground-muted">BASECAMP</text>
-          </svg>
-        </div>
-      </div>
-    </Section>
-  );
-}
-
-/* ─── 4. What We Do / Product Value ──────────────────────────────────────── */
-
-const productValues = [
-  {
-    title: 'Contractor Payments',
-    description: 'Pay contractors in 150+ countries with a single click. Local currency, compliant tax documents, transparent FX rates. No exceptions, no excuses.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Contractor of Record',
-    description: 'We become the legal contracting party so you stay compliant without setting up local entities. Our contract, our liability, your peace of mind.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Employer of Record',
-    description: 'Hire full-time employees in new markets without incorporating. Because the best person for the job shouldn\u2019t have to wait for your legal team.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Compliance & Tax',
-    description: 'Automated tax document generation, KYC verification, and audit trails for every transaction. Always ready. Always clean.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
-      </svg>
-    ),
-  },
-];
-
-function WhatWeDo() {
-  return (
-    <Section className="bg-white">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-        <div className="max-w-[600px] mb-14">
-          <p className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-4">
-            What We Do
-          </p>
-          <h2 className="text-[28px] md:text-[36px] font-display font-extrabold text-primary tracking-[-0.02em] mb-4">
-            The entire back-office for global teams&nbsp;&mdash; in one platform.
-          </h2>
-          <p className="text-base md:text-lg text-foreground-secondary leading-relaxed">
-            From a single contractor payment to a full international roster, Kleos handles the complexity that sits between &ldquo;we found the right person&rdquo; and &ldquo;they got paid on time, compliantly.&rdquo;
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {productValues.map((item) => (
-            <div
-              key={item.title}
-              className="bg-background-secondary rounded-2xl p-8 md:p-10"
-            >
-              <div className="w-12 h-12 rounded-xl bg-white border border-border flex items-center justify-center text-primary mb-5">
-                {item.icon}
-              </div>
-              <h3 className="text-xl font-display font-bold text-primary mb-3">
-                {item.title}
-              </h3>
-              <p className="text-base text-foreground-secondary leading-relaxed">
-                {item.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </Section>
-  );
-}
-
-/* ─── 5. Our Story — JNTBD Manifesto ─────────────────────────────────────── */
-
-function OurStory() {
-  return (
-    <Section className="bg-background-secondary">
-      <div className="max-w-[740px] mx-auto px-6 md:px-12">
-        <p className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-5 text-center">
-          Our Story
-        </p>
-        <h2 className="text-[28px] md:text-[36px] font-display font-extrabold text-primary tracking-[-0.02em] mb-12 text-center">
-          The job not to be done
-        </h2>
-
-        <div className="space-y-6 text-base md:text-lg text-foreground-secondary leading-relaxed">
-          <p>
-            Right now, somewhere, a founder is staring at a spreadsheet at 2&nbsp;AM. Not building. Not shipping. Not hiring. Reconciling payments to a developer in Tbilisi. Chasing an invoice from a designer in São Paulo. Googling tax residency rules for the third time this week. That&apos;s not work. That&apos;s work pretending to be work. We started Kleos because we believe this entire category of work shouldn&apos;t exist. Not &ldquo;should be easier.&rdquo; Not &ldquo;should be faster.&rdquo; Should. Not. Exist.
-          </p>
-
-          <p>
-            The global economy runs on talent that crosses borders&nbsp;&mdash; but the infrastructure acts like it&apos;s 1987. Between your company and the brilliant person who could change it, there&apos;s a wall of paperwork, payment rails, and compliance nobody fully understands. Other payroll companies see that wall and sell you a better shovel. We&apos;re trying to remove the need to dig. Payroll and compliance are jobs not to be done. We&apos;re here until they&apos;re not.
-          </p>
-
-          <p className="text-primary font-medium">
-            One day, there will be no such thing as &ldquo;global payroll.&rdquo; It&apos;ll just be the way money moves&nbsp;&mdash; quietly, like electricity through a wall. We&apos;re building that day. And we&apos;ll keep going until the job is done&nbsp;&mdash; which is to say, until there&apos;s no job left at all.
-          </p>
-        </div>
-      </div>
-    </Section>
-  );
-}
-
-/* ─── 6. Values ──────────────────────────────────────────────────────────── */
-
-const values = [
-  {
-    title: 'Honesty',
-    description: 'The market is full of hidden fees and fine print. We decided to go the other way. Transparent pricing. Straight answers. If we don\u2019t know something, we say so. Trust is not a feature\u2009\u2014\u2009it\u2019s a foundation.',
-  },
-  {
-    title: 'Speed through high-agency',
-    description: 'We don\u2019t wait for permission. We see a problem, we solve it. Decisions happen fast because the people closest to the work make them. Speed isn\u2019t a goal\u2009\u2014\u2009it\u2019s a byproduct of giving a damn.',
-  },
-  {
-    title: 'Having fun',
-    description: 'We\u2019re building infrastructure to change how the global economy works. If we can\u2019t enjoy that, something\u2019s wrong. We stay human. We keep it light. We build hard things without taking ourselves too seriously.',
-  },
-];
-
-function Values() {
-  return (
-    <Section className="bg-white">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-        <div className="text-center mb-14">
-          <p className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-4">
-            Our Values
-          </p>
-          <h2 className="text-[28px] md:text-[36px] font-display font-extrabold text-primary tracking-[-0.02em]">
-            What drives us
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {values.map((value) => (
-            <div
-              key={value.title}
-              className="border border-border rounded-2xl p-8"
-            >
-              <h3 className="text-lg font-display font-bold text-primary mb-3">
-                {value.title}
-              </h3>
-              <p className="text-sm text-foreground-secondary leading-relaxed">
-                {value.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </Section>
-  );
-}
-
-/* ─── 7. Leadership Team ─────────────────────────────────────────────────── */
-
-const team = [
-  { name: 'James Carter', role: 'CEO & Co-Founder', img: `${basePath}/team/alex.jpg` },
-  { name: 'Daniel Moreno', role: 'CTO & Co-Founder', img: `${basePath}/team/daniil.jpg` },
-  { name: 'Sophie Laurent', role: 'Head of Operations', img: `${basePath}/team/maria.jpg` },
-];
-
-function LeadershipTeam() {
-  return (
-    <Section className="bg-background-secondary">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-        <div className="text-center mb-14">
-          <p className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-4">
-            Leadership
-          </p>
-          <h2 className="text-[28px] md:text-[36px] font-display font-extrabold text-primary tracking-[-0.02em]">
-            The team behind Kleos
-          </h2>
-          <p className="text-base text-foreground-secondary mt-4 max-w-2xl mx-auto">
-            A small, high-agency team spread across multiple countries. We practice what we preach&nbsp;&mdash; our own payroll runs on Kleos.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-3 gap-8 md:gap-12 max-w-[900px] mx-auto">
-          {team.map((person) => (
-            <div key={person.role} className="text-center">
-              <div className="w-36 h-36 md:w-48 md:h-48 rounded-2xl bg-white border border-border mx-auto mb-5 overflow-hidden">
-                <Image
-                  src={person.img}
-                  alt={person.name}
-                  width={192}
-                  height={192}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p className="font-display font-bold text-primary text-lg">
-                {person.name}
-              </p>
-              <p className="text-sm text-foreground-muted mt-1">{person.role}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </Section>
-  );
-}
-
-/* ─── 8. Careers / Join Us ───────────────────────────────────────────────── */
-
-const openRoles = [
-  { title: 'Senior Backend Engineer', location: 'Remote' },
-  { title: 'Compliance Lead', location: 'Remote / EU' },
-  { title: 'Product Designer', location: 'Remote' },
-];
-
-function Careers() {
-  return (
-    <Section className="bg-white">
-      <div className="max-w-[900px] mx-auto px-6 md:px-12 text-center">
-        <p className="text-sm font-semibold text-foreground-muted uppercase tracking-widest mb-4">
-          Careers
-        </p>
-        <h2 className="text-[28px] md:text-[36px] font-display font-extrabold text-primary tracking-[-0.02em] mb-4">
-          Help us make payroll disappear
-        </h2>
-        <p className="text-base md:text-lg text-foreground-secondary leading-relaxed max-w-2xl mx-auto mb-10">
-          We hire for talent, not passports. If that sounds like your kind of place&nbsp;&mdash; we&apos;re looking for people who want to make an entire category of work disappear.
-        </p>
-
-        {/* Open positions */}
-        <div className="max-w-[600px] mx-auto space-y-3 text-left mb-10">
-          {openRoles.map((role) => (
-            <a
-              key={role.title}
-              href="#"
-              className="flex items-center justify-between p-4 bg-background-secondary rounded-xl hover:bg-border/30 transition-colors group"
-            >
-              <div>
-                <p className="font-semibold text-primary text-sm group-hover:text-primary/80 transition-colors">{role.title}</p>
-                <p className="text-xs text-foreground-muted">{role.location}</p>
-              </div>
-              <svg
-                className="w-4 h-4 text-foreground-muted group-hover:translate-x-0.5 transition-transform"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </a>
-          ))}
-        </div>
-
-        <a
-          href="#"
-          className="inline-flex items-center gap-1.5 px-6 py-3 border border-border text-primary font-semibold text-sm rounded-md hover:bg-background-secondary transition-colors"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 text-center"
         >
-          View All Open Positions
-          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
+          <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
+            The standard we hold ourselves to
+          </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          {/* Progress dots and line */}
+          <div className="relative flex items-center justify-between mb-6 px-4 max-w-[900px] mx-auto">
+            <div className="absolute left-4 right-4 top-1/2 h-px bg-white/20" />
+            {pillars.map((_, i) => (
+              <div key={i} className="relative z-10 w-3 h-3 rounded-full bg-accent border-2 border-accent" />
+            ))}
+          </div>
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-[900px] mx-auto">
+            {pillars.map((p, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.4, delay: 0.15 + index * 0.1 }}
+                className="bg-white/10 backdrop-blur-sm text-white rounded-xl p-5 border border-white/10"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-6 h-6 rounded-full bg-accent text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">
+                    {index + 1}
+                  </span>
+                  <p className="text-xs font-semibold text-white/60">{p.label}</p>
+                </div>
+                <h3 className="text-base font-semibold leading-snug text-white mb-2">{p.title}</h3>
+                <p className="text-xs text-white/40 italic leading-relaxed">{p.aside}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Result badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            transition={{ duration: 0.4, delay: 0.6 }}
+            className="flex justify-center mt-6"
+          >
+            <div className="bg-accent text-primary text-sm font-semibold rounded-lg px-5 py-2.5">
+              What you measure us on: what stopped happening on your side.
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
-    </Section>
+    </section>
   );
 }
 
-/* ─── 9. Bottom CTA ──────────────────────────────────────────────────────── */
+/* ─── Section: Receipts (SocialProof clone) ──────────────────────────────── */
 
-function BottomCTA() {
+function Receipts() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
   return (
-    <section className="py-20 md:py-28 bg-primary">
-      <div className="max-w-[700px] mx-auto px-6 md:px-12 text-center">
+    <section ref={ref} className="py-24 md:py-36 bg-background-secondary">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <motion.h2
-          className="text-[32px] md:text-[40px] font-display font-extrabold text-primary-foreground mb-4 tracking-[-0.02em]"
+          className="text-[32px] md:text-[40px] font-display font-extrabold text-primary text-center mb-16 tracking-[-0.02em] leading-[1.1]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+        >
+          The receipts are already in your inbox
+        </motion.h2>
+
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          {receipts.map((t, i) => (
+            <div key={i} className="bg-white rounded-2xl p-8 border border-border flex flex-col">
+              <p className="text-base text-primary leading-relaxed mb-6 flex-1">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <div>
+                <p className="text-sm font-semibold text-primary">{t.author}</p>
+                {t.detail && <p className="text-xs text-foreground-muted">{t.detail}</p>}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Metric cards */}
+        <motion.div
+          className="grid grid-cols-3 gap-4 md:gap-6 mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
+            <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">8 yrs</p>
+            <p className="text-xs text-foreground-muted">Live in production, under our previous name</p>
+          </div>
+          <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
+            <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">$40M+</p>
+            <p className="text-xs text-foreground-muted">Paid out without a missed cycle</p>
+          </div>
+          <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
+            <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">242</p>
+            <p className="text-xs text-foreground-muted">Countries we cover, including the ones others quietly stopped supporting</p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Section: Final CTA ─────────────────────────────────────────────────── */
+
+function FinalCTA() {
+  return (
+    <section className="py-20 md:py-28 bg-white">
+      <div className="max-w-[800px] mx-auto px-6 md:px-12 text-center">
+        <motion.h2
+          className="text-[32px] md:text-[40px] font-display font-extrabold text-primary mb-6 tracking-[-0.02em]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          Ready to stop doing payroll?
+          Same standard. New name. A reputation that was already in your inbox.
         </motion.h2>
         <motion.p
-          className="text-base text-white/60 mb-8 max-w-lg mx-auto"
+          className="text-base text-foreground-secondary leading-relaxed mb-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.05 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Pay one contractor through Kleos this month. See how it feels. If it works, pay two next month. We&apos;re not trying to own your soul&nbsp;&mdash; we&apos;re trying to save your Saturdays.
+          Kleos is the name. The standard is older than the name and outlasts whatever we ship next. If you&apos;ve been with us &mdash; your contract, your prices, your account manager don&apos;t change. If you haven&apos;t &mdash; the product, pricing, and a demo are one click away.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
           <a
             href="#"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 bg-accent text-accent-foreground font-semibold text-sm rounded-md hover:bg-accent-hover transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors"
           >
-            Book a Demo
+            See how we run a cycle
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </a>
           <a
-            href="/pricing"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 border border-white/20 text-primary-foreground font-semibold text-sm rounded-md hover:bg-white/10 transition-colors"
+            href="#"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 border border-border text-primary font-semibold text-sm rounded-md hover:bg-background-secondary transition-colors"
           >
-            See Pricing
+            Talk to a human
           </a>
         </motion.div>
       </div>
@@ -523,19 +302,14 @@ function BottomCTA() {
 
 /* ─── Page ────────────────────────────────────────────────────────────────── */
 
-export default function AboutV2Page() {
+export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
-      <AboutHero />
-      <SocialProofBar />
-      <WhatWeDo />
-      <OurStory />
-      <Values />
-      <LeadershipTeam />
-      <Careers />
-      <WhyWeExist />
-      <BottomCTA />
+      <HeroAbout />
+      <ThreePillars />
+      <Receipts />
+      <FinalCTA />
       <Footer />
     </main>
   );
