@@ -28,7 +28,7 @@ const MENUS: Record<string, MenuSection> = {
       { title: 'For Founders & CEOs', subtitle: 'Payroll that disappears so you can build', href: '/solutions/founders', enabled: true },
       { title: 'For HR & People Ops', subtitle: 'Global workforce, zero compliance headaches', href: '#', enabled: false },
       { title: 'For CFOs & Finance', subtitle: 'One invoice, clean audit trail, full control', href: '#', enabled: false },
-      { title: 'For Contractors', subtitle: 'Get paid on time, in your currency, every time', href: '#', enabled: false },
+      { title: 'For Contractors', subtitle: 'Get paid on time, in your currency, every time', href: '/solutions/contractors', enabled: true },
     ],
   },
   Product: {

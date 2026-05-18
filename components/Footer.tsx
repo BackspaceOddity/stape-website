@@ -18,7 +18,7 @@ const builtForLinks = [
   { label: 'Founders & CEOs', href: '/solutions/founders' },
   { label: 'HR & People Ops', href: '#' },
   { label: 'CFOs & Finance', href: '#' },
-  { label: 'Contractors', href: '#' },
+  { label: 'Contractors', href: '/solutions/contractors' },
 ];
 
 const companyLinks = [
