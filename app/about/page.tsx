@@ -261,7 +261,7 @@ function FinalCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          Same standard. New name. A reputation that was already in your inbox.
+          Same standard. Every cycle.
         </motion.h2>
         <motion.p
           className="text-base text-foreground-secondary leading-relaxed mb-10"
@@ -270,7 +270,7 @@ function FinalCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Kleos is the name. The standard is older than the name and outlasts whatever we ship next. If you&apos;ve been with us &mdash; your contract, your prices, your account manager don&apos;t change. If you haven&apos;t &mdash; the product, pricing, and a demo are one click away.
+          We don&apos;t ask you to take the standard on faith. We ask you to look at what&apos;s already arrived under our name. If you&apos;re with us &mdash; your contract, your prices, your account manager stay where they are. If you&apos;re not &mdash; the product, pricing, and a demo are one click away.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"
