@@ -25,7 +25,7 @@ const companyLinks = [
   { label: 'About us', href: '/about' },
   { label: 'Careers', href: '/careers' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Contact us', href: 'mailto:support@thestape.com', external: true },
+  { label: 'Contact us', href: '/contact' },
 ];
 
 const resourcesLinks = [
