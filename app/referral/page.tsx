@@ -10,7 +10,6 @@ import Footer from '@/components/Footer';
 const stats = [
   { value: '600+', label: 'Distributed teams using Kleos' },
   { value: '$60M+', label: 'Paid out, no missed cycles' },
-  { value: '10,000+', label: 'Contractors paid through us' },
   { value: '242', label: 'Countries we cover' },
 ];
 
@@ -150,7 +149,7 @@ function Stats() {
     <section ref={ref} className="py-12 md:py-16 bg-white border-t border-border">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
