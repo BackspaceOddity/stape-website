@@ -1,9 +1,12 @@
 'use client';
 
 import { useRef } from 'react';
+import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 
@@ -26,6 +29,12 @@ const pillars = [
     aside:
       'We work the geographies mainstream providers quietly stop covering. CIS, LATAM, Central Asia, parts of Africa — not as a brave gesture, as a baseline. If it works where it’s hardest, your country is easy.',
   },
+];
+
+const team = [
+  { name: 'Egor Gurev', role: 'CEO', image: `${basePath}/team/egor.png` },
+  { name: 'Aleksei Chistiakov', role: 'CBDO', image: `${basePath}/team/aleksei.png` },
+  { name: 'Ailan Khertek', role: 'CPO', image: `${basePath}/team/ailan.png` },
 ];
 
 const receipts = [
@@ -248,6 +257,102 @@ function Receipts() {
   );
 }
 
+/* ─── Section: Team ──────────────────────────────────────────────────────── */
+
+function Team() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  return (
+    <section ref={ref} className="py-20 md:py-28 bg-white">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 text-center"
+        >
+          <h2 className="text-[32px] md:text-[40px] font-display font-extrabold text-primary leading-[1.1] tracking-[-0.02em] mb-3">
+            The people behind the standard
+          </h2>
+          <p className="text-base text-foreground-secondary">
+            Running Kleos day to day.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          {team.map((m, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.4, delay: 0.15 + i * 0.1 }}
+              className="bg-background-secondary rounded-2xl p-6 border border-border text-center"
+            >
+              <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-4 overflow-hidden rounded-xl">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={m.image} alt={m.name} className="w-full h-full object-cover" />
+              </div>
+              <p className="text-lg font-semibold text-primary mb-1">{m.name}</p>
+              <p className="text-sm text-foreground-muted">{m.role}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Section: Careers ───────────────────────────────────────────────────── */
+
+function Careers() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  return (
+    <section ref={ref} className="py-20 md:py-28 bg-background-secondary">
+      <div className="max-w-[800px] mx-auto px-6 md:px-12 text-center">
+        <motion.h2
+          className="text-[32px] md:text-[40px] font-display font-extrabold text-primary mb-6 tracking-[-0.02em]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+        >
+          We&apos;re hiring
+        </motion.h2>
+        <motion.p
+          className="text-base text-foreground-secondary leading-relaxed mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          Building the team that keeps the cycle running. Open roles across product, operations, finance, and engineering.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Link
+            href="/careers"
+            className="inline-flex items-center justify-center gap-1.5 px-6 py-3 bg-primary text-primary-foreground font-semibold text-sm rounded-md hover:bg-primary/90 transition-colors"
+          >
+            See open roles
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── Section: Final CTA ─────────────────────────────────────────────────── */
 
 function FinalCTA() {
@@ -309,6 +414,8 @@ export default function AboutPage() {
       <HeroAbout />
       <ThreePillars />
       <Receipts />
+      <Team />
+      <Careers />
       <FinalCTA />
       <Footer />
     </main>
