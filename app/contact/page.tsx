@@ -27,7 +27,6 @@ const paths = [
 ];
 
 const extras = [
-  { label: 'Press', href: 'mailto:press@kleos.io', email: 'press@kleos.io' },
   { label: 'Compliance', href: 'mailto:compliance@kleos.io', email: 'compliance@kleos.io' },
   { label: 'Careers', href: '/careers', email: null },
 ];
