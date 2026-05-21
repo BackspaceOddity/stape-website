@@ -13,22 +13,22 @@ const paths = [
     body: 'Payouts, contracts, onboarding a new person, anything that’s already in motion.',
     primaryLabel: 'Open in-product chat',
     primaryHref: '#',
-    secondaryLabel: 'support@kleos.com',
-    secondaryHref: 'mailto:support@kleos.com',
+    secondaryLabel: 'support@kleos.io',
+    secondaryHref: 'mailto:support@kleos.io',
   },
   {
     eyebrow: 'Thinking about Kleos',
     body: 'See the product, get pricing, run a comparison, or bring your team across.',
     primaryLabel: 'Book a call',
     primaryHref: '#',
-    secondaryLabel: 'sales@kleos.com',
-    secondaryHref: 'mailto:sales@kleos.com',
+    secondaryLabel: 'client@kleos.io',
+    secondaryHref: 'mailto:client@kleos.io',
   },
 ];
 
 const extras = [
-  { label: 'Press', href: 'mailto:press@kleos.com', email: 'press@kleos.com' },
-  { label: 'Security', href: 'mailto:security@kleos.com', email: 'security@kleos.com' },
+  { label: 'Press', href: 'mailto:press@kleos.io', email: 'press@kleos.io' },
+  { label: 'Compliance', href: 'mailto:compliance@kleos.io', email: 'compliance@kleos.io' },
   { label: 'Careers', href: '/careers', email: null },
 ];
 
