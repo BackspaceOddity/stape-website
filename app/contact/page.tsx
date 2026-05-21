@@ -21,8 +21,8 @@ const paths = [
     body: 'See the product, get pricing, run a comparison, or bring your team across.',
     primaryLabel: 'Book a call',
     primaryHref: '#',
-    secondaryLabel: 'client@kleos.io',
-    secondaryHref: 'mailto:client@kleos.io',
+    secondaryLabel: 'support@kleos.io',
+    secondaryHref: 'mailto:support@kleos.io',
   },
 ];
 
