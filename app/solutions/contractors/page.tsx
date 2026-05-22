@@ -54,7 +54,7 @@ const beforeAfterData = [
   },
   {
     before: 'Money lands when the corridor allows — sometimes 3 days late',
-    after: 'Visa / Mastercard same-day. SEPA next morning. USDT in minutes. You pick.',
+    after: 'Visa / Mastercard / USDT in under 5 minutes. Local bank transfers in 2–3 hours. You pick.',
   },
   {
     before: 'One method, one country, one currency — figure the rest out yourself',
@@ -62,11 +62,11 @@ const beforeAfterData = [
   },
   {
     before: 'No proper contract, no monthly invoice, nothing your bank will accept',
-    after: 'A named contract from a foreign legal entity. Monthly invoices. Documents banks and tax offices treat as normal.',
+    after: 'A Service Agreement from a Kleos entity in the UK, US, or UAE. Invoice auto-generated with each withdrawal. Supporting documents banks and tax offices recognize.',
   },
   {
     before: 'Support ticket Friday → human Tuesday, maybe',
-    after: 'Real humans. Same-day reply, weekends included.',
+    after: 'Real humans. Median reply under 5 minutes — weekends included.',
   },
 ];
 
@@ -89,7 +89,7 @@ const timelineSteps = [
   {
     time: 'Step 4',
     title: 'Money lands. Documents generate themselves.',
-    aside: 'Named contract in your inbox. Monthly invoice from a foreign legal entity. No more “where’s my salary?” messages to anyone.',
+    aside: 'Service Agreement from a UK, US, or UAE Kleos entity in your inbox. Invoice auto-generated with each withdrawal. No more “where’s my salary?” messages to anyone.',
   },
 ];
 
@@ -106,14 +106,14 @@ const comparisonData = [
     eor: '2–5 business days',
     freelance: '3–7 business days',
     crypto: 'Minutes — until the bank freezes you',
-    stape: 'Same-day on Visa/MC',
+    stape: 'Under 5 minutes on Visa/MC',
   },
   {
     feature: 'Income docs your bank accepts',
     eor: 'Sometimes',
     freelance: 'No',
     crypto: 'No',
-    stape: 'Named contract + monthly invoices',
+    stape: 'Service Agreement + invoice per withdrawal',
   },
   {
     feature: 'Method split across accounts',
@@ -141,7 +141,7 @@ const comparisonData = [
     eor: 'Tickets, 24h+',
     freelance: 'Bank’s call centre',
     crypto: 'Telegram strangers',
-    stape: 'Dedicated human, under 1h',
+    stape: 'Median reply under 5 min',
   },
 ];
 
@@ -166,7 +166,7 @@ const testimonials = [
 const faqs = [
   {
     question: 'My company already has a payment provider. Why push for a switch?',
-    answer: 'Because the provider takes 1–3% out of your side — quietly. Your company keeps paying the same. The fee moves from your pocket to nobody’s. We charge your company a flat €50, charge you zero, and the documents you get from us are the kind banks and tax offices treat as normal.',
+    answer: 'Because the provider takes 1–3% out of your side — quietly. Your company keeps paying the same. The fee moves from your pocket to nobody’s. We charge your company a flat €50, charge you zero, and the documents you get from us are the kind banks and tax offices recognize as supporting documents.',
   },
   {
     question: 'How do I bring this up without sounding like a salesperson?',
@@ -178,7 +178,7 @@ const faqs = [
   },
   {
     question: 'Are the documents you generate actually accepted by banks and tax offices?',
-    answer: 'Yes. Named contract from a foreign legal entity. Monthly invoices with your name, your work, the amount, the currency. Used routinely for opening accounts, declaring income, and renewing residency abroad.',
+    answer: 'You get a Service Agreement with a Kleos legal entity in the UK, US, or UAE, plus an auto-generated invoice with every withdrawal. The standard documentation pack: contract, invoice, statement of services rendered, payout confirmation. Banks and tax offices use these as supporting documents — acceptance depends on your specific country and institution, but compliance teams treat them as standard.',
   },
   {
     question: 'I work as a sole proprietor. Is something safer available?',
@@ -186,7 +186,7 @@ const faqs = [
   },
   {
     question: 'The referral — in plain numbers?',
-    answer: '20% of what your company pays us, for the lifetime of that account. A 10-person team at €50 each is €500/month → €100/month to you, every month they stay. Paid through the partner dashboard after their first invoice.',
+    answer: '20% of our commission on every payout your company makes through Kleos. No cap, no time limit — as long as your company stays with us. A 10-person team at €50 each, paid monthly, is €100/month landing in your Kleos contractor account each month. Withdraw it the same way you withdraw your salary.',
   },
 ];
 
@@ -280,7 +280,7 @@ function HeroContractors() {
         >
           {[
             '0% fees from your side',
-            'Visa / Mastercard same-day payout',
+            'Visa / Mastercard withdrawal in under 5 minutes',
             'Crypto, SEPA, SWIFT — your call',
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm text-foreground-muted">
@@ -624,7 +624,7 @@ function ContractorsSocialProof() {
 
         {/* Metric cards */}
         <motion.div
-          className="grid grid-cols-3 gap-4 md:gap-6 mt-8"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -634,12 +634,16 @@ function ContractorsSocialProof() {
             <p className="text-xs text-foreground-muted">Fees taken from your side</p>
           </div>
           <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
-            <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">&lt;1h</p>
-            <p className="text-xs text-foreground-muted">Average human reply, weekdays and weekends</p>
+            <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">5 min</p>
+            <p className="text-xs text-foreground-muted">Median first reply from a real human, weekdays and weekends</p>
           </div>
           <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
             <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">242</p>
             <p className="text-xs text-foreground-muted">Countries you can be paid in, no exceptions</p>
+          </div>
+          <div className="bg-white rounded-xl p-6 md:p-8 border border-border">
+            <p className="text-3xl md:text-4xl font-display font-extrabold text-primary mb-2">$60M+</p>
+            <p className="text-xs text-foreground-muted">Paid to contractors through Kleos</p>
           </div>
         </motion.div>
       </div>
@@ -717,15 +721,15 @@ function CostComparison() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">&bull;</span>
-                <span>Same-day on Visa / Mastercard.</span>
+                <span>Visa / Mastercard withdrawal in under 5 minutes.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">&bull;</span>
-                <span>Named contract + monthly invoices included.</span>
+                <span>Service Agreement + invoice per withdrawal, included.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="opacity-60">&bull;</span>
-                <span>Dedicated human support &mdash; under an hour.</span>
+                <span>Median human reply under 5 minutes.</span>
               </li>
             </ul>
             <div className="mt-6 pt-6 border-t border-primary/20">
