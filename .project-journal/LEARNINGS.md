@@ -4,6 +4,25 @@
 
 ---
 
+## 2026-06-03 — Экспорт Figma-изображений + сравнение качества
+
+### [LOCAL] WebFetch small-model галлюцинирует точечные цитаты
+- **Что случилось:** WebFetch вернул headline "Payroll that disappears so you can build" вместо реального H1 "Payroll was never the job you signed up for" с kleos.io. Строчка есть на странице, но в nav-dropdown, не в H1.
+- **Root cause:** WebFetch обрабатывает HTML через small model — навигационный copy путается с hero headline.
+- **Rule:** При цитировании конкретного текста — второй WebFetch с prompt «copy verbatim, no paraphrase» для верификации. Числа и структуру small model галлюцинирует реже.
+
+### [LOCAL] Figma REST API /images: таймаут при батче > 3 крупных нод
+- **Что случилось:** Запрос 8 нод с `scale=2` — `Render timeout`. С `scale=1` и батчами по 3 — работает.
+- **Rule:** Не больше 3 нод за раз при `scale=1`; при `scale=2` — по 1-2.
+
+### [LOCAL] `window.scrollTo(0,0)` не работает при browser scroll restoration
+- **Fix:** `history.scrollRestoration = 'manual'` перед `scrollTo` — отключает авто-restore.
+
+### [CROSS-PROJECT] Next.js `unoptimized: true` vs Webflow: честное сравнение качества
+- **Паттерн:** `unoptimized: true` = PNG отдаётся без сжатия. Webflow автоматически конвертирует в WebP + оптимизирует. Это корректная точка сравнения при жалобах на качество изображений в Webflow.
+
+---
+
 ## 2026-05-13 — DS token provenance gap in Figma builds
 
 ### [CROSS-PROJECT] CRITICAL: Figma DS colors/fonts ≠ Tailwind/Next.js tokens

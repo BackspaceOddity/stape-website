@@ -6,7 +6,7 @@ import { useEditMode } from './context';
 export function EditToolbar() {
   const {
     mode, toggleTextMode, toggleVisualMode,
-    pendingCount, approvedCount, visualEdits, saveAll,
+    pendingCount, approvedCount, threads, visualEdits, saveAll,
   } = useEditMode();
 
   const [visible, setVisible] = useState(false);
@@ -92,6 +92,25 @@ export function EditToolbar() {
           }}
         >
           {saving ? 'Saving…' : 'Save'}
+        </button>
+      )}
+
+      {hasChanges && (
+        <button
+          onClick={async () => {
+            const payload = { threads, visualEdits };
+            try {
+              await fetch('http://localhost:8002/inbox', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+              });
+            } catch {}
+            await handleSave();
+          }}
+          style={{ ...btnBase, background: '#7c3aed', color: '#fff' }}
+        >
+          → Claude
         </button>
       )}
 
