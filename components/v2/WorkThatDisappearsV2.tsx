@@ -35,27 +35,27 @@ const todayBullets = [
 const slides = [
   {
     id: 'wtd.slide-0',
-    portrait: '/Images/portraits/2.png',
+    portrait: '/kleos-v3/images/gallery/card1-blue.png',
     phrase: 'Close the deal you\u2019ve been chasing for weeks',
   },
   {
     id: 'wtd.slide-1',
-    portrait: '/Images/portraits/3.png',
+    portrait: '/kleos-v3/images/gallery/card3-city.png',
     phrase: 'Interview the senior engineer in S\u00e3o Paulo',
   },
   {
     id: 'wtd.slide-2',
-    portrait: '/Images/portraits/5.jpg',
+    portrait: '/kleos-v3/images/gallery/card4-green.png',
     phrase: 'Launch the feature your users have been asking for',
   },
   {
     id: 'wtd.slide-3',
-    portrait: '/Images/portraits/4.png',
+    portrait: '/kleos-v3/images/gallery/card2-yellow.png',
     phrase: 'Take a proper lunch break',
   },
   {
     id: 'wtd.slide-4',
-    portrait: '/Images/portraits/1.png',
+    portrait: '/kleos-v3/images/gallery/card5-orange.png',
     phrase: 'Leave at 6pm knowing everyone\u2019s paid',
   },
 ];
