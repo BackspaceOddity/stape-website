@@ -27,12 +27,25 @@ const timelineSteps = [
   },
 ];
 
-export default function TimelineV2() {
+interface TimelineV2Props {
+  backgroundImage?: string;
+}
+
+export default function TimelineV2({ backgroundImage }: TimelineV2Props = {}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section data-component="TimelineV2" ref={ref} className="py-20 md:py-28 bg-primary">
+    <section
+      data-component="TimelineV2"
+      ref={ref}
+      className="py-20 md:py-28 bg-primary relative overflow-hidden"
+      style={backgroundImage ? {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      } : undefined}
+    >
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -2,12 +2,27 @@
 
 import { motion } from 'framer-motion';
 
-export default function CTAV2() {
+interface CTAV2Props {
+  backgroundImage?: string;
+}
+
+export default function CTAV2({ backgroundImage }: CTAV2Props = {}) {
   return (
-    <section data-component="CTAV2" className="py-20 md:py-28 bg-white">
-      <div className="max-w-[700px] mx-auto px-6 md:px-12 text-center">
+    <section
+      data-component="CTAV2"
+      className="py-20 md:py-28 bg-white relative overflow-hidden"
+      style={backgroundImage ? {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      } : undefined}
+    >
+      {backgroundImage && (
+        <div className="absolute inset-0 bg-black/60 z-0" />
+      )}
+      <div className={`max-w-[700px] mx-auto px-6 md:px-12 text-center relative z-10`}>
         <motion.h2
-          className="text-[32px] md:text-[40px] font-display font-extrabold text-primary mb-6 tracking-[-0.02em]"
+          className={`text-[32px] md:text-[40px] font-display font-extrabold mb-6 tracking-[-0.02em] ${backgroundImage ? 'text-white' : 'text-primary'}`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -16,7 +31,7 @@ export default function CTAV2() {
           Try one payment. You&apos;ll get it.
         </motion.h2>
         <motion.p
-          className="text-base text-foreground-secondary leading-relaxed mb-10"
+          className={`text-base leading-relaxed mb-10 ${backgroundImage ? 'text-white/80' : 'text-foreground-secondary'}`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -42,7 +57,7 @@ export default function CTAV2() {
           </a>
           <a
             href="#"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 border border-border text-primary font-semibold text-sm rounded-md hover:bg-background-secondary transition-colors"
+            className={`w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 border font-semibold text-sm rounded-md transition-colors ${backgroundImage ? 'border-white/40 text-white hover:bg-white/10' : 'border-border text-primary hover:bg-background-secondary'}`}
           >
             Talk to a Human First
           </a>

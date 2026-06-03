@@ -11,7 +11,7 @@ const metrics = [
   },
   {
     label: 'Paid worldwide',
-    value: '$40M+',
+    value: '$60M+',
   },
   {
     label: 'Contractor fee',
