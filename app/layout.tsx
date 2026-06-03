@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { EditModeProvider, EditToolbar, VisualEditPicker } from "@/lib/edit-mode";
+import { EditModeProvider } from "@/lib/edit-mode";
+import { buildScriptInner } from "@backspace-oddity/edit-mode/build-script";
 
 // Outfit for headlines - bold, characterful
 const outfit = Outfit({
@@ -35,11 +36,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans antialiased">
-        <EditModeProvider>
-          {children}
-          <EditToolbar />
-          <VisualEditPicker />
-        </EditModeProvider>
+        <EditModeProvider>{children}</EditModeProvider>
+        {process.env.NODE_ENV !== "production" && (
+          <script dangerouslySetInnerHTML={{ __html: buildScriptInner({ slug: "stape" }) }} />
+        )}
       </body>
     </html>
   );
