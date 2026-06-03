@@ -43,3 +43,6 @@
 [2026-05-13 17:24] Edit → .gitignore
 [2026-05-13 18:57] Write → components/v2/CORSplit.tsx
 [2026-05-13 18:58] Edit → app/contractor-of-record/page.tsx
+[2026-05-13 20:01] Edit → tailwind.config.ts
+[2026-05-13 20:01] Write → components/v2/CORSplit.tsx
+[2026-06-03 10:02] Edit → .gitignore
