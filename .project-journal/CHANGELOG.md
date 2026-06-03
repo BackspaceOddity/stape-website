@@ -4,6 +4,36 @@
 
 ---
 
+## 2026-06-04 — /kleos-v3 image quality test route + kleos.io launch review
+
+**What happened:**
+- kleos.io went live (Webflow production). H1: "Payroll was never the job you signed up for / We make it disappear".
+- Created `/kleos-v3` route: homepage mirroring kleos.io structure with Figma-exported PNG images (no compression) for quality comparison against Webflow.
+- New component `HeroImageBand.tsx` — full-width `hero-wide.png` below hero text.
+- `TimelineV2` + `CTAV2`: added optional `backgroundImage` prop (backward-compatible). `/kleos-v3` passes `sky.png` and `bg-city.png` respectively.
+- `WorkThatDisappearsV2`: swapped 5 placeholder portraits for real Figma gallery cards.
+  - First export pulled from "Option 1" section (`518:xxxx`) — wrong set.
+  - Corrected to "Option 2" (`1146:7xxx`) after Yegor pointed to node `1146:7186`.
+  - `card1-blue` (`1146:6717`, "Close the deal") is shared between both options — correct from the start.
+- `MetricsV2`: `$40M+` → `$60M+` to match live kleos.io.
+- 6 background images + 5 gallery cards exported from `[Deliverables] Kleos` Figma file, node `1146:6001`.
+
+**Decisions made:**
+- Image export: 1× PNG scale (2× times out for batches > 2 large nodes).
+- Gallery cards: label Container hidden before export, restored after (baked-in label would double with component's own overlay).
+- Figma "Option 2" (`1153:6110` section) is the canonical portrait set, not "Option 1" (`552:945`).
+
+**Errors encountered:**
+- `preview_screenshot` returns white at any scrolled position after `scrollIntoView` — fix: tall viewport (4000px+) + `scrollTo(0)`.
+- Figma REST `/images` render timeout: >3 large nodes at scale=1 or any at scale=2.
+- WebFetch small model reported wrong H1 headline (nav copy vs hero H1).
+
+**Result:**
+- `/kleos-v3` live on GitHub Pages at `https://backspaceoddity.github.io/stape-website/kleos-v3`
+- Commits: `64fc0aa` → `0709ba7` (3 commits)
+
+---
+
 ## 2026-04-14 — v2 pixel-perfect pipeline + first mechanical Gate 3 run (revert'нуто 2026-04-23)
 
 **What happened:**
@@ -91,3 +121,7 @@
 ### 2026-05-14 — orphan session rolled up (PID no longer alive)
 
 - Timeline file `2026-05-13-2108-7646-yegorkorobeynikov.md` had 1 user prompts, 24 tool calls, 0 errors. Full raw log has been deleted (retention policy).
+
+### 2026-06-03 — orphan session rolled up (PID no longer alive)
+
+- Timeline file `2026-06-03-1000-12414-yegorkorobeynikov.md` had 11 user prompts, 171 tool calls, 0 errors. Full raw log has been deleted (retention policy).

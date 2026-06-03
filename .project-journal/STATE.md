@@ -1,7 +1,7 @@
 # Stape Website (Kleos) — Current State
 
-**Last updated:** 2026-05-13
-**Status:** Live on GitHub Pages. Site fully functional with Kleos branding.
+**Last updated:** 2026-06-04
+**Status:** Live on GitHub Pages + kleos.io production launched. /kleos-v3 image-quality test route added.
 **Client:** Kleos (rebranded Stape). Production URL: https://backspaceoddity.github.io/stape-website/
 **Repo:** https://github.com/BackspaceOddity/stape-website
 
@@ -29,6 +29,7 @@ Rebranded Stape→Kleos by Anna Barinova on 2026-05-01 (commit `3f9db9e`).
 | `/blog` | ✅ Scaffold | No real posts |
 | `/careers` | ✅ Scaffold | |
 | `/about-v2` | 🧪 Dev-only | Alternative about page draft |
+| `/kleos-v3` | 🧪 Image QA | Figma-exported images (no compression) vs kleos.io Webflow for quality diff |
 | `/v2` | 🗑 Legacy | Pixel-perfect branch — reverted, do not touch |
 
 ## Homepage sections (top to bottom)
@@ -74,7 +75,8 @@ Rebranded Stape→Kleos by Anna Barinova on 2026-05-01 (commit `3f9db9e`).
 1. **`basePath: '/stape-website'`** — inconsistent with Kleos brand. Changing requires updating GitHub Pages deployment config + all internal links.
 2. **`app/v2/` legacy route** — pixel-perfect pipeline artifacts from reverted branch. Can be cleaned up.
 3. **Stop hook Gate 3 false positive** — `web-output/stape-v2/verification.md` triggers pixel-perfect stale warning on any `.tsx` change. Not a real issue; legacy from revert.
-4. **STATE.md stale → fixed 2026-05-13** (this file).
+4. **`/kleos-v3` gallery card filenames** — `card2-yellow`, `card3-city` etc. no longer match Option-2 portrait colours; cosmetic only.
+5. **MetricsV2 on `/about`** — still shows `$40M+`; fix updated only the shared component (affects homepage). About page has its own metric band — needs separate fix.
 
 ## How to run locally
 

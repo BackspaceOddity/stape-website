@@ -4,6 +4,21 @@
 
 ---
 
+## 2026-06-04 — Figma gallery export: Option 1 vs Option 2
+
+### [CROSS-PROJECT] Figma design files can have multiple named variants — always verify which is canonical
+- **What happened:** `[Deliverables] Kleos` has two sections at top level: "Option 1" (`552:945`) and "Option 2" (`1153:6110`). Both contain the same 5 gallery portrait cards at the same y-position. I exported from Option 1 — the rejected set. Canonical is Option 2.
+- **Root cause:** Didn't check which section parent the node URL pointed to before exporting. Picked the first match.
+- **Rule:** When a Figma file has named sections ("Option 1/2/3", "V1/V2", "Approved/Draft") — check the section parent of the node URL before exporting. `node.parent.name` tells you which variant.
+
+### [LOCAL] Figma cards with baked-in label boxes: hide before exporting portrait-only
+- **Pattern:** Gallery cards in this file have a "Container" GROUP (585×258) baked at the bottom with label+phrase. If the component renders its own overlay (which WorkThatDisappearsV2 does), exporting with label visible = doubling. Fix: `n.visible = false` before export, `n.visible = true` after.
+
+### [LOCAL] preview_screenshot returns white at programmatic scroll positions
+- **Pattern:** Works correctly at scrollY=0. Returns white after `scrollIntoView` or `instant` scroll to mid-page. Fix: set viewport height to 4000px+ so target section falls within the initial viewport; capture at scrollY=0.
+
+---
+
 ## 2026-06-03 — Экспорт Figma-изображений + сравнение качества
 
 ### [LOCAL] WebFetch small-model галлюцинирует точечные цитаты
